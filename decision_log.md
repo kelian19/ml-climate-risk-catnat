@@ -6,3 +6,5 @@
 - 2026-11-17 : validation par origine glissante, apprentissage ≤ t − 2 (retard de publication des arrêtés).
 - 2026-11-17 : climatologie expansive (années antérieures seulement) ; historique limité aux arrêtés publiés avant l'année prédite.
 - 2026-11-17 : dernière année mûre calculée à partir du 99e centile du retard de publication (2022 avec la coupure du 9 juillet 2025).
+- 2026-11-17 : période élargie. SIM depuis 1959 (climatologie, 10 ans minimum), cible 1989–2022, test 1995–2022.
+- 2026-11-17 : estimation 2026 avec indicateurs arrêtés au dernier mois disponible (octobre), modèle réentraîné de la même façon.

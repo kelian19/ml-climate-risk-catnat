@@ -1,36 +1,85 @@
 # Résultats mesurés — fréquence de reconnaissance CatNat sécheresse
 
-Table : 34746 communes × années 2006–2022 (590682 lignes), fréquence moyenne 4,29 %. Coupure des arrêtés : 2025-07-09 ; dernière année mûre : 2022.
-Validation : origine glissante par année ; apprentissage sur années ≤ t−2 ; années de test 2010–2022.
+Table : 34746 communes × années 1989–2022 (1181364 lignes), fréquence moyenne 3,52 %. Coupure des arrêtés : 2025-07-09 ; dernière année mûre : 2022.
+Validation : origine glissante par année ; apprentissage sur années ≤ t−2 ; années de test 1995–2022.
 
 ## Scores agrégés hors échantillon
 
 | Modèle | Log-loss | Gain vs constante | Brier | Gain Brier | AUC | Attendu | Observé |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Fréquence constante | 0,2264 | 0,0 % | 0,0514 | 0,0 % | 0,638 | 7 738 | 24106 |
-| Fréquence commune crédibilisée | 0,2319 | -2,5 % | 0,0493 | 4,1 % | 0,663 | 7 738 | 24106 |
-| GLM météo | 0,2028 | 10,4 % | 0,0496 | 3,6 % | 0,804 | 13 153 | 24106 |
-| GLM météo + exposition | 0,1900 | 16,1 % | 0,0460 | 10,5 % | 0,850 | 11 365 | 24106 |
-| GLM complet | 0,1838 | 18,8 % | 0,0446 | 13,3 % | 0,861 | 11 646 | 24106 |
-| GBM complet | 0,1929 | 14,8 % | 0,0435 | 15,4 % | 0,861 | 9 801 | 24106 |
+| Fréquence constante | 0,1542 | 0,0 % | 0,0339 | 0,0 % | 0,448 | 25 790 | 34001 |
+| Fréquence commune crédibilisée | 0,1455 | 5,6 % | 0,0328 | 3,1 % | 0,702 | 25 790 | 34001 |
+| GLM météo | 0,1340 | 13,1 % | 0,0323 | 4,7 % | 0,782 | 27 820 | 34001 |
+| GLM météo + exposition | 0,1223 | 20,7 % | 0,0306 | 9,5 % | 0,847 | 27 428 | 34001 |
+| GLM complet | 0,1215 | 21,2 % | 0,0309 | 8,6 % | 0,855 | 31 350 | 34001 |
+| GBM complet | 0,1213 | 21,3 % | 0,0297 | 12,4 % | 0,858 | 25 460 | 34001 |
+
+### Sous-période 2010–2022 (mêmes modèles, historique d’apprentissage plus long)
+
+| Modèle | Log-loss | Gain vs constante | AUC | Attendu | Observé |
+|---|---:|---:|---:|---:|---:|
+| Fréquence constante | 0,2192 | 0,0 % | 0,552 | 11 149 | 24106 |
+| Fréquence commune crédibilisée | 0,2110 | 3,7 % | 0,700 | 11 149 | 24106 |
+| GLM météo | 0,1855 | 15,4 % | 0,802 | 14 222 | 24106 |
+| GLM météo + exposition | 0,1734 | 20,9 % | 0,848 | 13 101 | 24106 |
+| GLM complet | 0,1668 | 23,9 % | 0,857 | 14 578 | 24106 |
+| GBM complet | 0,1727 | 21,2 % | 0,854 | 12 920 | 24106 |
+
+## Cartes
+
+![France](figures/carte_france_communes.png)
+
+![Départements](figures/carte_departements.png)
+
+Région détaillée : **Occitanie**, choisie car la plus touchée sur la période (fréquence observée 6,3 % des communes-années). Année détaillée : 2022, 1488 communes reconnues pour 1 208 attendues.
+
+![Région](figures/carte_region_76.png)
+
+Départements les plus sous-estimés (observé/attendu) :
+
+| Département | Observé | Attendu | Ratio |
+|---|---:|---:|---:|
+| 58 | 560 | 99 | 5,63 |
+| 71 | 1003 | 224 | 4,48 |
+| 89 | 511 | 132 | 3,88 |
+| 39 | 752 | 201 | 3,75 |
+| 03 | 781 | 257 | 3,04 |
+| 21 | 557 | 192 | 2,90 |
+| 57 | 1206 | 417 | 2,89 |
+| 52 | 226 | 86 | 2,62 |
 
 ## Observé contre attendu par année
 
 | Année | Observé | Crédibilité | GLM complet | GBM complet | Obs./att. GLM | AUC GLM |
 |---|---:|---:|---:|---:|---:|---:|
-| 2010 | 100 | 216 | 235 | 265 | 0,42 | 0,908 |
-| 2011 | 2247 | 311 | 622 | 525 | 3,61 | 0,906 |
-| 2012 | 648 | 269 | 446 | 322 | 1,45 | 0,953 |
-| 2013 | 23 | 598 | 22 | 38 | 1,06 | 0,956 |
-| 2014 | 44 | 605 | 101 | 52 | 0,44 | 0,949 |
-| 2015 | 205 | 533 | 624 | 378 | 0,33 | 0,954 |
-| 2016 | 982 | 478 | 220 | 203 | 4,46 | 0,897 |
-| 2017 | 2104 | 451 | 871 | 713 | 2,41 | 0,892 |
-| 2018 | 4061 | 499 | 274 | 203 | 14,84 | 0,689 |
-| 2019 | 2923 | 633 | 483 | 558 | 6,06 | 0,803 |
-| 2020 | 3520 | 897 | 858 | 547 | 4,10 | 0,769 |
-| 2021 | 355 | 1 041 | 378 | 401 | 0,94 | 0,853 |
-| 2022 | 6894 | 1 207 | 6 513 | 5 596 | 1,06 | 0,784 |
+| 1995 | 333 | 1 484 | 2 269 | 1 232 | 0,15 | 0,851 |
+| 1996 | 614 | 1 259 | 1 467 | 1 065 | 0,42 | 0,847 |
+| 1997 | 351 | 1 127 | 1 606 | 939 | 0,22 | 0,904 |
+| 1998 | 578 | 1 063 | 965 | 681 | 0,60 | 0,927 |
+| 1999 | 87 | 984 | 783 | 403 | 0,11 | 0,933 |
+| 2000 | 71 | 943 | 677 | 288 | 0,10 | 0,919 |
+| 2001 | 15 | 865 | 798 | 505 | 0,02 | 0,776 |
+| 2002 | 653 | 799 | 880 | 464 | 0,74 | 0,928 |
+| 2003 | 4352 | 739 | 1 093 | 1 141 | 3,98 | 0,784 |
+| 2004 | 77 | 733 | 592 | 888 | 0,13 | 0,868 |
+| 2005 | 1521 | 974 | 1 740 | 1 350 | 0,87 | 0,921 |
+| 2006 | 323 | 918 | 862 | 793 | 0,37 | 0,901 |
+| 2007 | 203 | 953 | 635 | 579 | 0,32 | 0,958 |
+| 2008 | 121 | 918 | 734 | 484 | 0,16 | 0,919 |
+| 2009 | 596 | 881 | 1 672 | 1 726 | 0,36 | 0,882 |
+| 2010 | 100 | 843 | 720 | 628 | 0,14 | 0,914 |
+| 2011 | 2247 | 831 | 1 660 | 1 394 | 1,35 | 0,908 |
+| 2012 | 648 | 798 | 772 | 647 | 0,84 | 0,953 |
+| 2013 | 23 | 861 | 216 | 107 | 0,11 | 0,945 |
+| 2014 | 44 | 852 | 405 | 190 | 0,11 | 0,940 |
+| 2015 | 205 | 819 | 1 086 | 695 | 0,19 | 0,937 |
+| 2016 | 982 | 789 | 416 | 293 | 2,36 | 0,911 |
+| 2017 | 2104 | 767 | 1 108 | 832 | 1,90 | 0,888 |
+| 2018 | 4061 | 775 | 524 | 370 | 7,75 | 0,725 |
+| 2019 | 2923 | 821 | 1 055 | 843 | 2,77 | 0,778 |
+| 2020 | 3520 | 929 | 1 137 | 948 | 3,09 | 0,792 |
+| 2021 | 355 | 993 | 530 | 788 | 0,67 | 0,867 |
+| 2022 | 6894 | 1 072 | 4 948 | 5 184 | 1,39 | 0,794 |
 
 ## Coefficients du GLM complet (dernier apprentissage)
 
@@ -38,17 +87,17 @@ Variables standardisées ; rapport de cotes pour un écart-type. Les indicateurs
 
 | Variable | Coefficient | Rapport de cotes |
 |---|---:|---:|
-| `swi_jja_z` | 0,344 | 1,411 |
-| `swi_son_z` | -0,339 | 0,712 |
-| `swi_min_z` | -0,049 | 0,952 |
-| `sswi3_sep` | -1,322 | 0,267 |
-| `sswi12_dec` | -0,275 | 0,760 |
-| `swi_jja_z_prev` | -0,229 | 0,796 |
-| `rga_mid_share` | 0,410 | 1,507 |
-| `rga_high_share` | 0,402 | 1,495 |
-| `rga_missing` | -0,064 | 0,938 |
-| `log_population` | 0,443 | 1,558 |
-| `hist_count` | 0,361 | 1,435 |
+| `swi_jja_z` | 0,482 | 1,620 |
+| `swi_son_z` | -0,272 | 0,762 |
+| `swi_min_z` | -0,429 | 0,651 |
+| `sswi3_sep` | -1,132 | 0,322 |
+| `sswi12_dec` | -0,089 | 0,915 |
+| `swi_jja_z_prev` | 0,092 | 1,096 |
+| `rga_mid_share` | 0,301 | 1,352 |
+| `rga_high_share` | 0,565 | 1,760 |
+| `rga_missing` | -0,060 | 0,942 |
+| `log_population` | 0,509 | 1,663 |
+| `hist_count` | 0,248 | 1,281 |
 
 ## Retard de publication des arrêtés (années, fin d’événement → publication)
 

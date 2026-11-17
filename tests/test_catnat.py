@@ -124,3 +124,12 @@ def test_load_rga_share_uses_epci_area_and_keeps_secret_values_missing(tmp_path)
     r=load_rga(tmp_path,communes).set_index('codeEpci')
     assert r.loc['1','rga_mid_share']==0.5 and r.loc['1','rga_high_share']==0.25
     assert np.isnan(r.loc['2','rga_mid_share']) and r.loc['2','rga_high_share']==0.5
+
+def test_in_year_features_only_need_months_up_to_last_month():
+    sim,cells=synthetic_sim();last=sim[sim.year==2007]
+    partial=sim[~((sim.year==2007)&(sim.month>10))]
+    f=build_features(partial,cells,min_years=5,last_month=10)
+    assert not f[FEATURES_METEO].isna().any().any()
+    with pytest.raises(ValueError,match='manquant'):build_features(partial,cells,min_years=5,last_month=12)
+    full=build_features(sim,cells,min_years=5,last_month=10)
+    pd.testing.assert_frame_equal(f.reset_index(drop=True),full.reset_index(drop=True))

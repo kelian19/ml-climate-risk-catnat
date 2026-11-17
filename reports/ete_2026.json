@@ -1,0 +1,212 @@
+{
+  "year": 2026,
+  "last_month_available": 10,
+  "sim_file_sha256": "51f2a7b093e402426b558dd62af44fa9305f8fcfdf60e546dca0157db1eee723",
+  "training_years": [
+    1989,
+    2022
+  ],
+  "model": "glm_complet",
+  "expected_recognised_communes": 9873.281948498181,
+  "communes": 34746,
+  "backtest_ratio_obs_exp_quantiles": {
+    "q10": 0.10845872611111865,
+    "q50": 0.42500053203839294,
+    "q90": 2.6061351068092207
+  },
+  "empirical_range": [
+    1070.843582670016,
+    25731.10670540686
+  ],
+  "severity": {
+    "sswi3_sep_mean": -2.333638980026478,
+    "swi_jja_z_mean": -1.6897986196079477,
+    "rank_driest_sswi3_sep": 1,
+    "years_compared": 35
+  },
+  "comparison_years": [
+    {
+      "year": 2022,
+      "swi_jja_z": -1.5569313569750853,
+      "sswi3_sep": -1.591513555517182,
+      "swi_min_z": -1.9913796323667148,
+      "communes_reconnues": 6894.0
+    },
+    {
+      "year": 2003,
+      "swi_jja_z": -1.422908154394393,
+      "sswi3_sep": -1.2673910665975938,
+      "swi_min_z": -2.1051119267732243,
+      "communes_reconnues": 4352.0
+    },
+    {
+      "year": 1989,
+      "swi_jja_z": -1.30618422535562,
+      "sswi3_sep": -1.0447412651816037,
+      "swi_min_z": -1.8245864732636576,
+      "communes_reconnues": 3775.0
+    },
+    {
+      "year": 2020,
+      "swi_jja_z": -0.9498179643337732,
+      "sswi3_sep": -0.9714128244977839,
+      "swi_min_z": -1.6500508817870834,
+      "communes_reconnues": 3520.0
+    },
+    {
+      "year": 1990,
+      "swi_jja_z": -0.9452274991808713,
+      "sswi3_sep": -0.8761477580153112,
+      "swi_min_z": -2.0070309047242274,
+      "communes_reconnues": 462.0
+    },
+    {
+      "year": 2019,
+      "swi_jja_z": -0.685642003503183,
+      "sswi3_sep": -0.8263716686812871,
+      "swi_min_z": -1.4464169978397448,
+      "communes_reconnues": 2923.0
+    }
+  ],
+  "regions": [
+    {
+      "region": "Centre-Val de Loire",
+      "expected": 778.5525092812235,
+      "rate": 0.4438725822583942
+    },
+    {
+      "region": "Île-de-France",
+      "expected": 560.7389435623124,
+      "rate": 0.44292175636833525
+    },
+    {
+      "region": "Nouvelle-Aquitaine",
+      "expected": 1704.7432422600557,
+      "rate": 0.397098355988832
+    },
+    {
+      "region": "Occitanie",
+      "expected": 1748.972296696202,
+      "rate": 0.3933810833774633
+    },
+    {
+      "region": "Bourgogne-Franche-Comté",
+      "expected": 1377.9293852549388,
+      "rate": 0.3739292768670119
+    },
+    {
+      "region": "Grand Est",
+      "expected": 1552.919485593966,
+      "rate": 0.30360107245238827
+    },
+    {
+      "region": "Provence-Alpes-Côte d'Azur",
+      "expected": 193.60740349362052,
+      "rate": 0.20465898889389061
+    },
+    {
+      "region": "Auvergne-Rhône-Alpes",
+      "expected": 811.0513974018407,
+      "rate": 0.20150345277064366
+    },
+    {
+      "region": "Pays de la Loire",
+      "expected": 246.54244513837298,
+      "rate": 0.20076746346773044
+    },
+    {
+      "region": "Hauts-de-France",
+      "expected": 483.0431510034255,
+      "rate": 0.12772161581264557
+    },
+    {
+      "region": "Normandie",
+      "expected": 299.12455363619847,
+      "rate": 0.11313334101217794
+    },
+    {
+      "region": "Bretagne",
+      "expected": 104.8068928226957,
+      "rate": 0.08719375442819942
+    },
+    {
+      "region": "Corse",
+      "expected": 11.25024235332838,
+      "rate": 0.031250673203689946
+    }
+  ],
+  "top_departements": [
+    {
+      "departement": "75",
+      "region": "11",
+      "expected": 0.8055876081921975,
+      "communes": 1,
+      "p_mean": 0.8055876081921975
+    },
+    {
+      "departement": "92",
+      "region": "11",
+      "expected": 25.678035969643823,
+      "communes": 36,
+      "p_mean": 0.7132787769345507
+    },
+    {
+      "departement": "18",
+      "region": "24",
+      "expected": 193.46233131017792,
+      "communes": 286,
+      "p_mean": 0.676441717867755
+    },
+    {
+      "departement": "36",
+      "region": "24",
+      "expected": 162.96600611736034,
+      "communes": 241,
+      "p_mean": 0.6762074942629059
+    },
+    {
+      "departement": "09",
+      "region": "76",
+      "expected": 218.0979913541346,
+      "communes": 325,
+      "p_mean": 0.6710707426281064
+    },
+    {
+      "departement": "93",
+      "region": "11",
+      "expected": 25.09841823874606,
+      "communes": 39,
+      "p_mean": 0.6435491856088733
+    },
+    {
+      "departement": "94",
+      "region": "11",
+      "expected": 30.066431654568305,
+      "communes": 47,
+      "p_mean": 0.6397113117993256
+    },
+    {
+      "departement": "86",
+      "region": "75",
+      "expected": 168.063780588025,
+      "communes": 265,
+      "p_mean": 0.6342029456151886
+    },
+    {
+      "departement": "33",
+      "region": "75",
+      "expected": 337.7953696768885,
+      "communes": 534,
+      "p_mean": 0.6325755986458587
+    },
+    {
+      "departement": "11",
+      "region": "76",
+      "expected": 267.5231172770312,
+      "communes": 433,
+      "p_mean": 0.617836298561273
+    }
+  ],
+  "focus_region": "Centre-Val de Loire",
+  "caveat": "Estimation : les arrêtés de cette année ne sont pas publiés. Le niveau annuel de reconnaissance a varié d’un facteur 0,3 à 15 par rapport au modèle dans le backtest."
+}

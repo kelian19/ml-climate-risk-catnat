@@ -14,7 +14,7 @@ from catnat.model import rolling_origin,FEATURE_SETS,glm_coefficients
 from catnat.metrics import scores,by_year,calibration_table
 ROOT=Path(__file__).resolve().parents[1]
 REPORTS=ROOT/'reports';FIG=REPORTS/'figures'
-FIRST_TEST_YEAR=2010;LABEL_LAG=2
+FIRST_TEST_YEAR=1995;LABEL_LAG=2;RECENT=(2010,2022)
 MODELS=['p_constante','p_credibilite']+[f'p_{k}' for k in FEATURE_SETS]
 
 def main():
@@ -24,6 +24,8 @@ def main():
     test_years=list(range(FIRST_TEST_YEAR,meta['last_mature_year']+1))
     pred,fitted=rolling_origin(table,test_years,label_lag=LABEL_LAG)
     pooled={m:scores(pred.y,pred[m],reference=pred.p_constante) for m in MODELS}
+    recent=pred[pred.year.between(*RECENT)]
+    pooled_recent={m:scores(recent.y,recent[m],reference=recent.p_constante) for m in MODELS}
     yearly={m:by_year(pred,m).to_dict('records') for m in MODELS}
     per_year_scores=[]
     for t,g in pred.groupby('year'):
@@ -35,12 +37,15 @@ def main():
     versions={p:md.version(p) for p in ['numpy','pandas','scikit-learn','scipy','geopandas','pyproj','pyarrow']}
     result={'meta':meta,'protocol':{'test_years':test_years,'label_lag_years':LABEL_LAG,'split':'origine glissante par année ; apprentissage sur années ≤ t−2',
             'features':FEATURE_SETS,'climatology':'expansive, années antérieures seulement','credibility_k':3},
-            'pooled':pooled,'per_year':per_year_scores,'by_year':yearly,'calibration':calib,
+            'pooled':pooled,'pooled_recent':{'years':list(RECENT),'scores':pooled_recent},'per_year':per_year_scores,'by_year':yearly,'calibration':calib,
             'glm_complet_coefficients_last_year':coefs.to_dict('records'),'publication_lag':lags.to_dict('records'),
             'python':platform.python_version(),'versions':versions}
     (REPORTS/'results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,default=float),encoding='utf-8')
     pred.to_parquet(ROOT/'data/processed/predictions.parquet',index=False)
     figures(pred,calib,lags)
+    from catnat.maps import make_maps
+    result['maps']=make_maps(pred,ROOT/'data/raw',FIG)
+    (REPORTS/'results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,default=float),encoding='utf-8')
     print(json.dumps({'meta':meta,'pooled':pooled},ensure_ascii=False,indent=1,default=float))
 
 def figures(pred,calib,lags):

@@ -26,15 +26,20 @@ def expanding_anomaly(cube,min_years=5):
         z[t]=(cube[t]-mean)/np.maximum(np.sqrt(np.maximum(var,0)),SD_FLOOR)
     return z
 
-def build_features(sim,cells,min_years=5):
-    """Une ligne par maille et année, à partir de la (min_years+1)-ième année de la SIM."""
+def build_features(sim,cells,min_years=5,last_month=12):
+    """Une ligne par maille et année, à partir de la (min_years+1)-ième année de la SIM.
+
+    `last_month` < 12 limite tous les indicateurs aux mois connus (prévision en cours d'année) :
+    automne = septembre…last_month, minimum = mars…last_month, SSWI12 pris au mois last_month."""
     years,ids,swi=_cube(sim,cells,'SWI')
+    swi=swi[:,:,:last_month]
     if np.isnan(swi).any():raise ValueError('SWI manquant : années ou mailles incomplètes dans la SIM mensuelle.')
     _,_,sswi3=_cube(sim,cells,'SSWI3');_,_,sswi12=_cube(sim,cells,'SSWI12')
     z=expanding_anomaly(swi,min_years)
-    jja=z[:,:,5:8].mean(axis=2);son=z[:,:,8:11].mean(axis=2);zmin=z[:,:,2:11].min(axis=2)
+    autumn_end=min(last_month,11)
+    jja=z[:,:,5:8].mean(axis=2);son=z[:,:,8:autumn_end].mean(axis=2);zmin=z[:,:,2:autumn_end].min(axis=2)
     prev=np.full_like(jja,np.nan);prev[1:]=jja[:-1]
-    cols={'swi_jja_z':jja,'swi_son_z':son,'swi_min_z':zmin,'sswi3_sep':sswi3[:,:,8],'sswi12_dec':sswi12[:,:,11],'swi_jja_z_prev':prev}
+    cols={'swi_jja_z':jja,'swi_son_z':son,'swi_min_z':zmin,'sswi3_sep':sswi3[:,:,8],'sswi12_dec':sswi12[:,:,last_month-1],'swi_jja_z_prev':prev}
     rows=[]
     # La première année d'anomalie n'a pas d'été précédent standardisé : on commence à min_years+1.
     for k in range(min_years+1,len(years)):

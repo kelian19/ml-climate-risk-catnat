@@ -15,6 +15,18 @@ def main():
       '## Scores agrégés hors échantillon','','| Modèle | Log-loss | Gain vs constante | Brier | Gain Brier | AUC | Attendu | Observé |','|---|---:|---:|---:|---:|---:|---:|---:|']
     for k,s in r['pooled'].items():
         lines.append(f"| {NAMES[k]} | {fr(s['log_loss'],4)} | {fr(100*s['log_loss_skill'],1)} % | {fr(s['brier'],4)} | {fr(100*s['brier_skill'],1)} % | {fr(s['auc'])} | {fr(s['expected'],0)} | {s['observed']} |")
+    if 'pooled_recent' in r:
+        a,b=r['pooled_recent']['years']
+        lines+=['',f'### Sous-période {a}–{b} (mêmes modèles, historique d’apprentissage plus long)','','| Modèle | Log-loss | Gain vs constante | AUC | Attendu | Observé |','|---|---:|---:|---:|---:|---:|']
+        for k,s in r['pooled_recent']['scores'].items():
+            lines.append(f"| {NAMES[k]} | {fr(s['log_loss'],4)} | {fr(100*s['log_loss_skill'],1)} % | {fr(s['auc'])} | {fr(s['expected'],0)} | {s['observed']} |")
+    if 'maps' in r:
+        mp=r['maps'];dep=pd.read_csv(ROOT/mp['departments_file'],dtype={'departement':str})
+        lines+=['','## Cartes','',f"![France](figures/carte_france_communes.png)",'',f"![Départements](figures/carte_departements.png)",'',
+          f"Région détaillée : **{mp['region']}**, choisie car la plus touchée sur la période (fréquence observée {fr(100*mp['region_ranking'][0]['rate'],1)} % des communes-années). Année détaillée : {mp['region_year']}, {mp['region_observed']} communes reconnues pour {fr(mp['region_expected'],0)} attendues.",'',
+          f"![Région](figures/carte_region_{mp['region_code']}.png)",'','Départements les plus sous-estimés (observé/attendu) :','','| Département | Observé | Attendu | Ratio |','|---|---:|---:|---:|']
+        for _,d in dep.sort_values('ratio_obs_exp',ascending=False).head(8).iterrows():
+            lines.append(f"| {d.departement} | {int(d.observed)} | {fr(d.expected,0)} | {fr(d.ratio_obs_exp,2)} |")
     lines+=['','## Observé contre attendu par année','','| Année | Observé | Crédibilité | GLM complet | GBM complet | Obs./att. GLM | AUC GLM |','|---|---:|---:|---:|---:|---:|---:|']
     by={k:pd.DataFrame(v).set_index('year') for k,v in r['by_year'].items()}
     py=pd.DataFrame(r['per_year']);auc=py[py.model=='p_glm_complet'].set_index('year').auc

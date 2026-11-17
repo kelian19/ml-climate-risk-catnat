@@ -1,4 +1,256 @@
 {
+  "MENS_SIM2_1958.csv.gz": {
+    "bytes": 1295382,
+    "downloaded": "2026-11-17",
+    "sha256": "68f9e1e18ec9c4fd7c78bf6022cb9962e13f53556ccca1aa630e2f33b81e1005",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1958.csv.gz"
+  },
+  "MENS_SIM2_1959.csv.gz": {
+    "bytes": 3768178,
+    "downloaded": "2026-11-17",
+    "sha256": "7c1591d8642ed37b379600dbe1aad9b75cc92b388393322c14c0a29349386722",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1959.csv.gz"
+  },
+  "MENS_SIM2_1960.csv.gz": {
+    "bytes": 4016998,
+    "downloaded": "2026-11-17",
+    "sha256": "7432fb9fefebc3535a9aeaae1be3fa3e4cb4bf5414564b7d776b118b7f0d055a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1960.csv.gz"
+  },
+  "MENS_SIM2_1961.csv.gz": {
+    "bytes": 3878149,
+    "downloaded": "2026-11-17",
+    "sha256": "99ba72da4c526c096e8f0e6e815b38f9e7f668ad31c755c71cf0255e97f08b4d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1961.csv.gz"
+  },
+  "MENS_SIM2_1962.csv.gz": {
+    "bytes": 3939600,
+    "downloaded": "2026-11-17",
+    "sha256": "355c374efd04d7e85a46d158721f045e41d9d5626ba8cf9adaf28d2ed640264c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1962.csv.gz"
+  },
+  "MENS_SIM2_1963.csv.gz": {
+    "bytes": 3959524,
+    "downloaded": "2026-11-17",
+    "sha256": "d30aa6851cbbab84cd2c081c3eb1150fc4c79d8727a3bcd92fdf1c866aa5cd8c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1963.csv.gz"
+  },
+  "MENS_SIM2_1964.csv.gz": {
+    "bytes": 3934752,
+    "downloaded": "2026-11-17",
+    "sha256": "6eb2eec43b075c709d54758c1d29bb7c55d8f504ae419f9eb3e4412628a023d5",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1964.csv.gz"
+  },
+  "MENS_SIM2_1965.csv.gz": {
+    "bytes": 4011787,
+    "downloaded": "2026-11-17",
+    "sha256": "8b8bfbecc32b40b0ab758a15f4a8dbcf0db95b8192677dd968758ec0496941f5",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1965.csv.gz"
+  },
+  "MENS_SIM2_1966.csv.gz": {
+    "bytes": 3938185,
+    "downloaded": "2026-11-17",
+    "sha256": "bf0949512a3bad00a314a234ab6aa1518995d46ce153db1fbc293175d3195379",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1966.csv.gz"
+  },
+  "MENS_SIM2_1967.csv.gz": {
+    "bytes": 3898797,
+    "downloaded": "2026-11-17",
+    "sha256": "61cfe26acfa76fea7b940f63b8b8ab7b7d3308291f071e9a77fef4b06420e08a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1967.csv.gz"
+  },
+  "MENS_SIM2_1968.csv.gz": {
+    "bytes": 3951462,
+    "downloaded": "2026-11-17",
+    "sha256": "2c1fad9441113109d069b427e02f6444ceaf10041803cb27c663ae409cb3b99d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1968.csv.gz"
+  },
+  "MENS_SIM2_1969.csv.gz": {
+    "bytes": 3949373,
+    "downloaded": "2026-11-17",
+    "sha256": "aec3e12a0c2217adba3763b4133f3e4716a7d892b84704964c52cefd98c50c01",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1969.csv.gz"
+  },
+  "MENS_SIM2_1970.csv.gz": {
+    "bytes": 3959586,
+    "downloaded": "2026-11-17",
+    "sha256": "beb62414e7860c85e6efe529357f654da7c702b771d9840bcf45f0db4e53b925",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1970.csv.gz"
+  },
+  "MENS_SIM2_1971.csv.gz": {
+    "bytes": 3921268,
+    "downloaded": "2026-11-17",
+    "sha256": "77b8d5804c3d85b079fce814c89be791b425497dadddf21b3f5b185e564d995e",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1971.csv.gz"
+  },
+  "MENS_SIM2_1972.csv.gz": {
+    "bytes": 3907221,
+    "downloaded": "2026-11-17",
+    "sha256": "a294eb4584941b90383c165e9485932202646b2da74f6346a7434598e8e50ee7",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1972.csv.gz"
+  },
+  "MENS_SIM2_1973.csv.gz": {
+    "bytes": 3910612,
+    "downloaded": "2026-11-17",
+    "sha256": "413b3a0ecc66e168b2bc7043cdac2e866d262bce3971b9649598f3b92114dcc7",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1973.csv.gz"
+  },
+  "MENS_SIM2_1974.csv.gz": {
+    "bytes": 3920973,
+    "downloaded": "2026-11-17",
+    "sha256": "6b7c1a4e844f3c337740928e76d534b43c5b586d575db8e2591563cc43fc79c4",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1974.csv.gz"
+  },
+  "MENS_SIM2_1975.csv.gz": {
+    "bytes": 3887883,
+    "downloaded": "2026-11-17",
+    "sha256": "3ba77b8a185c077a7afc328863dd24faae70d7a3ddd2bd5572699d986704a3d0",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1975.csv.gz"
+  },
+  "MENS_SIM2_1976.csv.gz": {
+    "bytes": 3949696,
+    "downloaded": "2026-11-17",
+    "sha256": "0fe5b573787ab79801070df451e183d2fc0ec4dff96275be752ee0d5df8e126d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1976.csv.gz"
+  },
+  "MENS_SIM2_1977.csv.gz": {
+    "bytes": 3991942,
+    "downloaded": "2026-11-17",
+    "sha256": "43d456d6c65b2b271ab133a9f35235a0097e03b47ca1ce12d0d0fd0a5913d814",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1977.csv.gz"
+  },
+  "MENS_SIM2_1978.csv.gz": {
+    "bytes": 3983193,
+    "downloaded": "2026-11-17",
+    "sha256": "fb8a09dcd73fba5b7dcd5016c0f4823c5c2e2c40c5885b7dc83932d7d8357f00",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1978.csv.gz"
+  },
+  "MENS_SIM2_1979.csv.gz": {
+    "bytes": 4031868,
+    "downloaded": "2026-11-17",
+    "sha256": "b655ea36cc72c99cf2c6f3575c695a9b68725a7bb202c325c1813fd426391272",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1979.csv.gz"
+  },
+  "MENS_SIM2_1980.csv.gz": {
+    "bytes": 3890783,
+    "downloaded": "2026-11-17",
+    "sha256": "14d72823f19e736132ede2d5677a1b92d027db3a4286c487de70204ecc5061ae",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1980.csv.gz"
+  },
+  "MENS_SIM2_1981.csv.gz": {
+    "bytes": 3992338,
+    "downloaded": "2026-11-17",
+    "sha256": "259bf98ec3bb2cf528a83629bfcae535f5236f0893d2bc085c8bfe9f14f514e4",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1981.csv.gz"
+  },
+  "MENS_SIM2_1982.csv.gz": {
+    "bytes": 3951037,
+    "downloaded": "2026-11-17",
+    "sha256": "7074b50a5de29932db1a5b52b12e65012b542acba46f83ff941b7163ed3725ca",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1982.csv.gz"
+  },
+  "MENS_SIM2_1983.csv.gz": {
+    "bytes": 3934986,
+    "downloaded": "2026-11-17",
+    "sha256": "5b44e3de1e211d3a6c02691eb8a69909c9ae49138236684379c9bcef59f31a91",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1983.csv.gz"
+  },
+  "MENS_SIM2_1984.csv.gz": {
+    "bytes": 3942793,
+    "downloaded": "2026-11-17",
+    "sha256": "dc49cb7e6c00b0eaca15511258b469ccfd559c7d472dbb766292c39d85b29d5a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1984.csv.gz"
+  },
+  "MENS_SIM2_1985.csv.gz": {
+    "bytes": 3922909,
+    "downloaded": "2026-11-17",
+    "sha256": "631bac6cdfb0334c3dca7dbfc7a2bf53ce83b25f3a4e87d7a62deae248cd56e0",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1985.csv.gz"
+  },
+  "MENS_SIM2_1986.csv.gz": {
+    "bytes": 4001450,
+    "downloaded": "2026-11-17",
+    "sha256": "f2dab8f7a9ac93bbddc9be4a7febb90149ac58fc1b75fb2de3eede8c6985baaa",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1986.csv.gz"
+  },
+  "MENS_SIM2_1987.csv.gz": {
+    "bytes": 3931838,
+    "downloaded": "2026-11-17",
+    "sha256": "fdff8eda693bfd4bec53dbd85c2ab0c07c6d37d313d47c541a067ea56e5e3708",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1987.csv.gz"
+  },
+  "MENS_SIM2_1988.csv.gz": {
+    "bytes": 3908099,
+    "downloaded": "2026-11-17",
+    "sha256": "e1a5f788ea42d1803f9d83f0ac77a94dc12fad4aaba62f15713cde6e6e1021bd",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1988.csv.gz"
+  },
+  "MENS_SIM2_1989.csv.gz": {
+    "bytes": 3846864,
+    "downloaded": "2026-11-17",
+    "sha256": "4844c87f95306fa9789536835e43bf3cf0a36b33e15a05e9e43224590cf4ba2c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1989.csv.gz"
+  },
+  "MENS_SIM2_1990.csv.gz": {
+    "bytes": 3942065,
+    "downloaded": "2026-11-17",
+    "sha256": "8a61adc4afabb55e107407b57875b64991f23c48394304f14dd90748b9d30987",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1990.csv.gz"
+  },
+  "MENS_SIM2_1991.csv.gz": {
+    "bytes": 3858282,
+    "downloaded": "2026-11-17",
+    "sha256": "8f52761de6fe3b2ad73688c14652539e11dddbc2cb701bd55269337373bb5d4c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1991.csv.gz"
+  },
+  "MENS_SIM2_1992.csv.gz": {
+    "bytes": 3875441,
+    "downloaded": "2026-11-17",
+    "sha256": "5b72c160be600e19fc03b81bd7e5f3cfde4e27ae1c622452ba5a3167fbc4f456",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1992.csv.gz"
+  },
+  "MENS_SIM2_1993.csv.gz": {
+    "bytes": 3885116,
+    "downloaded": "2026-11-17",
+    "sha256": "0d9659e944b16f4be449fbc7592596bcb42c7c137c5ff6390569ba1be2a0c62a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1993.csv.gz"
+  },
+  "MENS_SIM2_1994.csv.gz": {
+    "bytes": 3857930,
+    "downloaded": "2026-11-17",
+    "sha256": "dbacfc670b9cedd771c1b40c7f5e76d2441c6e711841de3aca1dd0a66175e99c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1994.csv.gz"
+  },
+  "MENS_SIM2_1995.csv.gz": {
+    "bytes": 3892279,
+    "downloaded": "2026-11-17",
+    "sha256": "c496ff49f0fa185f82df41f52c3abfef3643a01f92ac79e59c043deb4b0e426c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1995.csv.gz"
+  },
+  "MENS_SIM2_1996.csv.gz": {
+    "bytes": 3886809,
+    "downloaded": "2026-11-17",
+    "sha256": "7c357bc0fee590f8ee9ad8c093171959234390631beea159dab287e590c4e25f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1996.csv.gz"
+  },
+  "MENS_SIM2_1997.csv.gz": {
+    "bytes": 3855827,
+    "downloaded": "2026-11-17",
+    "sha256": "5ff18a8c65dbeabcab5282d2083a03765076837d9d35020adc4a7a781a3e46da",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1997.csv.gz"
+  },
+  "MENS_SIM2_1998.csv.gz": {
+    "bytes": 3872889,
+    "downloaded": "2026-11-17",
+    "sha256": "cf33a5063871c5e29b15fedbca449ec87efb934f2d9e4cc1f3e55da77bfbda89",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1998.csv.gz"
+  },
+  "MENS_SIM2_1999.csv.gz": {
+    "bytes": 3905942,
+    "downloaded": "2026-11-17",
+    "sha256": "b19a5d93187e03d639774490df48465941d30f69ccdcf842ef9e220eeae617a6",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_1999.csv.gz"
+  },
   "MENS_SIM2_2000.csv.gz": {
     "bytes": 3827793,
     "downloaded": "2026-11-17",
@@ -184,6 +436,12 @@
     "downloaded": "2026-11-17",
     "sha256": "9fb325a8a5a8cb05cdae8b5b0c54133b201a97a2455634a871775e1904ccf3a2",
     "url": "https://static.data.gouv.fr/resources/arretes-de-catastrophe-naturelle-par-commune/20260720-124514/catnat.csv"
+  },
+  "communes-100m.geojson.gz": {
+    "bytes": 8237354,
+    "downloaded": "2026-11-17",
+    "sha256": "4530cbf87a3af387c2da95935376f74b93eabd0a7595eacc5b7e0ed94a0b3778",
+    "url": "https://contours-administratifs.s3.rbx.io.cloud.ovh.net/2026/geojson/communes-100m.geojson.gz"
   },
   "communes.json": {
     "bytes": 6139588,

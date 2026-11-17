@@ -4,13 +4,16 @@ from .data import RAW,load_cells,load_communes,assign_cells,load_sim,load_events
 from .features import build_features
 from .labels import last_mature_year,build_labels,history_counts
 
-FIRST_SIM_YEAR=2000
+# 1958 est partiel (août–décembre) ; les arrêtés sécheresse commencent en 1988-1989.
+FIRST_SIM_YEAR=1959
+FIRST_LABEL_YEAR=1989
+CLIMATOLOGY_MIN_YEARS=10
 
-def build_table(raw=RAW,min_years=5):
+def build_table(raw=RAW,min_years=CLIMATOLOGY_MIN_YEARS,first_sim_year=FIRST_SIM_YEAR,first_label_year=FIRST_LABEL_YEAR):
     cells=load_cells(raw);communes=assign_cells(load_communes(raw),cells)
     events=load_events(raw);mature=last_mature_year(events)
-    feats=build_features(load_sim(range(FIRST_SIM_YEAR,mature+1),raw),cells,min_years)
-    years=sorted(int(y) for y in feats.year.unique() if y<=mature)
+    feats=build_features(load_sim(range(first_sim_year,mature+1),raw),cells,min_years)
+    years=sorted(int(y) for y in feats.year.unique() if first_label_year<=y<=mature)
     t=build_labels(events,communes,years)
     t=t.merge(communes[['code','nom','codeDepartement','codeEpci','population','cell','cell_distance_km']],left_on='insee',right_on='code').drop(columns='code')
     t=t.merge(feats,on=['cell','year'],how='left')

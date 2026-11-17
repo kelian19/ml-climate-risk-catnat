@@ -16,7 +16,7 @@ def test_real_table_is_complete_and_leak_free():
     t,events,meta=build_table()
     assert meta['last_mature_year']<=events.published.max().year-1
     assert t.duplicated(['insee','year']).sum()==0
-    assert t.year.min()>=2006 and t.year.max()==meta['last_mature_year']
+    assert t.year.min()==1989 and t.year.max()==meta['last_mature_year']
     assert meta['max_cell_distance_km']<15
     # Historique : seulement des arrêtés publiés avant l'année prédite.
     first=events.assign(year=events.start.dt.year).groupby(['insee','year']).published.min()

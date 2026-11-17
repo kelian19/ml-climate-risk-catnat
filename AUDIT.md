@@ -13,7 +13,7 @@ La version d'origine (notebooks archivés dans `archive/notebooks/`) est remplac
 | Climatologie et seuils calculés sur tout l'historique | Climatologie expansive : seules les années antérieures servent de référence. |
 | Retard de publication des arrêtés ignoré | Dernière année mûre calculée ; historique limité aux arrêtés publiés avant l'année prédite. |
 | Données absentes, catalogue vide (§7) | Téléchargement scripté, empreintes SHA-256, catalogue complété. |
-| Aucun test, aucune CI | 15 tests (fuite temporelle, historique, crédibilité, formats, données réelles) et intégration continue. |
+| Aucun test, aucune CI | 16 tests (fuite temporelle, historique, crédibilité, formats, données réelles) et intégration continue. |
 
 # Audit de la version d'origine (lecture du code et des sorties enregistrées)
 

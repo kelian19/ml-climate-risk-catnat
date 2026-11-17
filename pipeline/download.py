@@ -10,7 +10,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 RAW=ROOT/'data/raw';MANIFEST=ROOT/'data/manifest.json'
 SIM_URL='https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_{year}.csv.gz'
-FIRST_YEAR,LAST_YEAR=2000,2025
+FIRST_YEAR,LAST_YEAR=1958,2025
+CONTOURS='https://contours-administratifs.s3.rbx.io.cloud.ovh.net/2026/geojson/communes-100m.geojson.gz'
 SHAPE_BASE='https://static.data.gouv.fr/resources/donnees-changement-climatique-sim-mensuelle'
 DATAGOUV='https://www.data.gouv.fr/api/1/datasets/{slug}/'
 CATNAT_SLUG='arretes-de-catastrophe-naturelle-par-commune'
@@ -31,6 +32,7 @@ def sources():
     epci=next(r for r in rga if r['format']=='csv' and 'EPCI' in r['title'])
     out.append(('rga_epci.csv',epci['url']))
     out.append(('communes.json',COMMUNES))
+    out.append(('communes-100m.geojson.gz',CONTOURS))
     return out
 
 def sha256(path):

@@ -209,3 +209,4 @@ __marimo__/
 # Données (téléchargées par pipeline/download.py, jamais versionnées)
 data/raw/
 data/processed/
+data/nowcast/
