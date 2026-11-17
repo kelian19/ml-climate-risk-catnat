@@ -133,3 +133,9 @@ def test_in_year_features_only_need_months_up_to_last_month():
     with pytest.raises(ValueError,match='manquant'):build_features(partial,cells,min_years=5,last_month=12)
     full=build_features(sim,cells,min_years=5,last_month=10)
     pd.testing.assert_frame_equal(f.reset_index(drop=True),full.reset_index(drop=True))
+
+def test_load_rga_commune_reads_shares_and_handles_absence(tmp_path):
+    from catnat.data import load_rga_commune
+    assert load_rga_commune(tmp_path).empty
+    (tmp_path/'rga_commune.csv').write_text('insee,rga_c_low,rga_c_mid,rga_c_high\n01001,0.2,0.5,0.1\n01002,0,0,0\n01001,0.3,0.4,0.2\n',encoding='utf-8')
+    d=load_rga_commune(tmp_path).set_index('insee');assert len(d)==2 and d.loc['01001','rga_c_mid']==0.4 and d.loc['01002','rga_c_high']==0

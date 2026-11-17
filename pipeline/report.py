@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
-NAMES={'p_constante':'Fréquence constante','p_credibilite':'Fréquence commune crédibilisée','p_glm_meteo':'GLM météo','p_glm_meteo_expo':'GLM météo + exposition','p_glm_complet':'GLM complet','p_gbm_complet':'GBM complet'}
+NAMES={'p_constante':'Fréquence constante','p_credibilite':'Fréquence commune crédibilisée','p_glm_meteo':'GLM météo','p_glm_meteo_expo':'GLM météo + exposition','p_glm_complet':'GLM complet','p_gbm_complet':'GBM complet','p_glm_argile':'GLM complet + aléa argile communal','p_gbm_argile':'GBM + aléa argile communal'}
 
 def fr(x,d=3):return f'{x:,.{d}f}'.replace(',',' ').replace('.',',')
 

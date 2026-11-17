@@ -15,6 +15,9 @@ FEATURES_EXPOSITION=['rga_mid_share','rga_high_share','rga_missing','log_populat
 FEATURE_SETS={'glm_meteo':FEATURES_METEO,'glm_meteo_expo':FEATURES_METEO+FEATURES_EXPOSITION,
               'glm_complet':FEATURES_METEO+FEATURES_EXPOSITION+['hist_count'],
               'gbm_complet':FEATURES_METEO+FEATURES_EXPOSITION+['hist_count']}
+FEATURES_ARGILE=['rga_c_low','rga_c_mid','rga_c_high','rga_c_missing']
+FEATURE_SETS['glm_argile']=FEATURE_SETS['glm_complet']+FEATURES_ARGILE
+FEATURE_SETS['gbm_argile']=FEATURE_SETS['gbm_complet']+FEATURES_ARGILE
 CREDIBILITY_K=3.
 
 def make_estimator(kind):

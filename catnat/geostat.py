@@ -51,17 +51,29 @@ def fit_variogram(lag,gam,counts,model='exponentiel'):
     resid=gam-f(lag,*popt);wrmse=float(np.sqrt(np.sum(counts*resid**2)/counts.sum()))
     return {'model':model,'nugget':float(popt[0]),'psill':float(popt[1]),'range':float(popt[2]),'wrmse':wrmse}
 
-def ordinary_kriging(xy_obs,z_obs,xy_new,params,n_neighbors=24):
-    """Krigeage ordinaire en voisinage glissant ; renvoie (prédiction, variance de krigeage)."""
+def kriging_weights(xy_obs,xy_new,params,n_neighbors=24):
+    """Poids du krigeage ordinaire en voisinage glissant : (indices des voisins, poids, variance de krigeage).
+
+    Les poids ne dépendent que de la géométrie et du variogramme, pas des valeurs : on les calcule une fois par point
+    à estimer puis on les applique à n'importe quelle série (mois, années). Les poids somment à 1 (non-biais)."""
     f=MODELS[params['model']];args=(params['nugget'],params['psill'],params['range'])
     tree=cKDTree(xy_obs);k=min(n_neighbors,len(xy_obs));_,nn=tree.query(xy_new,k=k)
-    nn=nn.reshape(len(xy_new),-1);pred=np.zeros(len(xy_new));var=np.zeros(len(xy_new))
+    nn=np.asarray(nn).reshape(len(xy_new),-1);W=np.zeros(nn.shape);var=np.zeros(len(xy_new))
     for i in range(len(xy_new)):
         pts=xy_obs[nn[i]];d=np.linalg.norm(pts[:,None]-pts[None],axis=2);g=f(d,*args);np.fill_diagonal(g,0.)
         n=len(pts);A=np.ones((n+1,n+1));A[:n,:n]=g;A[n,n]=0.
         b=np.ones(n+1);b[:n]=f(np.linalg.norm(pts-xy_new[i],axis=1),*args)
-        sol=np.linalg.lstsq(A,b,rcond=None)[0];pred[i]=sol[:n]@z_obs[nn[i]];var[i]=float(sol@b)
-    return pred,np.maximum(var,0.)
+        sol=np.linalg.lstsq(A,b,rcond=None)[0];W[i]=sol[:n];var[i]=float(sol@b)
+    return nn,W,np.maximum(var,0.)
+
+def apply_weights(values,nn,W):
+    """Applique les poids à des valeurs observées (dernier axe = points d'observation) ; valeurs manquantes propagées."""
+    return np.einsum('...ik,ik->...i',np.asarray(values)[...,nn],W)
+
+def ordinary_kriging(xy_obs,z_obs,xy_new,params,n_neighbors=24):
+    """Krigeage ordinaire en voisinage glissant ; renvoie (prédiction, variance de krigeage)."""
+    nn,W,var=kriging_weights(xy_obs,xy_new,params,n_neighbors)
+    return np.einsum('ik,ik->i',W,np.asarray(z_obs)[nn]),var
 
 def block_cv_kriging(xy,z,params,block_km=100.,n_neighbors=24,max_blocks=12,seed=0):
     """Validation par blocs spatiaux : on retire un disque de rayon `block_km` autour de points de test et on

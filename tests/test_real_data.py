@@ -12,6 +12,7 @@ def test_raw_files_match_manifest():
         assert hashlib.sha256((RAW/name).read_bytes()).hexdigest()==meta['sha256'],name
 
 def test_real_table_is_complete_and_leak_free():
+    if not (ROOT/'data/processed/swi_commune.npz').exists():pytest.skip('SWI krigé non calculé (pipeline.spatial_interp)')
     from catnat.table import build_table
     t,events,meta=build_table()
     assert meta['last_mature_year']<=events.published.max().year-1

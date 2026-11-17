@@ -1,0 +1,131 @@
+{
+  "years": [
+    1959,
+    2026
+  ],
+  "national_trend": {
+    "per_decade": -0.020867124211542104,
+    "ci90": [
+      -0.0340746386789422,
+      -0.0070027671586518035
+    ],
+    "mann_kendall_p": 0.00359846646543556
+  },
+  "cells": {
+    "n": 8981,
+    "share_negative": 0.9826299966596147,
+    "share_significant_negative_5pct": 0.6093976171918495,
+    "median_slope_per_decade": -0.020383597883597872
+  },
+  "severe_summer_share_by_decade": [
+    {
+      "decade": "1960s",
+      "years": 10,
+      "severe_share": 0.10727090524440486
+    },
+    {
+      "decade": "1970s",
+      "years": 10,
+      "severe_share": 0.12116690791671307
+    },
+    {
+      "decade": "1980s",
+      "years": 10,
+      "severe_share": 0.12396169691571095
+    },
+    {
+      "decade": "1990s",
+      "years": 10,
+      "severe_share": 0.2896782095535018
+    },
+    {
+      "decade": "2000s",
+      "years": 10,
+      "severe_share": 0.3521100100211558
+    },
+    {
+      "decade": "2010s",
+      "years": 10,
+      "severe_share": 0.34073043090969823
+    },
+    {
+      "decade": "2020s",
+      "years": 7,
+      "severe_share": 0.5742281324065089
+    }
+  ],
+  "sd_national_summer": 0.10956750158601332,
+  "caveat": "Tendances de la réanalyse SIM ; les mailles voisines sont corrélées, le nombre de mailles significatives ne se lit pas comme autant de tests indépendants.",
+  "sensitivity": [
+    {
+      "base_year": 2018,
+      "shift": 0.05,
+      "shift_sd": 0.4563396926665222,
+      "expected_communes": 337.7726417707789,
+      "observed_communes": 4061
+    },
+    {
+      "base_year": 2018,
+      "shift": 0.0,
+      "shift_sd": 0.0,
+      "expected_communes": 629.0849353718154,
+      "observed_communes": 4061
+    },
+    {
+      "base_year": 2018,
+      "shift": -0.03,
+      "shift_sd": -0.2738038155999133,
+      "expected_communes": 895.4330206436132,
+      "observed_communes": 4061
+    },
+    {
+      "base_year": 2018,
+      "shift": -0.06,
+      "shift_sd": -0.5476076311998266,
+      "expected_communes": 1219.1256792955883,
+      "observed_communes": 4061
+    },
+    {
+      "base_year": 2018,
+      "shift": -0.1,
+      "shift_sd": -0.9126793853330444,
+      "expected_communes": 1724.1506470641702,
+      "observed_communes": 4061
+    },
+    {
+      "base_year": 2022,
+      "shift": 0.05,
+      "shift_sd": 0.4563396926665222,
+      "expected_communes": 1413.9907351221184,
+      "observed_communes": 6894
+    },
+    {
+      "base_year": 2022,
+      "shift": 0.0,
+      "shift_sd": 0.0,
+      "expected_communes": 3299.1324288366272,
+      "observed_communes": 6894
+    },
+    {
+      "base_year": 2022,
+      "shift": -0.03,
+      "shift_sd": -0.2738038155999133,
+      "expected_communes": 4844.777989567901,
+      "observed_communes": 6894
+    },
+    {
+      "base_year": 2022,
+      "shift": -0.06,
+      "shift_sd": -0.5476076311998266,
+      "expected_communes": 5674.849382105627,
+      "observed_communes": 6894
+    },
+    {
+      "base_year": 2022,
+      "shift": -0.1,
+      "shift_sd": -0.9126793853330444,
+      "expected_communes": 6322.917443013679,
+      "observed_communes": 6894
+    }
+  ]
+}

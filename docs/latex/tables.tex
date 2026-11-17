@@ -1,0 +1,237 @@
+% Fichier généré par python -m pipeline.make_tables ; ne pas modifier à la main.
+\newcommand{\metaTable}{%
+34\,746 communes, 1989--2022, 1\,181\,364 lignes
+}
+\newcommand{\tabModels}{%
+\begin{tabular}{lrrrrr}\toprule
+Modèle & Log-loss & Gain & Brier & AUC & Attendu \\\midrule
+Fréquence constante & 0{,}1542 & 0{,}0\,\% & 0{,}0339 & 0{,}448 & 25\,790 \\
+Fréquence communale crédibilisée & 0{,}1455 & 5{,}6\,\% & 0{,}0328 & 0{,}702 & 25\,790 \\
+GLM, SWI uniforme & 0{,}1353 & 12{,}2\,\% & 0{,}0325 & 0{,}778 & 27\,035 \\
+GLM, SWI uniforme + exposition & 0{,}1218 & 21{,}0\,\% & 0{,}0308 & 0{,}854 & 26\,408 \\
+GLM complet (+ historique publié) & 0{,}1210 & 21{,}5\,\% & 0{,}0311 & 0{,}862 & 29\,885 \\
+Gradient boosting complet & 0{,}1253 & 18{,}8\,\% & 0{,}0296 & 0{,}841 & 24\,783 \\
+GLM complet + aléa argile communal & 0{,}1151 & 25{,}4\,\% & 0{,}0303 & 0{,}884 & 29\,039 \\
+Gradient boosting + aléa argile communal & 0{,}1213 & 21{,}4\,\% & 0{,}0293 & 0{,}864 & 24\,564 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabModelsRecent}{%
+\begin{tabular}{lrrrr}\toprule
+Modèle & Log-loss & Gain & AUC & Attendu \\\midrule
+Fréquence constante & 0{,}2192 & 0{,}0\,\% & 0{,}552 & 11\,149 \\
+Fréquence communale crédibilisée & 0{,}2110 & 3{,}7\,\% & 0{,}700 & 11\,149 \\
+GLM, SWI uniforme & 0{,}1879 & 14{,}3\,\% & 0{,}796 & 12\,973 \\
+GLM, SWI uniforme + exposition & 0{,}1730 & 21{,}1\,\% & 0{,}859 & 11\,623 \\
+GLM complet (+ historique publié) & 0{,}1664 & 24{,}1\,\% & 0{,}867 & 12\,866 \\
+Gradient boosting complet & 0{,}1770 & 19{,}3\,\% & 0{,}841 & 13\,218 \\
+GLM complet + aléa argile communal & 0{,}1582 & 27{,}8\,\% & 0{,}892 & 12\,305 \\
+Gradient boosting + aléa argile communal & 0{,}1686 & 23{,}1\,\% & 0{,}870 & 12\,761 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabByYear}{%
+\begin{tabular}{rrrrrr}\toprule
+Année & Observé & Crédibilité & GLM & Obs./att. & AUC \\\midrule
+2005 & 1521 & 974 & 1\,716 & 0{,}89 & 0{,}902 \\
+2006 & 323 & 918 & 1\,030 & 0{,}31 & 0{,}889 \\
+2007 & 203 & 953 & 644 & 0{,}32 & 0{,}954 \\
+2008 & 121 & 918 & 504 & 0{,}24 & 0{,}919 \\
+2009 & 596 & 881 & 1\,299 & 0{,}46 & 0{,}869 \\
+2010 & 100 & 843 & 634 & 0{,}16 & 0{,}910 \\
+2011 & 2247 & 831 & 1\,965 & 1{,}14 & 0{,}900 \\
+2012 & 648 & 798 & 557 & 1{,}16 & 0{,}955 \\
+2013 & 23 & 861 & 138 & 0{,}17 & 0{,}964 \\
+2014 & 44 & 852 & 451 & 0{,}10 & 0{,}964 \\
+2015 & 205 & 819 & 1\,119 & 0{,}18 & 0{,}935 \\
+2016 & 982 & 789 & 304 & 3{,}23 & 0{,}916 \\
+2017 & 2104 & 767 & 1\,165 & 1{,}81 & 0{,}886 \\
+2018 & 4061 & 775 & 616 & 6{,}59 & 0{,}791 \\
+2019 & 2923 & 821 & 852 & 3{,}43 & 0{,}788 \\
+2020 & 3520 & 929 & 894 & 3{,}94 & 0{,}804 \\
+2021 & 355 & 993 & 511 & 0{,}69 & 0{,}880 \\
+2022 & 6894 & 1\,072 & 3\,662 & 1{,}88 & 0{,}817 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabCoef}{%
+\begin{tabular}{lrr}\toprule
+Variable & Coefficient & Rapport de cotes (1 écart-type) \\\midrule
+\texttt{swi\_jja\_z} & $-$0{,}386 & 0{,}680 \\
+\texttt{swi\_son\_z} & $-$0{,}260 & 0{,}771 \\
+\texttt{swi\_min\_z} & 0{,}135 & 1{,}145 \\
+\texttt{swi\_jja\_z\_prev} & 0{,}020 & 1{,}020 \\
+\texttt{rp\_max\_log} & 0{,}870 & 2{,}386 \\
+\texttt{rga\_mid\_share} & 0{,}292 & 1{,}338 \\
+\texttt{rga\_high\_share} & 0{,}553 & 1{,}739 \\
+\texttt{rga\_missing} & $-$0{,}027 & 0{,}974 \\
+\texttt{log\_population} & 0{,}534 & 1{,}706 \\
+\texttt{hist\_count} & 0{,}248 & 1{,}282 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabForecastAll}{%
+\begin{tabular}{lrrrrr}\toprule
+Modèle & RMSE & MAE & Corrél. & RMSE nat. & Corrél. nat. \\\midrule
+Persistance (SWI d’été précédent) & 0{,}189 & 0{,}147 & 0{,}508 & 0{,}137 & 0{,}04 \\
+Climatologie de la maille & 0{,}151 & 0{,}124 & 0{,}682 & 0{,}114 & 0{,}19 \\
+Régression ridge & 0{,}123 & 0{,}096 & 0{,}769 & 0{,}089 & 0{,}50 \\
+Gradient boosting & 0{,}147 & 0{,}111 & 0{,}681 & 0{,}113 & 0{,}36 \\
+Forêt aléatoire & 0{,}135 & 0{,}104 & 0{,}718 & 0{,}099 & 0{,}40 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabForecastDry}{%
+\begin{tabular}{lrrrrr}\toprule
+Modèle & RMSE & MAE & Corrél. & RMSE nat. & Corrél. nat. \\\midrule
+Persistance (SWI d’été précédent) & 0{,}219 & 0{,}170 & 0{,}600 & 0{,}188 & 0{,}09 \\
+Climatologie de la maille & 0{,}200 & 0{,}179 & 0{,}763 & 0{,}180 & 0{,}21 \\
+Régression ridge & 0{,}114 & 0{,}092 & 0{,}810 & 0{,}089 & 0{,}29 \\
+Gradient boosting & 0{,}139 & 0{,}105 & 0{,}725 & 0{,}112 & 0{,}17 \\
+Forêt aléatoire & 0{,}132 & 0{,}106 & 0{,}775 & 0{,}109 & 0{,}32 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabVariogram}{%
+\begin{tabular}{lrrrr}\toprule
+Modèle & Pépite ($\times10^{-3}$) & Palier ($\times10^{-3}$) & Portée (km) & Erreur pond. ($\times10^{-3}$) \\\midrule
+spherique & 0{,}53 & 6{,}62 & 237 & 0{,}154 \\
+exponentiel & 0{,}00 & 7{,}52 & 292 & 0{,}310 \\
+gaussien & 1{,}63 & 5{,}56 & 206 & 0{,}173 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabKriging}{%
+\begin{tabular}{lrrrrr}\toprule
+Validation & RMSE & MAE & Couverture 95\,\% & Écart-type erreur std. & Points \\\midrule
+Blocs de 100 km & 0{,}0395 & 0{,}0278 & 96{,}7\,\% & 0{,}76 & 600 \\
+Blocs de 25 km & 0{,}0232 & 0{,}0170 & 97{,}9\,\% & 0{,}68 & 287 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabCriterion}{%
+\begin{tabular}{lrrrrr}\toprule
+Période de retour & Les deux & Critère seul & Arrêté seul & Sensibilité & Précision \\\midrule
+10 ans & 33\,175 & 579\,890 & 8\,382 & 79{,}8\,\% & 5{,}4\,\% \\
+25 ans & 27\,828 & 347\,408 & 13\,729 & 67{,}0\,\% & 7{,}4\,\% \\
+50 ans & 23\,682 & 255\,282 & 17\,875 & 57{,}0\,\% & 8{,}5\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabSeverity}{%
+\begin{tabular}{rrrr}\toprule
+Année & Anomalie JJA moyenne & ln(période de retour) & Communes reconnues \\\midrule
+\textbf{2026} & \textbf{$-$1{,}59} & \textbf{4{,}45} & estimation \\
+2011 & $-$1{,}06 & 4{,}08 & 2\,247 \\
+2022 & $-$1{,}54 & 3{,}81 & 6\,894 \\
+1989 & $-$1{,}45 & 3{,}36 & 3\,775 \\
+1990 & $-$1{,}04 & 3{,}34 & 462 \\
+1997 & $-$0{,}05 & 3{,}32 & 351 \\
+2003 & $-$1{,}35 & 3{,}31 & 4\,352 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabRegionsNow}{%
+\begin{tabular}{lrr}\toprule
+Région & Part attendue & Communes attendues \\\midrule
+Centre-Val de Loire & 36{,}6\,\% & 642 \\
+Île-de-France & 35{,}7\,\% & 453 \\
+Occitanie & 33{,}9\,\% & 1\,509 \\
+Nouvelle-Aquitaine & 30{,}8\,\% & 1\,324 \\
+Bourgogne-Franche-Comté & 30{,}8\,\% & 1\,135 \\
+Grand Est & 23{,}6\,\% & 1\,205 \\
+Auvergne-Rhône-Alpes & 22{,}3\,\% & 897 \\
+Provence-Alpes-Côte d'Azur & 16{,}3\,\% & 155 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\nowcastSummary}{%
+7\,870 communes attendues ; fourchette empirique 1\,040--18\,204
+}
+\newcommand{\tabDept}{%
+\begin{tabular}{rrrr}\toprule
+Département & Observé & Attendu & Rapport \\\midrule
+58 & 560 & 105 & 5{,}31 \\
+71 & 1003 & 252 & 3{,}99 \\
+89 & 511 & 130 & 3{,}92 \\
+39 & 752 & 212 & 3{,}55 \\
+21 & 557 & 206 & 2{,}71 \\
+18 & 624 & 257 & 2{,}43 \\
+57 & 1206 & 504 & 2{,}39 \\
+52 & 226 & 97 & 2{,}34 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabLag}{%
+\begin{tabular}{rrrrr}\toprule
+Année d’événement & Arrêtés & Médiane & 99\,\% & Maximum \\\midrule
+2000 & 118 & 2{,}08 & 7{,}28 & 7{,}28 \\
+2005 & 3233 & 2{,}55 & 3{,}80 & 6{,}38 \\
+2010 & 104 & 0{,}81 & 1{,}51 & 1{,}70 \\
+2015 & 205 & 1{,}07 & 1{,}74 & 2{,}14 \\
+2018 & 4093 & 0{,}46 & 1{,}54 & 3{,}06 \\
+2020 & 3734 & 0{,}63 & 1{,}72 & 2{,}47 \\
+2022 & 7935 & 0{,}57 & 1{,}64 & 2{,}31 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabIntervals}{%
+\begin{tabular}{lr}\toprule
+Résultat 2026 & Valeur \\\midrule
+Nombre attendu de communes reconnues & 7\,870 \\
+Intervalle à 90\,\% de l'estimation (bootstrap par années) & 5\,462--9\,690 \\
+Intervalle de prédiction à 80\,\% (backtest) & 1\,040--18\,204 \\
+Intervalle de prédiction à 90\,\% (backtest) & 722--22\,409 \\
+Couverture une année laissée de côté (28 ans), 80\,\% / 90\,\% & 79\,\% / 82\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabOldScore}{%
+\begin{tabular}{lrr}\toprule
+Indicateur & Spearman & Intervalle à 90\,\% \\\midrule
+Score composite d’origine & 0{,}28 & 0{,}13--0{,}42 \\
+Aléa argile BRGM seul & 0{,}59 & 0{,}48--0{,}68 \\
+Part de jours secs seule & $-$0{,}21 & $-$0{,}35--$-$0{,}07 \\
+Modèle de fréquence & 0{,}49 & 0{,}35--0{,}63 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabClimateDecades}{%
+\begin{tabular}{lrr}\toprule
+Décennie & Années & Mailles sous le décile de 1959--1988 \\\midrule
+1960s & 10 & 10{,}7\,\% \\
+1970s & 10 & 12{,}1\,\% \\
+1980s & 10 & 12{,}4\,\% \\
+1990s & 10 & 29{,}0\,\% \\
+2000s & 10 & 35{,}2\,\% \\
+2010s & 10 & 34{,}1\,\% \\
+2020s & 7 & 57{,}4\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\climateTrend}{%
+$-$0{,}021 par décennie (intervalle à 90\,\% : $-$0{,}034 à $-$0{,}007 ; Mann--Kendall $p=0{,}004$)
+}
+\newcommand{\tabSensitivity}{%
+\begin{tabular}{rrrrr}\toprule
+Année de base & Déplacement du SWI & En écarts-types & Communes attendues & Observé \\\midrule
+2018 & 0{,}05 & 0{,}46 & 338 & 4061 \\
+2018 & 0{,}00 & 0{,}00 & 629 & 4061 \\
+2018 & $-$0{,}03 & $-$0{,}27 & 895 & 4061 \\
+2018 & $-$0{,}06 & $-$0{,}55 & 1\,219 & 4061 \\
+2018 & $-$0{,}10 & $-$0{,}91 & 1\,724 & 4061 \\
+2022 & 0{,}05 & 0{,}46 & 1\,414 & 6894 \\
+2022 & 0{,}00 & 0{,}00 & 3\,299 & 6894 \\
+2022 & $-$0{,}03 & $-$0{,}27 & 4\,845 & 6894 \\
+2022 & $-$0{,}06 & $-$0{,}55 & 5\,675 & 6894 \\
+2022 & $-$0{,}10 & $-$0{,}91 & 6\,323 & 6894 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\geoMoran}{%
+0{,}87 (p = 0{,}005, 8981 mailles, été 2022)
+}
+\newcommand{\geoBest}{%
+spherique (portée 237\,km)
+}
+\newcommand{\tabInterp}{%
+\begin{tabular}{lrrrr}\toprule
+Méthode & RMSE & MAE & Biais & Couverture 95\,\% \\\midrule
+Maille la plus proche & 0{,}0562 & 0{,}0319 & 0{,}0046 & -- \\
+Pondération inverse (IDW) & 0{,}0373 & 0{,}0229 & 0{,}0025 & -- \\
+Krigeage ordinaire & 0{,}0359 & 0{,}0218 & 0{,}0020 & 95{,}7\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabInterpModel}{%
+\begin{tabular}{lrr}\toprule
+Source du SWI (GLM complet, 1995--2022) & Gain de log-loss & AUC \\\midrule
+Maille la plus proche & 21{,}25\,\% & 0{,}8606 \\
+SWI krigé au centre des communes & 21{,}53\,\% & 0{,}8620 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\interpSummary}{%
+variogramme exponentiel standardisé (pépite 2{,}1\,\%) ; centre de commune à 3{,}2\,km de la maille la plus proche en médiane (4{,}8\,km au 95$^e$ centile) ; 898 mailles retirées, 68 étés
+}

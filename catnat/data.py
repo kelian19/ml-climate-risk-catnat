@@ -50,6 +50,13 @@ def load_events(raw=RAW):
     out=pd.DataFrame({'insee':c[1].str.zfill(5),'peril':c[12],'start':pd.to_datetime(c[13]),'end':pd.to_datetime(c[14]),'published':pd.to_datetime(c[15])})
     return out.reset_index(drop=True)
 
+def load_rga_commune(raw=RAW):
+    """Parts de surface communale en aléa retrait-gonflement faible, moyen et fort (BRGM, carte d'exposition),
+    calculées par pipeline/rga_communes.py. Fichier absent → DataFrame vide."""
+    path=raw/'rga_commune.csv'
+    if not path.exists():return pd.DataFrame(columns=['insee','rga_c_low','rga_c_mid','rga_c_high'])
+    return pd.read_csv(path,dtype={'insee':str}).drop_duplicates('insee',keep='last')
+
 def load_rga(raw=RAW,communes=None):
     """Exposition RGA par EPCI : part de surface d'aléa moyen et fort. La part est rapportée à la surface
     de l'EPCI reconstituée par la somme de ses communes ; les EPCI absents ou non renseignés restent manquants."""

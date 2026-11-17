@@ -1,0 +1,115 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+\fi
+\usepackage[french]{babel}
+\usepackage[a4paper,margin=1.9cm,top=1.7cm,bottom=1.8cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float,caption}
+\usepackage{fancyhdr,lastpage,titlesec,enumitem}
+\usepackage{hyperref}
+\definecolor{Forest}{HTML}{174F43}\definecolor{Muted}{HTML}{65756A}\definecolor{Sand}{HTML}{FBF1E3}
+\hypersetup{colorlinks=true,linkcolor=Forest,urlcolor=Forest,pdftitle={SWI uniforme, fréquence de reconnaissance CatNat sécheresse et intervalles}}
+\captionsetup{font={small,color=Muted},labelfont={bf,color=Forest},skip=3pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\linespread{1.06}
+\titleformat{\section}{\Large\bfseries\color{Forest}}{\thesection}{.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{Forest}}{}{0pt}{}
+\pagestyle{fancy}\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\bfseries\color{Forest}CLAIR / NOTE MÉTHODOLOGIQUE}
+\fancyfoot[R]{\footnotesize\color{Forest}\thepage\,/\,\pageref{LastPage}}
+\newcommand{\smallnote}[1]{{\small\color{Muted}#1}}
+\input{tables.tex}
+\graphicspath{{../../reports/figures/}}
+\begin{document}
+{\small\color{Muted}\textbf{NOTE 03}\quad SÉCHERESSE CATNAT}\vspace{4mm}
+
+{\fontsize{25}{29}\selectfont\bfseries\color{Forest}Du SWI uniforme à une fréquence\par de reconnaissance avec intervalle.}\vspace{2mm}
+
+{\large Prévision et géostatistique du SWI, modèle de fréquence validé en temps réel, aléa argile communal, tendances et résultat 2026.}\vspace{3mm}
+
+\fcolorbox{Sand}{Sand}{\parbox{0.96\linewidth}{\textbf{Objet.} Estimer, pour chaque commune de France métropolitaine et chaque année, la probabilité qu'un arrêté de reconnaissance CatNat sécheresse porte sur un événement de cette année, et donner le nombre de communes reconnues avec un intervalle. Base : \metaTable. Tous les tableaux sont générés par le code (\texttt{pipeline/make\_tables.py}) depuis les résultats mesurés.}}
+
+\section{Données et indicateur}
+Le SWI (\emph{Soil Wetness Index}) représente l'état de la réserve en eau du sol rapporté à la réserve utile, de 0 (sol très sec) à 1 (saturé). Le \textbf{SWI uniforme} est calculé par le modèle SIM de Météo-France avec un sol argileux et un couvert gazonné \emph{identiques} sur tout le territoire : c'est l'indicateur du critère météorologique du dispositif CatNat sécheresse (documentation Météo-France). Le fichier de suivi (1958--2026) et le fichier de référence CatNat (1960--2025) coïncident sur leur recouvrement. Les arrêtés viennent de GASPAR (data.gouv.fr), l'exposition au retrait-gonflement des argiles de l'enquête SDES par EPCI et de l'API Géorisques (BRGM) au centre de chaque commune. Les sources sont téléchargées par script et vérifiées par empreinte SHA-256.
+
+\section{Variable à expliquer et retard de publication}
+Une commune est \og reconnue \fg{} l'année $t$ si un arrêté sécheresse porte sur un événement débutant en $t$. Les arrêtés sont publiés avec un retard (tableau~\ref{tab:lag}) : l'année la plus récente est censurée à droite. La dernière année mûre est calculée à partir du 99$^e$ centile du retard ; pour apprendre l'année $t$, seules les années $\le t-2$ sont utilisées.
+\begin{table}[H]\centering\small\tabLag\caption{Retard (années) entre la fin de l'événement et la publication de l'arrêté.}\label{tab:lag}\end{table}
+
+\section{Critère météorologique reconstitué}
+On reconstitue un critère de type période de retour : une maille est \og sous le seuil \fg{} si la moyenne glissante du SWI uniforme sur trois mois (mars à décembre) passe sous le quantile $1/T$ de ses propres années antérieures. Les paramètres exacts de la circulaire ne figurent pas dans les données : la reconstitution est paramétrable et \emph{évaluée} contre les arrêtés, pas officielle.
+\begin{table}[H]\centering\small\tabCriterion\caption{Critère reconstitué contre arrêtés effectifs, communes-années 1989--2022. Le critère est nécessaire mais non suffisant (critère géotechnique, demande communale).}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=.92\linewidth]{swi_critere.png}\caption{Communes satisfaisant le critère ($T=25$ ans) et communes effectivement reconnues.}\end{figure}
+
+\section{Prévision du SWI uniforme d'été}
+Cible : SWI moyen juin--août de la maille. Prédicteurs connus fin mai : SWI de mai et de mars--mai, hiver et été précédents, climatologie de la maille (années antérieures), tendance. Validation par origine glissante, test 1985--2026 ; la persistance et la climatologie sont les références.
+\begin{table}[H]\centering\scriptsize\tabForecastAll\caption{Toutes années (RMSE et corrélation par maille ; \og nat. \fg{} : moyenne nationale annuelle).}\end{table}
+\begin{table}[H]\centering\scriptsize\tabForecastDry\caption{Années sèches (quartile le plus sec).}\end{table}
+Le modèle linéaire fait mieux que les modèles non linéaires : il extrapole la tendance climatique, que les arbres plafonnent.
+\begin{figure}[H]\centering\includegraphics[width=.9\linewidth]{swi_prevision.png}\caption{Moyenne nationale du SWI d'été, observée et prévue.}\end{figure}
+
+\section{Géostatistique}
+Autocorrélation spatiale : $I$ de Moran $=$ \geoMoran. Variogramme ajusté par moindres carrés pondérés ; meilleur modèle : \geoBest. Krigeage ordinaire en voisinage glissant, validé en retirant des blocs spatiaux entiers (aucun voisin immédiat).
+\begin{table}[H]\centering\small\tabVariogram\caption{Ajustements du variogramme (SWI uniforme d'été).}\end{table}
+\begin{table}[H]\centering\small\tabKriging\caption{Validation du krigeage par blocs retirés. L'écart-type de l'erreur standardisée inférieur à 1 indique des intervalles légèrement prudents.}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_krigeage_swi.png}\caption{Krigeage du SWI uniforme d'été 2022 à partir de 450 mailles : surface, écart-type, erreur réelle sur les 8\,531 mailles non utilisées et variogramme. La couverture de l'intervalle à 95\,\% est de 95\,\%.}\end{figure}
+
+\section{Estimer le SWI uniforme là où il n'existe pas}
+Le SWI uniforme n'existe qu'aux 8\,981 mailles de 8\,km. Une commune se situe entre mailles : plutôt que de lui attribuer la maille la plus proche, on estime son SWI \emph{au centre de la commune} par krigeage ordinaire en voisinage glissant (24 mailles). Les poids de krigeage ne dépendent que de la géométrie et du variogramme : ils sont calculés une fois par commune puis appliqués à toute la série mensuelle (1959--2026) ; le variogramme est celui de champs d'été standardisés, ajusté sur les distances inférieures à 100\,km (modèle exponentiel, retenu par validation). Résumé : \interpSummary.
+\begin{table}[H]\centering\small\tabInterp\caption{Validation par retrait de 10\,\% des mailles au hasard (SWI uniforme d'été, unités de SWI). Les intervalles du krigeage sont bien calibrés.}\end{table}
+\begin{table}[H]\centering\small\tabInterpModel\caption{Effet sur le modèle de fréquence : indicateurs de la maille la plus proche contre indicateurs du SWI krigé au centre des communes.}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_interpolation_communes.png}\caption{SWI uniforme d'été 2026 krigé au centre des communes, incertitude d'estimation, écart avec la maille la plus proche et comparaison des méthodes.}\end{figure}
+Le krigeage réduit l'erreur d'environ 36\,\% par rapport à la maille la plus proche et fait légèrement mieux que la pondération inverse, avec un intervalle d'incertitude calibré, que l'IDW ne fournit pas. Les corrections sont les plus fortes en relief (Alpes). Au niveau du modèle de fréquence le gain est modeste : les centres de communes sont en moyenne à 3\,km d'une maille.
+
+\section{Climat : tendances et sensibilité}
+Ces éléments ne sont \emph{pas} des projections climatiques (pas de scénarios DRIAS/CMIP) : ce sont les tendances observées dans la réanalyse SIM et des tests de sensibilité du modèle. Tendance du SWI d'été moyen national (Theil--Sen) : \climateTrend.
+\begin{table}[H]\centering\small\tabClimateDecades\caption{Part des mailles dont l'été passe sous le décile de leur référence 1959--1988 (10\,\% par construction sur la référence).}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_swi_etes_secs.png}\caption{Anomalie du SWI uniforme d'été de huit années marquantes, projetée sur les communes.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.85\linewidth]{climate_tendance.png}\caption{SWI uniforme d'été, moyenne nationale, et tendance.}\end{figure}
+\begin{table}[H]\centering\small\tabSensitivity\caption{Communes reconnues attendues si le SWI d'une année de base est déplacé de façon uniforme (modèle appris sur les années $\le t-2$).}\end{table}
+
+\section{Modèle de fréquence}
+Régressions logistiques de complexité croissante et gradient boosting, comparées à une fréquence constante et à une fréquence communale crédibilisée ($k=3$). Indicateurs sans information future (climatologie expansive), historique limité aux arrêtés \emph{publiés} avant l'année prédite, validation en temps réel 1995--2022.
+\begin{table}[H]\centering\small\tabModels\caption{Scores hors échantillon 1995--2022 (log-loss, gain relatif à la constante, Brier, AUC, communes attendues).}\end{table}
+\begin{table}[H]\centering\small\tabModelsRecent\caption{Sous-période 2010--2022.}\end{table}
+\begin{table}[H]\centering\scriptsize\tabByYear\caption{Observé contre attendu par année (GLM complet) : la classification est bonne (AUC), le niveau annuel non.}\end{table}
+\begin{table}[H]\centering\small\tabCoef\caption{Coefficients du GLM complet, variables standardisées. Les indicateurs météo sont corrélés : lecture conjointe.}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=.9\linewidth]{observe_attendu.png}\caption{Communes reconnues par année : observé et attendu hors échantillon.}\end{figure}
+
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_france_triptyque.png}\caption{Fréquence de reconnaissance par commune : observée, prédite hors échantillon, écart.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.95\linewidth]{pro_calendrier_departements.png}\caption{Calendrier département $\times$ année des communes reconnues.}\end{figure}
+
+\subsection*{Aléa argile communal}
+L'exposition par EPCI est grossière. La carte d'exposition BRGM 2025 (121\,399 polygones, aléas faible, moyen, fort) est superposée aux contours des communes pour obtenir, pour chaque commune, la \emph{part de sa surface} dans chaque classe. Son apport est lisible dans les tableaux ci-dessus (modèles \og + aléa argile communal \fg) : c'est l'amélioration la plus nette. Une vérification sur les 119 communes du 13 l'avait annoncée.
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_bivarie_argile_secheresse.png}\caption{Carte bivariée par terciles : part communale en aléa argile moyen ou fort et sévérité du SWI uniforme 2026.}\end{figure}
+\begin{table}[H]\centering\small\tabOldScore\caption{Ancien score composite du Drive et indicateurs, contre la fréquence réelle de reconnaissance 1989--2022 des communes du 13.}\end{table}
+
+\section{Cartes}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{carte_departements.png}\caption{Fréquence observée, prédite et rapport observé/attendu par département.}\end{figure}
+\begin{table}[H]\centering\small\tabDept\caption{Départements les plus sous-estimés.}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{carte_region_76.png}\caption{Occitanie, région la plus touchée sur la période.}\end{figure}
+
+\section{Résultat 2026 avec intervalles}
+Données SWI uniforme jusqu'en septembre 2026 ; arrêtés non publiés. \nowcastSummary. Deux intervalles distincts : le premier mesure l'incertitude statistique (bootstrap par blocs d'années), le second l'erreur de niveau annuel observée sur le backtest.
+\begin{table}[H]\centering\small\tabIntervals\caption{Estimation 2026 et intervalles. La couverture est mesurée en laissant chaque année de côté.}\end{table}
+\begin{table}[H]\centering\small\tabSeverity\caption{2026 comparée aux années les plus sévères de la série.}\end{table}
+\begin{table}[H]\centering\small\tabRegionsNow\caption{Régions les plus exposées en 2026 (estimation).}\end{table}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_nowcast_2026.png}\caption{Probabilité estimée de reconnaissance en 2026, largeur de l'intervalle à 90\,\% et départements les plus touchés.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_eventail_prediction.png}\caption{Éventail de prédiction du nombre de communes reconnues : intervalles empiriques du backtest et estimation 2026.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_region_24_2026.png}\caption{Zoom communal sur le Centre-Val de Loire.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.9\linewidth]{climate_sensibilite.png}\caption{Sensibilité du nombre attendu de communes à un déplacement du SWI.}\end{figure}
+
+\section{Limites}
+\begin{itemize}
+\item \textbf{Fréquence, pas charge} : aucune donnée publique de sinistres ou de coûts à la commune ; pas de prime pure.
+\item \textbf{Niveau annuel non stationnaire} : la procédure de reconnaissance a évolué ; le centre de l'intervalle de prédiction n'est pas fiable, seule l'enveloppe est utilisable. 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
+\item Le critère météorologique est une reconstitution ; l'aléa argile communal est calculé sur des contours simplifiés à 100\,m ; population et contours sont des photographies récentes.
+\item Tendances et sensibilité : réanalyse et test de décalage, pas des projections climatiques.
+\end{itemize}
+\smallnote{Code et données : dépôt kelian19/ml-climate-risk-catnat. Résultats : reports/*.json.}
+\end{document}

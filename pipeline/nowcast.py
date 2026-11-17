@@ -10,7 +10,7 @@ import hashlib,json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from catnat.data import RAW,load_cells,load_communes,assign_cells,load_sim,load_events,load_rga
+from catnat.data import RAW,load_cells,load_communes,assign_cells,load_sim,load_events,load_rga,load_rga_commune
 from catnat.features import build_features_uniform,FEATURES_UNIFORM
 from catnat.swi import load_cube
 from catnat.labels import last_mature_year,build_labels,history_counts
@@ -20,7 +20,7 @@ from catnat.maps import load_contours,REGIONS
 from catnat.table import FIRST_SIM_YEAR,FIRST_LABEL_YEAR,CLIMATOLOGY_MIN_YEARS
 ROOT=Path(__file__).resolve().parents[1]
 NOW=ROOT/'data/nowcast';FIG=ROOT/'reports/figures'
-YEAR=2026;FIRST_TEST_YEAR=1995;KIND='glm_complet'
+YEAR=2026;FIRST_TEST_YEAR=1995;KIND='glm_argile'
 
 def load_current(year=YEAR):
     path=NOW/f'MENS_SIM2_{year}.csv.gz'
@@ -35,13 +35,16 @@ def main():
     years_u,ids_u,cube,grid=load_cube();communes=assign_cells(load_communes(),grid[['cell','lon','lat']]);events=load_events();mature=last_mature_year(events)
     digest=hashlib.sha256((RAW/'swi_uniforme.2026.csv.gz').read_bytes()).hexdigest()
     last_month=int(np.isfinite(cube[-1,0]).sum())
-    feats=build_features_uniform(cube,years_u,ids_u,CLIMATOLOGY_MIN_YEARS,last_month=last_month)
+    z=np.load(ROOT/'data/processed/swi_commune.npz',allow_pickle=True)   # SWI uniforme krigé au centre des communes
+    feats=build_features_uniform(z['cube'].astype(float),z['years'],z['codes'],CLIMATOLOGY_MIN_YEARS,last_month=last_month).rename(columns={'cell':'insee'})
     years=[y for y in range(FIRST_LABEL_YEAR,mature+1)]+[YEAR]
     t=build_labels(events,communes,years)
     t=t.merge(communes[['code','codeDepartement','codeEpci','population','cell']],left_on='insee',right_on='code').drop(columns='code')
-    t=t.merge(feats,on=['cell','year'],how='left').merge(history_counts(events,communes,years),on=['insee','year'],how='left')
+    t=t.merge(feats,on=['insee','year'],how='left').merge(history_counts(events,communes,years),on=['insee','year'],how='left')
     t['hist_count']=t.hist_count.fillna(0)
     t=t.merge(load_rga(RAW,communes),on='codeEpci',how='left');t['rga_missing']=t.rga_mid_share.isna().astype(int)
+    pc=load_rga_commune(RAW);t=t.merge(pc,on='insee',how='left');t['rga_c_missing']=t.rga_c_mid.isna().astype(int)
+    for c_ in ('rga_c_low','rga_c_mid','rga_c_high'):t[c_]=t[c_].fillna(0.)
     t[['rga_mid_share','rga_high_share']]=t[['rga_mid_share','rga_high_share']].fillna(0);t['log_population']=np.log1p(t.population.fillna(0))
     hist=t[t.year<=mature];cur=t[t.year==YEAR].copy()
     cols=FEATURE_SETS[KIND]
@@ -69,7 +72,7 @@ def main():
     dep=cur.merge(contours[['code','departement','region']],left_on='insee',right_on='code').groupby(['departement','region']).agg(expected=('p','sum'),communes=('p','size'),p_mean=('p','mean')).reset_index()
     reg=dep.groupby('region')[['expected','communes']].sum();reg['rate']=reg.expected/reg.communes;region=reg.rate.idxmax()
     maps(cur,contours,dep,region,last_month)
-    out={'year':YEAR,'last_month_available':last_month,'sim_file_sha256':digest,'training_years':[FIRST_LABEL_YEAR,mature],'model':KIND,
+    out={'year':YEAR,'last_month_available':last_month,'sim_file_sha256':digest,'training_years':[FIRST_LABEL_YEAR,mature],'model':KIND,'swi_source':'SWI uniforme krigé au centre des communes','clay_source':'BRGM carte d’exposition 2025, parts de surface communale',
          'expected_recognised_communes':expected,'communes':int(len(cur)),
          'estimation_interval_90':[float(np.quantile(tot,.05)),float(np.quantile(tot,.95))],
          'prediction_interval_80':[float(pi80[0]),float(pi80[1])],'prediction_interval_90':[float(pi90[0]),float(pi90[1])],

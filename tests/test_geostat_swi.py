@@ -105,3 +105,25 @@ def test_uniform_return_period_rises_in_a_dry_year():
     cube=synthetic_cube(45,6,seed=2);years=np.arange(1959,2004);dry=cube.copy();dry[-1]-=0.4
     a=build_features_uniform(cube,years,np.arange(6),10,12,10);b=build_features_uniform(dry,years,np.arange(6),10,12,10)
     assert b[b.year==2003].rp_max_log.mean()>a[a.year==2003].rp_max_log.mean()+0.5
+
+# ---------- tendances climatiques
+def test_theil_sen_recovers_a_known_trend_and_mann_kendall_detects_it():
+    from catnat.climate import theil_sen_trend,severe_summer_frequency,national_trend_per_decade,decade_table
+    yrs=np.arange(1959,2027).astype(float);rng=np.random.default_rng(0);s=0.6-0.004*(yrs-1959)+rng.normal(0,0.02,len(yrs))
+    slope,p=theil_sen_trend(s,yrs);assert slope==pytest.approx(-0.004,abs=0.0008) and p<0.001
+    flat=rng.normal(0.6,0.05,len(yrs));assert theil_sen_trend(flat,yrs)[1]>0.01
+    cube=np.repeat((0.6-0.004*(yrs-1959))[:,None,None],5,axis=1)+rng.normal(0,0.02,(len(yrs),5,12));summer=cube[:,:,5:8].mean(axis=2)
+    nat=national_trend_per_decade(summer,yrs.astype(int));assert nat['ci90'][0]<-0.02<nat['ci90'][1]+0.04 and nat['per_decade']==pytest.approx(-0.04,abs=0.01)
+    f=severe_summer_frequency(summer,yrs.astype(int));d=decade_table(f,yrs.astype(int))
+    assert f[(yrs>=1959)&(yrs<=1988)].mean()==pytest.approx(0.10,abs=0.05) and d[-1]['severe_share']>d[0]['severe_share']
+
+def test_kriging_weights_sum_to_one_reproduce_constants_and_match_ordinary_kriging():
+    from catnat.geostat import kriging_weights,apply_weights
+    xy,z=gaussian_field(300,nugget=0.05);params={'model':'exponentiel','nugget':0.05,'psill':1.,'range':40000.}
+    rng=np.random.default_rng(1);new=rng.uniform(20000,180000,size=(25,2))
+    nn,W,var=kriging_weights(xy,new,params,n_neighbors=16)
+    np.testing.assert_allclose(W.sum(axis=1),1.,atol=1e-9);assert (var>=0).all()
+    np.testing.assert_allclose(apply_weights(np.full(len(xy),7.3),nn,W),7.3,atol=1e-9)
+    p,v=ordinary_kriging(xy,z,new,params,16);np.testing.assert_allclose(apply_weights(z,nn,W),p);np.testing.assert_allclose(v,var)
+    series=np.stack([z,2*z+1],axis=0);out=apply_weights(series,nn,W);np.testing.assert_allclose(out[1],2*out[0]+1,atol=1e-9)
+    nan_series=z.copy();nan_series[nn[0,0]]=np.nan;assert np.isnan(apply_weights(nan_series,nn,W)[0])

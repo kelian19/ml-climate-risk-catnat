@@ -11,3 +11,6 @@
 - 2026-11-17 : cible du projet = SWI uniforme (critère CatNat) ; modèle de fréquence réalimenté par le SWI uniforme et sa période de retour.
 - 2026-11-17 : deux intervalles distincts : bootstrap par années (estimation) et rapports observé/attendu du backtest (prédiction), couverture contrôlée une année laissée de côté.
 - 2026-11-17 : ancien score CatNat-like (Drive) vérifié contre les arrêtés : corrélation de rang 0,28 ; aléa argile seul 0,59.
+- 2026-11-17 : SWI uniforme estimé au centre des communes par krigeage ordinaire (poids calculés une fois) ; variogramme exponentiel sur lags < 100 km retenu par validation (RMSE 0,0359 contre 0,0562 maille la plus proche et 0,0373 IDW).
+- 2026-11-17 : aléa argile BRGM communal (parts de surface par classe) intégré à toute la France ; modèle de référence = GLM complet + argile (gain 25,4 %, AUC 0,884).
+- 2026-11-17 : note LaTeX et figures détaillées générées par script (`make_tables.py`, `figures_pro.py`) ; PDF allégé (images à 150 ppp).

@@ -3,19 +3,20 @@ import json
 from pathlib import Path
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1];R=ROOT/'reports'
-NAMES={'p_constante':'Fréquence constante','p_credibilite':'Fréquence communale crédibilisée','p_glm_meteo':'GLM, SWI uniforme','p_glm_meteo_expo':'GLM, SWI uniforme + exposition','p_glm_complet':'GLM complet (+ historique publié)','p_gbm_complet':'Gradient boosting complet'}
+NAMES={'p_constante':'Fréquence constante','p_credibilite':'Fréquence communale crédibilisée','p_glm_meteo':'GLM, SWI uniforme','p_glm_meteo_expo':'GLM, SWI uniforme + exposition','p_glm_complet':'GLM complet (+ historique publié)','p_gbm_complet':'Gradient boosting complet','p_glm_argile':'GLM complet + aléa argile communal','p_gbm_argile':'Gradient boosting + aléa argile communal'}
 FNAMES={'p_persistance':'Persistance (SWI d’été précédent)','p_climatologie':'Climatologie de la maille','p_ridge':'Régression ridge','p_gbm':'Gradient boosting','p_rf':'Forêt aléatoire'}
 
 def fr(x,d=2):
     t=f'{abs(x):,.{d}f}'.replace(',','\\,').replace('.','{,}')
     return ('$-$' if x<0 and float(f'{abs(x):.{d}f}')!=0 else '')+t
+def ci(n):return f'{int(n):,}'.replace(',',chr(92)+',')
 def macro(name,body):return f'\\newcommand{{\\{name}}}{{%\n{body}\n}}\n'
 def tab(cols,header,rows):return '\\begin{tabular}{'+cols+'}\\toprule\n'+header+' \\\\\\midrule\n'+'\n'.join(r+' \\\\' for r in rows)+'\n\\bottomrule\\end{tabular}'
 
 def main():
     r=json.loads((R/'results.json').read_text(encoding='utf-8'));s=json.loads((R/'swi_study.json').read_text(encoding='utf-8'));e=json.loads((R/'ete_2026.json').read_text(encoding='utf-8'))
     m=r['meta'];out='% Fichier généré par python -m pipeline.make_tables ; ne pas modifier à la main.\n'
-    out+=macro('metaTable',f"{m['communes']:,} communes, {m['years'][0]}--{m['years'][1]}".replace(',','\\,')+f", {m['rows']:,} lignes".replace(',','\\,'))
+    out+=macro('metaTable',f"{ci(m['communes'])} communes, {m['years'][0]}--{m['years'][1]}, {ci(m['rows'])} lignes")
     rows=[f"{NAMES[k]} & {fr(v['log_loss'],4)} & {fr(100*v['log_loss_skill'],1)}\\,\\% & {fr(v['brier'],4)} & {fr(v['auc'],3)} & {fr(v['expected'],0)}" for k,v in r['pooled'].items()]
     out+=macro('tabModels',tab('lrrrrr','Modèle & Log-loss & Gain & Brier & AUC & Attendu',rows))
     rec=r['pooled_recent'];rows=[f"{NAMES[k]} & {fr(v['log_loss'],4)} & {fr(100*v['log_loss_skill'],1)}\\,\\% & {fr(v['auc'],3)} & {fr(v['expected'],0)}" for k,v in rec['scores'].items()]
@@ -35,19 +36,40 @@ def main():
     out+=macro('tabKriging',tab('lrrrrr','Validation & RMSE & MAE & Couverture 95\\,\\% & Écart-type erreur std. & Points',rows))
     rows=[]
     for T,c in s['criterion'].items():
-        rows.append(f"{T} ans & {c['both']:,} & {c['criterion_only']:,} & {c['decree_only']:,} & {fr(100*c['sensitivity'],1)}\\,\\% & {fr(100*c['precision'],1)}\\,\\%".replace(',','\\,'))
+        rows.append(f"{T} ans & {ci(c['both'])} & {ci(c['criterion_only'])} & {ci(c['decree_only'])} & {fr(100*c['sensitivity'],1)}"+chr(92)+","+chr(92)+f"% & {fr(100*c['precision'],1)}"+chr(92)+","+chr(92)+"%")
     out+=macro('tabCriterion',tab('lrrrrr','Période de retour & Les deux & Critère seul & Arrêté seul & Sensibilité & Précision',rows))
-    sev=e['severity'];rows=[f"{x['year']} & {fr(x['swi_jja_z'],2)} & {fr(x['rp_max_log'],2)} & {int(x['communes_reconnues']):,}".replace(',','\\,') for x in e['comparison_years']]
+    sev=e['severity'];rows=[f"{x['year']} & {fr(x['swi_jja_z'],2)} & {fr(x['rp_max_log'],2)} & {ci(x['communes_reconnues'])}" for x in e['comparison_years']]
     rows.insert(0,f"\\textbf{{2026}} & \\textbf{{{fr(sev['swi_jja_z_mean'],2)}}} & \\textbf{{{fr(sev['rp_max_log_mean'],2)}}} & estimation")
     out+=macro('tabSeverity',tab('rrrr','Année & Anomalie JJA moyenne & ln(période de retour) & Communes reconnues',rows))
     rows=[f"{x['region']} & {fr(100*x['rate'],1)}\\,\\% & {fr(x['expected'],0)}" for x in e['regions'][:8]]
-    out+=macro('tabRegions2026',tab('lrr','Région & Part attendue & Communes attendues',rows))
+    out+=macro('tabRegionsNow',tab('lrr','Région & Part attendue & Communes attendues',rows))
     out+=macro('nowcastSummary',f"{fr(e['expected_recognised_communes'],0)} communes attendues ; fourchette empirique {fr(e['empirical_range'][0],0)}--{fr(e['empirical_range'][1],0)}")
     dep=pd.read_csv(R/'departements.csv',dtype={'departement':str}).sort_values('ratio_obs_exp',ascending=False).head(8)
     rows=[f"{d.departement} & {int(d.observed)} & {fr(d.expected,0)} & {fr(d.ratio_obs_exp,2)}" for d in dep.itertuples()]
     out+=macro('tabDept',tab('rrrr','Département & Observé & Attendu & Rapport',rows))
     lag=[l for l in r['publication_lag'] if l['year'] in (2000,2005,2010,2015,2018,2020,2022)]
     out+=macro('tabLag',tab('rrrrr','Année d’événement & Arrêtés & Médiane & 99\,\% & Maximum',[f"{int(l['year'])} & {int(l['count'])} & {fr(l['50%'],2)} & {fr(l['99%'],2)} & {fr(l['max'],2)}" for l in lag]))
+    pi=e['prediction_interval_80'];pj=e['prediction_interval_90'];ei=e['estimation_interval_90'];cv=e['prediction_interval_loo_coverage']
+    rows=[f"Nombre attendu de communes reconnues & {fr(e['expected_recognised_communes'],0)}",f"Intervalle à 90\,\% de l'estimation (bootstrap par années) & {fr(ei[0],0)}--{fr(ei[1],0)}",
+          f"Intervalle de prédiction à 80\,\% (backtest) & {fr(pi[0],0)}--{fr(pi[1],0)}",f"Intervalle de prédiction à 90\,\% (backtest) & {fr(pj[0],0)}--{fr(pj[1],0)}",
+          f"Couverture une année laissée de côté ({cv['years']} ans), 80\,\% / 90\,\% & {fr(100*cv['80'],0)}\,\% / {fr(100*cv['90'],0)}\,\%"]
+    out+=macro('tabIntervals',tab('lr','Résultat 2026 & Valeur',rows))
+    o=json.loads((R/'old_score_check.json').read_text(encoding='utf-8'))
+    rows=[f"{lab} & {fr(o[k]['spearman'],2)} & {fr(o[k]['ci90'][0],2)}--{fr(o[k]['ci90'][1],2)}" for lab,k in [('Score composite d’origine','score_catnat'),('Aléa argile BRGM seul','arg_norm'),('Part de jours secs seule','dry_norm'),('Modèle de fréquence','modele_frequence')]]
+    out+=macro('tabOldScore',tab('lrr','Indicateur & Spearman & Intervalle à 90\,\%',rows))
+    c=json.loads((R/'climate.json').read_text(encoding='utf-8'));nt=c['national_trend']
+    rows=[f"{d['decade']} & {d['years']} & {fr(100*d['severe_share'],1)}\,\%" for d in c['severe_summer_share_by_decade']]
+    out+=macro('tabClimateDecades',tab('lrr','Décennie & Années & Mailles sous le décile de 1959--1988',rows))
+    out+=macro('climateTrend',f"{fr(nt['per_decade'],3)} par décennie (intervalle à 90\,\% : {fr(nt['ci90'][0],3)} à {fr(nt['ci90'][1],3)} ; Mann--Kendall $p={fr(nt['mann_kendall_p'],3)}$)")
+    rows=[f"{x['base_year']} & {fr(x['shift'],2)} & {fr(x['shift_sd'],2)} & {fr(x['expected_communes'],0)} & {x['observed_communes']}" for x in c['sensitivity']]
+    out+=macro('tabSensitivity',tab('rrrrr','Année de base & Déplacement du SWI & En écarts-types & Communes attendues & Observé',rows))
+    out+=macro('geoMoran',f"{fr(g['moran_I'],2)} (p = {fr(g['moran_p'],3)}, {g['n_cells']} mailles, été {g['year']})");out+=macro('geoBest',f"{g['best_model']} (portée {fr(g['fits'][g['best_model']]['range']/1000,0)}\,km)")
+    si=json.loads((R/'spatial_interp.json').read_text(encoding='utf-8'));hv=si['holdout_validation']
+    rows=[f"{lab} & {fr(hv[k]['rmse'],4)} & {fr(hv[k]['mae'],4)} & {fr(hv[k]['bias'],4)} & "+(f"{fr(100*hv[k]['coverage_95'],1)}"+chr(92)+","+chr(92)+"%" if 'coverage_95' in hv[k] else '--') for lab,k in [('Maille la plus proche','NN'),('Pondération inverse (IDW)','IDW'),('Krigeage ordinaire','KRIG')]]
+    out+=macro('tabInterp',tab('lrrrr','Méthode & RMSE & MAE & Biais & Couverture 95'+chr(92)+','+chr(92)+'%',rows))
+    me=si['model_effect'];rows=[f"{lab} & {fr(100*me[k]['log_loss_skill'],2)}"+chr(92)+","+chr(92)+f"% & {fr(me[k]['auc'],4)}" for lab,k in [('Maille la plus proche','plus_proche_maille'),('SWI krigé au centre des communes','krigeage')]]
+    out+=macro('tabInterpModel',tab('lrr','Source du SWI (GLM complet, 1995--2022) & Gain de log-loss & AUC',rows))
+    out+=macro('interpSummary',f"variogramme exponentiel standardisé (pépite {fr(100*si['standardized_variogram']['nugget'],1)}"+chr(92)+","+chr(92)+f"%) ; centre de commune à {fr(si['median_distance_commune_to_nearest_cell_km'],1)}"+chr(92)+f",km de la maille la plus proche en médiane ({fr(si['p95_distance_km'],1)}"+chr(92)+f",km au 95$^e$ centile) ; {hv['n_test_cells']} mailles retirées, {hv['n_years']} étés")
     (ROOT/'docs/latex').mkdir(parents=True,exist_ok=True);(ROOT/'docs/latex/tables.tex').write_text(out,encoding='utf-8');print('tables.tex écrit')
 
 if __name__=='__main__':main()
