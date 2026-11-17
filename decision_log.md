@@ -14,3 +14,6 @@
 - 2026-11-17 : SWI uniforme estimé au centre des communes par krigeage ordinaire (poids calculés une fois) ; variogramme exponentiel sur lags < 100 km retenu par validation (RMSE 0,0359 contre 0,0562 maille la plus proche et 0,0373 IDW).
 - 2026-11-17 : aléa argile BRGM communal (parts de surface par classe) intégré à toute la France ; modèle de référence = GLM complet + argile (gain 25,4 %, AUC 0,884).
 - 2026-11-17 : note LaTeX et figures détaillées générées par script (`make_tables.py`, `figures_pro.py`) ; PDF allégé (images à 150 ppp).
+- 2026-11-17 : critère officiel (circulaire IOME2322937C) implémenté d'après le rapport Météo-France 2024 ; contrôle exact sur 2024 (17 / 34 / 47 mailles). Rangs des 4 années précédentes dans leur propre fenêtre de 30 ans. Ajouté au modèle : gain 25,4 % -> 28,1 %, AUC 0,884 -> 0,895 ; modèle retenu pour 2026 (glm_officiel).
+- 2026-11-17 : forêt aléatoire et ensemble comparés au GLM ; validation par blocs spatiaux (8 blocs, 6 années) : le GLM généralise à des zones non vues.
+- 2026-11-17 : projections climatiques (DRIAS-Eau) non intégrées : téléchargement réservé aux titulaires d'un compte. Données de sinistres communales : aucune publique trouvée.

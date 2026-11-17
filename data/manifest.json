@@ -449,6 +449,12 @@
     "sha256": "95f821905f560e49382401f005e04b72e17dc01871173e073a82efb3f8596325",
     "url": "https://geo.api.gouv.fr/communes?fields=code,nom,codeDepartement,codeEpci,population,surface,centre&format=json&geometry=centre"
   },
+  "officiel/rapport_mf_2024.pdf": {
+    "bytes": 465666,
+    "downloaded": "2026-11-17",
+    "sha256": "e0d26c7af8de05312d7e404115fba8eec330a140555e3e6e96f1e996c0d6fcda",
+    "url": "https://meteofrance.fr/sites/default/files/files/editorial/rapport-meteorologique-catnat-secheresse-meteo-france-2024.pdf"
+  },
   "rga_epci.csv": {
     "bytes": 701219,
     "downloaded": "2026-11-17",

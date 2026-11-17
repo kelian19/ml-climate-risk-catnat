@@ -13,6 +13,7 @@ import pandas as pd
 from catnat.data import RAW,load_cells,load_communes,assign_cells,load_sim,load_events,load_rga,load_rga_commune
 from catnat.features import build_features_uniform,FEATURES_UNIFORM
 from catnat.swi import load_cube
+from catnat.official import official_features
 from catnat.labels import last_mature_year,build_labels,history_counts
 from catnat.model import FEATURE_SETS,make_estimator,rolling_origin
 from catnat.uncertainty import bootstrap_probabilities,quantile_bands,ratio_interval,loo_year_coverage
@@ -20,7 +21,7 @@ from catnat.maps import load_contours,REGIONS
 from catnat.table import FIRST_SIM_YEAR,FIRST_LABEL_YEAR,CLIMATOLOGY_MIN_YEARS
 ROOT=Path(__file__).resolve().parents[1]
 NOW=ROOT/'data/nowcast';FIG=ROOT/'reports/figures'
-YEAR=2026;FIRST_TEST_YEAR=1995;KIND='glm_argile'
+YEAR=2026;FIRST_TEST_YEAR=1995;KIND='glm_officiel'
 
 def load_current(year=YEAR):
     path=NOW/f'MENS_SIM2_{year}.csv.gz'
@@ -42,6 +43,7 @@ def main():
     t=t.merge(communes[['code','codeDepartement','codeEpci','population','cell']],left_on='insee',right_on='code').drop(columns='code')
     t=t.merge(feats,on=['insee','year'],how='left').merge(history_counts(events,communes,years),on=['insee','year'],how='left')
     t['hist_count']=t.hist_count.fillna(0)
+    t=t.merge(official_features(cube,years_u,ids_u,last_month),on=['cell','year'],how='left')   # critère officiel, mois ≤ last_month
     t=t.merge(load_rga(RAW,communes),on='codeEpci',how='left');t['rga_missing']=t.rga_mid_share.isna().astype(int)
     pc=load_rga_commune(RAW);t=t.merge(pc,on='insee',how='left');t['rga_c_missing']=t.rga_c_mid.isna().astype(int)
     for c_ in ('rga_c_low','rga_c_mid','rga_c_high'):t[c_]=t[c_].fillna(0.)

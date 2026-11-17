@@ -43,6 +43,8 @@ def sources():
             if 'mailles' in name:name='swi_mailles.csv'
             elif name.endswith('.pdf'):name='swi_presentation.pdf'
             out.append((name,res['url']))
+    # Critère officiel (circulaire IOME2322937C) : rapport météorologique de Météo-France sur l'année 2024.
+    out.append(('officiel/rapport_mf_2024.pdf','https://meteofrance.fr/sites/default/files/files/editorial/rapport-meteorologique-catnat-secheresse-meteo-france-2024.pdf'))
     return out
 
 def sha256(path):
@@ -68,7 +70,7 @@ def main(update=False):
     RAW.mkdir(parents=True,exist_ok=True)
     manifest=json.loads(MANIFEST.read_text(encoding='utf-8')) if MANIFEST.exists() else {}
     for name,url in sources():
-        target=RAW/name
+        target=RAW/name;target.parent.mkdir(parents=True,exist_ok=True)
         if not target.exists():
             print('téléchargement',name);download(url,target)
         digest=sha256(target);known=manifest.get(name)

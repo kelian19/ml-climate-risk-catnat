@@ -41,8 +41,16 @@ Le SWI (\emph{Soil Wetness Index}) représente l'état de la réserve en eau du 
 Une commune est \og reconnue \fg{} l'année $t$ si un arrêté sécheresse porte sur un événement débutant en $t$. Les arrêtés sont publiés avec un retard (tableau~\ref{tab:lag}) : l'année la plus récente est censurée à droite. La dernière année mûre est calculée à partir du 99$^e$ centile du retard ; pour apprendre l'année $t$, seules les années $\le t-2$ sont utilisées.
 \begin{table}[H]\centering\small\tabLag\caption{Retard (années) entre la fin de l'événement et la publication de l'arrêté.}\label{tab:lag}\end{table}
 
+\section{Critère météorologique officiel}
+Le critère est défini par la circulaire IOME2322937C du 29 avril 2024 et détaillé dans le rapport météorologique de Météo-France (année 2024, 27 janvier 2025), téléchargé avec son empreinte SHA-256. Pour chaque maille de 8\,km (8\,981 mailles) et chaque année, on retient l'\emph{indice mensuel minimum} du SWI uniforme, puis son rang parmi les 30 dernières années (1 = le plus sec ; en cas d'égalité, le rang le plus élevé). \textbf{Critère 1} : rang $\leq 3$ (période de retour d'au moins 10 ans). \textbf{Critère 2} : rang $\leq 6$ (au moins 5 ans) \emph{et} rang $\leq 6$ pour au moins 2 des 4 années précédentes.
+\begin{table}[H]\centering\small\tabOfficialCheck\caption{Contrôle sur l'année 2024 : notre application reproduit exactement les chiffres du rapport. Les rangs des quatre années précédentes sont ceux de leur propre fenêtre de 30 ans ; une fenêtre commune donnerait 28 mailles au critère 2, non 34. La conclusion du rapport écrit 25 au lieu de 34 pour le critère 2 : 47 = 17 + 30 mailles du critère 2 seul.}\end{table}
+Le critère décrit la \emph{météorologie} : il est nécessaire mais non suffisant, la reconnaissance exigeant aussi un critère géotechnique (argile) et une demande communale. Appliqué à la maille de chaque commune, il retrouve environ la moitié des communes reconnues pour une précision faible, comme attendu.
+\begin{table}[H]\centering\small\tabOfficialDecrees\caption{Critère officiel contre reconnaissance communale 1992--2022 (maille la plus proche).}\end{table}
+Situation de 2026, avec les mois publiés : \officialSummary. L'évaluation est provisoire : l'indice minimum d'une année en cours ne peut que baisser.
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_critere_officiel.png}\caption{Critère officiel : contrôle sur 2024, situation provisoire de 2026 et part du territoire remplissant le critère chaque année, avec les communes reconnues.}\end{figure}
+
 \section{Critère météorologique reconstitué}
-On reconstitue un critère de type période de retour : une maille est \og sous le seuil \fg{} si la moyenne glissante du SWI uniforme sur trois mois (mars à décembre) passe sous le quantile $1/T$ de ses propres années antérieures. Les paramètres exacts de la circulaire ne figurent pas dans les données : la reconstitution est paramétrable et \emph{évaluée} contre les arrêtés, pas officielle.
+Avant d'avoir la définition officielle, on avait reconstitué un critère de type période de retour (conservé pour l'historique et comme variable alternative) : une maille est \og sous le seuil \fg{} si la moyenne glissante du SWI uniforme sur trois mois (mars à décembre) passe sous le quantile $1/T$ de ses propres années antérieures. Cette reconstitution est paramétrable et \emph{évaluée} contre les arrêtés ; elle n'est pas le critère officiel de la section précédente.
 \begin{table}[H]\centering\small\tabCriterion\caption{Critère reconstitué contre arrêtés effectifs, communes-années 1989--2022. Le critère est nécessaire mais non suffisant (critère géotechnique, demande communale).}\end{table}
 \begin{figure}[H]\centering\includegraphics[width=.92\linewidth]{swi_critere.png}\caption{Communes satisfaisant le critère ($T=25$ ans) et communes effectivement reconnues.}\end{figure}
 
@@ -84,6 +92,16 @@ Régressions logistiques de complexité croissante et gradient boosting, compar�
 \begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_france_triptyque.png}\caption{Fréquence de reconnaissance par commune : observée, prédite hors échantillon, écart.}\end{figure}
 \begin{figure}[H]\centering\includegraphics[width=.95\linewidth]{pro_calendrier_departements.png}\caption{Calendrier département $\times$ année des communes reconnues.}\end{figure}
 
+\subsection*{Critère officiel dans le modèle}
+Le rang du minimum mensuel du SWI uniforme sur 30 ans et les deux indicateurs de critère (1 et 2) de la maille sont ajoutés au modèle. C'est le gain le plus net après l'aléa argile : le modèle retenu pour 2026 est le GLM avec ces variables.
+\begin{table}[H]\centering\small\tabOfficialModel\caption{Effet du critère officiel sur le modèle de fréquence (validation en temps réel, apprentissage $\leq t-2$).}\end{table}
+
+\subsection*{Autres modèles et validation par blocs spatiaux}
+À variables identiques (avec l'aléa argile communal), on compare le GLM, le gradient boosting, une forêt aléatoire (120 arbres, profondeur 10) et leur moyenne. La forêt aléatoire fait légèrement mieux que le GLM et le gradient boosting moins bien ; leur moyenne fait mieux que chacun, mais le GLM auquel on ajoute le critère officiel (tableau précédent) reste meilleur : une variable bien choisie vaut plus qu'un modèle plus flexible.
+\begin{table}[H]\centering\small\tabMLCompare\caption{Modèles de fréquence à variables identiques, 1995--2022.}\end{table}
+Pour vérifier la généralisation à des zones jamais vues, on retire de l'apprentissage un bloc de communes (huit blocs contigus obtenus par $k$-moyennes sur les coordonnées) et on le prédit, pour six années (2003, 2011, 2015, 2018, 2019, 2022). La perte de pouvoir prédictif est faible : le modèle apprend un lien entre météo, argile et reconnaissance, pas une carte de zones.
+\begin{table}[H]\centering\small\tabSpatialBlocks\caption{Validation par blocs spatiaux retirés, comparée à la validation dans le temps seul sur les mêmes années.}\end{table}
+
 \subsection*{Aléa argile communal}
 L'exposition par EPCI est grossière. La carte d'exposition BRGM 2025 (121\,399 polygones, aléas faible, moyen, fort) est superposée aux contours des communes pour obtenir, pour chaque commune, la \emph{part de sa surface} dans chaque classe. Son apport est lisible dans les tableaux ci-dessus (modèles \og + aléa argile communal \fg) : c'est l'amélioration la plus nette. Une vérification sur les 119 communes du 13 l'avait annoncée.
 \begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_bivarie_argile_secheresse.png}\caption{Carte bivariée par terciles : part communale en aléa argile moyen ou fort et sévérité du SWI uniforme 2026.}\end{figure}
@@ -108,8 +126,8 @@ Données SWI uniforme jusqu'en septembre 2026 ; arrêtés non publiés. \nowcast
 \begin{itemize}
 \item \textbf{Fréquence, pas charge} : aucune donnée publique de sinistres ou de coûts à la commune ; pas de prime pure.
 \item \textbf{Niveau annuel non stationnaire} : la procédure de reconnaissance a évolué ; le centre de l'intervalle de prédiction n'est pas fiable, seule l'enveloppe est utilisable. 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
-\item Le critère météorologique est une reconstitution ; l'aléa argile communal est calculé sur des contours simplifiés à 100\,m ; population et contours sont des photographies récentes.
-\item Tendances et sensibilité : réanalyse et test de décalage, pas des projections climatiques.
+\item Le critère officiel est appliqué au SWI uniforme de Météo-France sur la maille de chaque commune ; le critère géotechnique (argile) et la demande communale ne sont pas reproduits. L'aléa argile communal est calculé sur des contours simplifiés à 100\,m ; population et contours sont des photographies récentes.
+\item Tendances et sensibilité : réanalyse et test de décalage, pas des projections climatiques (DRIAS-Eau demande un compte personnel pour télécharger les projections).
 \end{itemize}
 \smallnote{Code et données : dépôt kelian19/ml-climate-risk-catnat. Résultats : reports/*.json.}
 \end{document}

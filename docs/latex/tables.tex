@@ -124,18 +124,18 @@ Année & Anomalie JJA moyenne & ln(période de retour) & Communes reconnues \\\m
 \newcommand{\tabRegionsNow}{%
 \begin{tabular}{lrr}\toprule
 Région & Part attendue & Communes attendues \\\midrule
-Centre-Val de Loire & 36{,}6\,\% & 642 \\
-Île-de-France & 35{,}7\,\% & 453 \\
-Occitanie & 33{,}9\,\% & 1\,509 \\
-Nouvelle-Aquitaine & 30{,}8\,\% & 1\,324 \\
-Bourgogne-Franche-Comté & 30{,}8\,\% & 1\,135 \\
-Grand Est & 23{,}6\,\% & 1\,205 \\
-Auvergne-Rhône-Alpes & 22{,}3\,\% & 897 \\
-Provence-Alpes-Côte d'Azur & 16{,}3\,\% & 155 \\
+Île-de-France & 39{,}3\,\% & 497 \\
+Centre-Val de Loire & 38{,}3\,\% & 672 \\
+Occitanie & 34{,}5\,\% & 1\,534 \\
+Nouvelle-Aquitaine & 33{,}0\,\% & 1\,417 \\
+Bourgogne-Franche-Comté & 30{,}8\,\% & 1\,134 \\
+Grand Est & 22{,}3\,\% & 1\,142 \\
+Auvergne-Rhône-Alpes & 22{,}2\,\% & 893 \\
+Pays de la Loire & 16{,}8\,\% & 206 \\
 \bottomrule\end{tabular}
 }
 \newcommand{\nowcastSummary}{%
-7\,870 communes attendues ; fourchette empirique 1\,040--18\,204
+7\,984 communes attendues ; fourchette empirique 1\,071--18\,976
 }
 \newcommand{\tabDept}{%
 \begin{tabular}{rrrr}\toprule
@@ -165,11 +165,11 @@ Année d’événement & Arrêtés & Médiane & 99\,\% & Maximum \\\midrule
 \newcommand{\tabIntervals}{%
 \begin{tabular}{lr}\toprule
 Résultat 2026 & Valeur \\\midrule
-Nombre attendu de communes reconnues & 7\,870 \\
-Intervalle à 90\,\% de l'estimation (bootstrap par années) & 5\,462--9\,690 \\
-Intervalle de prédiction à 80\,\% (backtest) & 1\,040--18\,204 \\
-Intervalle de prédiction à 90\,\% (backtest) & 722--22\,409 \\
-Couverture une année laissée de côté (28 ans), 80\,\% / 90\,\% & 79\,\% / 82\,\% \\
+Nombre attendu de communes reconnues & 7\,984 \\
+Intervalle à 90\,\% de l'estimation (bootstrap par années) & 5\,834--9\,481 \\
+Intervalle de prédiction à 80\,\% (backtest) & 1\,071--18\,976 \\
+Intervalle de prédiction à 90\,\% (backtest) & 778--20\,747 \\
+Couverture une année laissée de côté (28 ans), 80\,\% / 90\,\% & 75\,\% / 86\,\% \\
 \bottomrule\end{tabular}
 }
 \newcommand{\tabOldScore}{%
@@ -234,4 +234,48 @@ SWI krigé au centre des communes & 21{,}53\,\% & 0{,}8620 \\
 }
 \newcommand{\interpSummary}{%
 variogramme exponentiel standardisé (pépite 2{,}1\,\%) ; centre de commune à 3{,}2\,km de la maille la plus proche en médiane (4{,}8\,km au 95$^e$ centile) ; 898 mailles retirées, 68 étés
+}
+\newcommand{\tabOfficialCheck}{%
+\begin{tabular}{lrr}\toprule
+Mailles, année 2024 & Rapport Météo-France & Notre application \\\midrule
+Critère 1 & 17 & 17 \\
+Critère 2 & 34 & 34 \\
+Au moins un des deux & 47 & 47 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabOfficialDecrees}{%
+\begin{tabular}{lrrr}\toprule
+Critère officiel appliqué à la maille de la commune & Communes--années & Sensibilité & Précision \\\midrule
+Critère 1 & 131\,845 & 52{,}3\,\% & 14{,}3\,\% \\
+Critère 1 ou 2 & 172\,848 & 57{,}3\,\% & 12{,}0\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\officialSummary}{%
+7\,583 mailles sur 8\,981 remplissent déjà le critère 1 en 2026 (9 mois publiés), dont 4\,797 en record sur 30 ans ; au moins un des deux critères : 86{,}7\,\% du territoire. AUC du rang seul contre les arrêtés : 0{,}793
+}
+\newcommand{\tabOfficialModel}{%
+\begin{tabular}{lrrr}\toprule
+Modèle & Gain 1995--2022 & AUC & Gain 2010--2022 \\\midrule
+Fréquence communale crédibilisée & 5{,}6\,\% & 0{,}702 & 3{,}7\,\% \\
+GLM + aléa argile communal & 25{,}4\,\% & 0{,}884 & 27{,}8\,\% \\
+GLM + aléa argile + critère officiel & 28{,}0\,\% & 0{,}895 & 31{,}2\,\% \\
+Gradient boosting + critère officiel & 24{,}5\,\% & 0{,}880 & 27{,}1\,\% \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabMLCompare}{%
+\begin{tabular}{lrrrr}\toprule
+Modèle (mêmes variables, argile communale) & Gain 1995--2022 & AUC & Gain 2010--2022 & Obs./att. médian \\\midrule
+Fréquence communale crédibilisée & 5{,}6\,\% & 0{,}702 & 3{,}7\,\% & 0{,}42 \\
+GLM & 25{,}4\,\% & 0{,}884 & 27{,}8\,\% & 0{,}42 \\
+Gradient boosting & 21{,}4\,\% & 0{,}864 & 23{,}1\,\% & 0{,}53 \\
+Forêt aléatoire & 26{,}3\,\% & 0{,}877 & 27{,}7\,\% & 0{,}51 \\
+Ensemble (moyenne des trois) & 27{,}6\,\% & 0{,}886 & 28{,}7\,\% & 0{,}53 \\
+\bottomrule\end{tabular}
+}
+\newcommand{\tabSpatialBlocks}{%
+\begin{tabular}{lrrrr}\toprule
+Modèle & Gain (temps seul) & AUC (temps seul) & Gain (blocs retirés) & AUC (blocs retirés) \\\midrule
+GLM & 28{,}2\,\% & 0{,}846 & 28{,}5\,\% & 0{,}843 \\
+Gradient boosting & 16{,}3\,\% & 0{,}801 & 18{,}5\,\% & 0{,}805 \\
+\bottomrule\end{tabular}
 }

@@ -176,7 +176,28 @@ def fig_interp(c):
     title_block(fig,'Estimer le SWI uniforme là où il n’existe pas','Le SWI uniforme n’existe qu’aux 8 981 mailles de 8 km ; chaque commune est estimée par krigeage ordinaire (variogramme exponentiel) avec son incertitude, plutôt que par la maille la plus proche.',SRC)
     save(fig,'interpolation_communes')
 
-ALL={'france':fig_france,'swi':fig_swi_years,'calendar':fig_calendar,'fan':fig_fan,'nowcast':fig_nowcast,'krige':fig_krige,'bivariate':fig_bivariate,'region':fig_region,'interp':fig_interp}
+def fig_official(c):
+    """Critère officiel CatNat : contrôle sur 2024 (rapport Météo-France), 2026 provisoire et série annuelle."""
+    from catnat.official import annual_minimum,official_criterion
+    years,ids,cube,grid=load_cube();xy=grid[['x93','y93']].to_numpy(float);full=np.isfinite(cube).all(axis=(1,2));am=np.where(full[:,None],annual_minimum(cube),np.nan);res,ranks=official_criterion(am,years)
+    r24=res[2024];z=np.load(ROOT/'data/processed/official_last.npz');info=json.loads((ROOT/'reports/official_criterion.json').read_text(encoding='utf-8'))
+    fig=plt.figure(figsize=(25,8.8));gs=GridSpec(1,3,figure=fig,left=0.01,right=0.985,top=0.87,bottom=0.12,wspace=0.04,width_ratios=[1,1,1.15])
+    def mesh(ax,mask_layers,title):
+        ax.scatter(xy[:,0],xy[:,1],s=7,marker='s',lw=0,color='#e4dfd2',rasterized=True)
+        for m,col,lab,sz in mask_layers:ax.scatter(xy[m,0],xy[m,1],s=sz,marker='s',lw=0,color=col,label=lab,rasterized=True)
+        c['reg'].boundary.plot(ax=ax,color=INK,lw=0.5,alpha=.6);ax.set_axis_off();ax.set_aspect('equal');ax.set_title(title);ax.legend(loc='lower left',fontsize=8.5,frameon=False,markerscale=1.6)
+    a=fig.add_subplot(gs[0]);c1=r24['c1'];c2o=r24['c2']&~r24['c1']
+    mesh(a,[(c2o,'#4f86a8',f'Critère 2 seul : {int(c2o.sum())} mailles',22),(c1,'#6a2c91',f'Critère 1 : {int(c1.sum())} mailles',30)],'2024 : application du critère officiel\n(le rapport Météo-France annonce 17, 34 et 47 mailles)')
+    b=fig.add_subplot(gs[1]);rk=z['rank'];layers=[(rk>6,'#cdd7c4','Rang > 6 : critère non rempli',9),((rk>3)&(rk<=6),'#f1c26b','Rang 4 à 6 (période de retour ≥ 5 ans)',14),((rk>1)&(rk<=3),'#d2793b','Rang 2 ou 3 : critère 1 (≥ 10 ans)',18),(rk==1,'#7a2410','Rang 1 : record sur 30 ans',22)]
+    pr=info['provisional_last_year'];mesh(b,layers,f"2026 provisoire (9 mois publiés) : {pr['c1_cells']:,} mailles au critère 1,\n{pr['rank1_cells']:,} en record".replace(',',' '))
+    d=fig.add_subplot(gs[2]);ys=sorted(int(k) for k in info['by_year']);share=[info['by_year'][str(y)]['c1_or_c2']/8981*100 for y in ys]+[pr['share_territory']*100];xs=ys+[2026]
+    cols=['#6a2c91']*len(ys)+['#c9a2dc'];d.bar(xs,share,color=cols,width=0.8);d.set_ylabel('Part des mailles remplissant le critère 1 ou 2 (%)');d.set_xlabel('Année')
+    rec=c['tab'].groupby('year').y.sum();d2=d.twinx();d2.plot(rec.index,rec.values,color=ACCENT,lw=2.2,marker='o',ms=4,label='Communes reconnues (arrêtés)');d2.set_ylabel('Communes reconnues',color=ACCENT);d2.spines['top'].set_visible(False)
+    d.spines['top'].set_visible(False);d.set_title('Part du territoire au critère officiel et communes reconnues');d.annotate('2026 : provisoire',(2026,share[-1]),xytext=(2014.5,share[-1]-6),fontsize=9,color=INK,arrowprops=dict(arrowstyle='-',color=MUTED))
+    title_block(fig,'Le critère météorologique officiel du dispositif CatNat','Indice mensuel minimum du SWI uniforme, rang sur 30 ans par maille (circulaire IOME2322937C) ; critère 1 : rang ≤ 3, critère 2 : rang ≤ 6 deux années sur les quatre précédentes.',SRC)
+    save(fig,'critere_officiel')
+
+ALL={'france':fig_france,'swi':fig_swi_years,'calendar':fig_calendar,'fan':fig_fan,'nowcast':fig_nowcast,'krige':fig_krige,'bivariate':fig_bivariate,'region':fig_region,'interp':fig_interp,'official':fig_official}
 
 def main(names=None):
     c=ctx()

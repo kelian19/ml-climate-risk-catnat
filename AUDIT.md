@@ -55,9 +55,13 @@ L'indice de Moran (0,638, p simulée 0,001) est calculé sur une seule date (1er
 - `par1.ipynb` ne contient que du code et sert d'exploration ; les cellules ont des chemins locaux.
 - Un fichier nommé avec `:` empêchait le clonage sous Windows (corrigé dans cette copie).
 
-## Suite recommandée
-1. Fournir ou scripter l'acquisition des données (sources, versions, empreintes) et compléter le catalogue.
-2. Remplacer les découpages aléatoires par des découpages par années et par blocs spatiaux ; ajouter la référence de persistance.
-3. Fonder les conclusions sur les modèles sans `SWI_lag1` ; retirer ou justifier `LAMBX/LAMBY` et `SSWI_10J`.
-4. Relier le SWI à des sinistres sécheresse observés avant toute conclusion assurantielle.
-5. Extraire le code des notebooks en modules testés, avec intégration continue.
+## Suivi des recommandations
+
+| # | Recommandation d'origine | État |
+|---|---|---|
+| 1 | Scripter l'acquisition des données, compléter le catalogue | **Fait** : `pipeline/download.py` (URL, taille, date, SHA-256 dans `data/manifest.json`), [data_catalog.md](data_catalog.md). Le rapport officiel Météo-France 2024 est téléchargé dans `data/raw/officiel/` avec son empreinte. |
+| 2 | Découpages par années et par blocs spatiaux, référence de persistance | **Fait** : origine glissante (apprentissage ≤ t − 2) ; validation par blocs spatiaux du krigeage et du modèle de fréquence (`pipeline/ml_compare.py`) ; persistance, climatologie et crédibilité comme références. |
+| 3 | Conclusions sans `SWI_lag1`, sans `LAMBX/LAMBY` ni `SSWI_10J` | **Fait par construction** : le modèle n'utilise que des anomalies annuelles, ni coordonnées, ni SSWI, ni SWI de la veille. Les notebooks d'origine ne sont conservés que dans `archive/`. |
+| 4 | Relier le SWI à des sinistres observés | **Non fait** : aucune donnée publique de sinistres ou de coûts à la commune n'a été trouvée (seulement des chiffres nationaux annuels, CCR et France Assureurs). Le lien est fait avec la **reconnaissance CatNat**, qui conditionne l'indemnisation, pas avec la charge. |
+| 5 | Code modulaire, testé, intégration continue | **Fait** : paquet `catnat/`, tests unitaires et sur données réelles (`tests/`), CI GitHub (`.github/workflows/tests.yml`). |
+

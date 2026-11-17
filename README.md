@@ -15,21 +15,27 @@ Données SWI uniforme de janvier à septembre 2026. Détail : [reports/ete_2026.
 | | Valeur |
 |---|---:|
 | Sévérité (plus grande période de retour du SWI uniforme trimestriel) | la plus élevée des 35 années comparées |
-| **Nombre attendu de communes reconnues** (modèle complet + aléa argile communal, SWI krigé) | **≈ 7 900** |
-| Intervalle à 90 % de l'estimation (incertitude des paramètres, bootstrap par années) | 5 500 – 9 700 |
-| Intervalle de prédiction à 80 % (erreur de niveau annuel du backtest) | 1 000 – 18 200 |
-| Intervalle de prédiction à 90 % | 700 – 22 400 |
-| Couverture réelle de ces intervalles, une année laissée de côté (28 années) | 79 % (nominal 80 %) ; 82 % (nominal 90 %) |
+| **Nombre attendu de communes reconnues** (modèle avec critère officiel, aléa argile communal, SWI krigé) | **≈ 8 000** |
+| Intervalle à 90 % de l'estimation (incertitude des paramètres, bootstrap par années) | 5 800 – 9 500 |
+| Intervalle de prédiction à 80 % (erreur de niveau annuel du backtest) | 1 100 – 19 000 |
+| Intervalle de prédiction à 90 % | 800 – 20 700 |
+| Couverture réelle de ces intervalles, une année laissée de côté (28 années) | 75 % (nominal 80 %) ; 86 % (nominal 90 %) |
 
-**Deux intervalles, deux sens.** Le premier mesure l'incertitude *statistique* du modèle ; il est étroit. Le second mesure ce qui compte vraiment : l'écart entre le nombre prédit et le nombre reconnu une année donnée, très large car le niveau annuel de reconnaissance n'est pas stationnaire. Sur les 28 années du backtest, le rapport observé/attendu a une médiane de 0,42 (déciles 0,12 et 2,4) ; de 2016 à 2022 il vaut 0,7 à 6,6 (médiane 3,1). **Le centre de l'intervalle de prédiction n'est donc pas fiable** : selon le régime retenu, la valeur centrale va d'environ 3 400 à bien plus de 7 900. L'ordre de grandeur annoncé est une enveloppe, pas une prévision ponctuelle. De plus, 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
+**Deux intervalles, deux sens.** Le premier mesure l'incertitude *statistique* du modèle ; il est étroit. Le second mesure ce qui compte vraiment : l'écart entre le nombre prédit et le nombre reconnu une année donnée, très large car le niveau annuel de reconnaissance n'est pas stationnaire. Sur les 28 années du backtest, le rapport observé/attendu a une médiane de 0,42 (déciles 0,12 et 2,4) ; de 2016 à 2022 il vaut 0,7 à 6,6 (médiane 3,1). **Le centre de l'intervalle de prédiction n'est donc pas fiable** : selon le régime retenu, la valeur centrale va d'environ 3 700 à bien plus de 8 000. L'ordre de grandeur annoncé est une enveloppe, pas une prévision ponctuelle. De plus, 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
 
-Régions les plus exposées (part attendue des communes) : Centre-Val de Loire 37 %, Île-de-France 36 %, Occitanie 34 %, Nouvelle-Aquitaine 31 %. Zoom communal sur le Centre-Val de Loire ci-dessous.
+Régions les plus exposées (part attendue des communes) : Île-de-France 39 %, Centre-Val de Loire 38 %, Occitanie 35 %, Nouvelle-Aquitaine 33 %. Zoom communal sur le Centre-Val de Loire ci-dessous.
 
 ![Sécheresse 2026](reports/figures/pro_nowcast_2026.png)
 
 ![Éventail de prédiction](reports/figures/pro_eventail_prediction.png)
 
 ![Centre-Val de Loire](reports/figures/pro_region_24_2026.png)
+
+### Critère météorologique officiel
+
+Le critère de la circulaire IOME2322937C (rapport Météo-France 2024, téléchargé et empreint dans `data/raw/officiel/`) est appliqué dans [`catnat/official.py`](catnat/official.py) : indice mensuel **minimum** de l'année par maille de 8 km, rang sur 30 ans ; **critère 1** : rang ≤ 3 (période de retour ≥ 10 ans) ; **critère 2** : rang ≤ 6 et 2 des 4 années précédentes de rang ≤ 6. **Contrôle** : l'application à 2024 redonne exactement les chiffres du rapport (17 mailles au critère 1, 34 au critère 2, 47 au total ; test `tests/test_official.py`). Pour 2026, avec 9 mois publiés : **7 583 mailles** (sur 8 981) remplissent déjà le critère 1, dont 4 797 en record sur 30 ans ; au moins un des deux critères : 86,7 % du territoire (provisoire : le minimum ne peut que baisser).
+
+![Critère officiel](reports/figures/pro_critere_officiel.png)
 
 ## 1. SWI uniforme : prévision et géostatistique
 
@@ -90,11 +96,16 @@ Variable à expliquer : la commune a au moins un arrêté sécheresse pour un é
 | GLM, SWI uniforme + exposition RGA | 20,7 % | 20,7 % | 0,852 |
 | **GLM complet** (+ historique publié) | **21,3 %** | **23,7 %** | **0,861** |
 | Gradient boosting | 18,0 % | 18,4 % | 0,837 |
-| **GLM complet + aléa argile communal (BRGM)** | **25,4 %** | **27,8 %** | **0,884** (0,892 en 2010–2022) |
+| GLM complet + aléa argile communal (BRGM) | 25,4 % | 27,8 % | 0,884 (0,892 en 2010–2022) |
+| Forêt aléatoire (mêmes variables) | 26,3 % | — | 0,877 |
+| Ensemble GLM + gradient boosting + forêt | 27,6 % | — | 0,886 |
+| **GLM + aléa argile + critère officiel (modèle retenu)** | **28,1 %** | **31,2 %** | **0,895** |
 
 Les indicateurs sont calculés sans information future (climatologie expansive) ; l'historique de reconnaissance ne compte que les arrêtés publiés avant le 1er janvier de l'année prédite. Passer du SWI à sols réels au SWI uniforme ne change presque pas le pouvoir prédictif (21,2 % avant, 21,3 % après) mais aligne le modèle sur l'indicateur du dispositif.
 
 ![Observé contre attendu](reports/figures/observe_attendu.png)
+
+**Généralisation spatiale** (`pipeline/ml_compare.py`) : en retirant de l'apprentissage un bloc de communes (8 blocs contigus, 6 années testées) et en le prédisant, le GLM garde l'essentiel de son pouvoir (AUC 0,844 contre 0,846 sans retrait). Une variable bien choisie (le critère officiel) apporte plus qu'un modèle plus flexible.
 
 La **classification** des communes est bonne (AUC de 0,69 à 0,96 selon l'année), le **niveau annuel** est le point faible (voir ci-dessus). Cartes France, départements et région : [reports/RESULTATS.md](reports/RESULTATS.md).
 
@@ -128,6 +139,9 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt   # Windows : 
 python -m pipeline.download      # sources publiques
 python -m pipeline.run           # table, validation 1995–2022, cartes (≈ 30 min)
 python -m pipeline.swi_study     # prévision du SWI, géostatistique, critère
+python -m pipeline.official_criterion  # critère officiel, contrôle 2024, situation provisoire de l'année en cours
+python -m pipeline.official_model      # apport du critère officiel au modèle
+python -m pipeline.ml_compare    # GLM, boosting, forêt aléatoire, ensemble, blocs spatiaux
 python -m pipeline.spatial_interp   # krigeage du SWI aux centres de communes (data/processed/swi_commune.npz)
 python -m pipeline.rga_communes  # aléa argile BRGM par commune (nécessite data/raw/rga_brgm/alea.zip, 623 Mo)
 python -m pipeline.nowcast       # estimation de l'année en cours avec intervalles
@@ -143,11 +157,10 @@ python -m pytest tests -q        # tests unitaires (+ contrôles sur données r�
 - **Fréquence, pas charge** : aucune donnée publique de sinistres ou de coûts à la commune. Pas de prime pure.
 - **Niveau annuel non stationnaire** : la procédure de reconnaissance et ses critères ont évolué ; c'est la première source d'incertitude (intervalle de prédiction très large).
 - Exposition RGA par EPCI, population et contours : photographies récentes appliquées à toutes les années ; l'aléa argile communal est calculé sur des contours simplifiés à 100 m.
-- Le critère météorologique est une reconstitution, pas le critère officiel.
+- Le critère officiel est appliqué au SWI de la maille de la commune ; le critère géotechnique (argile) et la demande communale ne sont pas reproduits.
 - 2026 : données provisoires (jusqu'en septembre), sévérité hors de la plage d'apprentissage.
-- **Climat** : tendances observées et sensibilité par décalage uniforme, pas de projections climatiques (DRIAS, CMIP).
-- Modèles de fréquence limités au GLM et au gradient boosting ; la forêt aléatoire n'est utilisée que pour la prévision du SWI.
+- **Climat** : tendances observées et sensibilité par décalage uniforme, pas de projections climatiques : DRIAS-Eau exige un compte personnel pour télécharger les projections de SWI (à créer par l'utilisateur).
 
 ## Organisation
 
-`catnat/` (données, SWI uniforme, critère, prévision, géostatistique, variables, modèles, incertitude, cartes), `pipeline/` (exécutions), `tests/` (tests unitaires et contrôles sur données réelles), `reports/` (résultats mesurés, figures), `docs/latex/` (note de 12 pages : [`note_catnat.pdf`](docs/latex/note_catnat.pdf), compilée avec Tectonic depuis `note_catnat.tex` et les tableaux générés `tables.tex`), `archive/notebooks/` (version d'origine).
+`catnat/` (données, SWI uniforme, critère, prévision, géostatistique, variables, modèles, incertitude, cartes), `pipeline/` (exécutions), `tests/` (tests unitaires et contrôles sur données réelles), `reports/` (résultats mesurés, figures), `docs/latex/` (note de 15 pages : [`note_catnat.pdf`](docs/latex/note_catnat.pdf), compilée avec Tectonic depuis `note_catnat.tex` et les tableaux générés `tables.tex`), `archive/notebooks/` (version d'origine).

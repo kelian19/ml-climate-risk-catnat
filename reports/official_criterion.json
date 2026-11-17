@@ -1,0 +1,437 @@
+{
+  "window_years": 30,
+  "first_evaluated_year": 1992,
+  "by_year": {
+    "1992": {
+      "cells_valid": 8981,
+      "c1": 85,
+      "c2": 647,
+      "c1_or_c2": 648
+    },
+    "1993": {
+      "cells_valid": 8981,
+      "c1": 141,
+      "c2": 628,
+      "c1_or_c2": 675
+    },
+    "1994": {
+      "cells_valid": 8981,
+      "c1": 545,
+      "c2": 444,
+      "c1_or_c2": 879
+    },
+    "1995": {
+      "cells_valid": 8981,
+      "c1": 532,
+      "c2": 282,
+      "c1_or_c2": 814
+    },
+    "1996": {
+      "cells_valid": 8981,
+      "c1": 885,
+      "c2": 402,
+      "c1_or_c2": 1183
+    },
+    "1997": {
+      "cells_valid": 8981,
+      "c1": 278,
+      "c2": 310,
+      "c1_or_c2": 525
+    },
+    "1998": {
+      "cells_valid": 8981,
+      "c1": 189,
+      "c2": 358,
+      "c1_or_c2": 467
+    },
+    "1999": {
+      "cells_valid": 8981,
+      "c1": 56,
+      "c2": 155,
+      "c1_or_c2": 211
+    },
+    "2000": {
+      "cells_valid": 8981,
+      "c1": 55,
+      "c2": 60,
+      "c1_or_c2": 97
+    },
+    "2001": {
+      "cells_valid": 8981,
+      "c1": 270,
+      "c2": 53,
+      "c1_or_c2": 283
+    },
+    "2002": {
+      "cells_valid": 8981,
+      "c1": 45,
+      "c2": 57,
+      "c1_or_c2": 102
+    },
+    "2003": {
+      "cells_valid": 8981,
+      "c1": 4761,
+      "c2": 183,
+      "c1_or_c2": 4778
+    },
+    "2004": {
+      "cells_valid": 8981,
+      "c1": 313,
+      "c2": 406,
+      "c1_or_c2": 577
+    },
+    "2005": {
+      "cells_valid": 8981,
+      "c1": 1955,
+      "c2": 927,
+      "c1_or_c2": 2466
+    },
+    "2006": {
+      "cells_valid": 8981,
+      "c1": 279,
+      "c2": 1023,
+      "c1_or_c2": 1191
+    },
+    "2007": {
+      "cells_valid": 8981,
+      "c1": 538,
+      "c2": 732,
+      "c1_or_c2": 861
+    },
+    "2008": {
+      "cells_valid": 8981,
+      "c1": 87,
+      "c2": 250,
+      "c1_or_c2": 277
+    },
+    "2009": {
+      "cells_valid": 8981,
+      "c1": 2017,
+      "c2": 896,
+      "c1_or_c2": 2603
+    },
+    "2010": {
+      "cells_valid": 8981,
+      "c1": 201,
+      "c2": 407,
+      "c1_or_c2": 564
+    },
+    "2011": {
+      "cells_valid": 8981,
+      "c1": 707,
+      "c2": 456,
+      "c1_or_c2": 949
+    },
+    "2012": {
+      "cells_valid": 8981,
+      "c1": 372,
+      "c2": 470,
+      "c1_or_c2": 694
+    },
+    "2013": {
+      "cells_valid": 8981,
+      "c1": 50,
+      "c2": 60,
+      "c1_or_c2": 110
+    },
+    "2014": {
+      "cells_valid": 8981,
+      "c1": 25,
+      "c2": 21,
+      "c1_or_c2": 46
+    },
+    "2015": {
+      "cells_valid": 8981,
+      "c1": 944,
+      "c2": 226,
+      "c1_or_c2": 1136
+    },
+    "2016": {
+      "cells_valid": 8981,
+      "c1": 595,
+      "c2": 287,
+      "c1_or_c2": 728
+    },
+    "2017": {
+      "cells_valid": 8981,
+      "c1": 1190,
+      "c2": 235,
+      "c1_or_c2": 1322
+    },
+    "2018": {
+      "cells_valid": 8981,
+      "c1": 3634,
+      "c2": 973,
+      "c1_or_c2": 3759
+    },
+    "2019": {
+      "cells_valid": 8981,
+      "c1": 2950,
+      "c2": 2484,
+      "c1_or_c2": 3712
+    },
+    "2020": {
+      "cells_valid": 8981,
+      "c1": 2923,
+      "c2": 3437,
+      "c1_or_c2": 4066
+    },
+    "2021": {
+      "cells_valid": 8981,
+      "c1": 81,
+      "c2": 80,
+      "c1_or_c2": 137
+    },
+    "2022": {
+      "cells_valid": 8981,
+      "c1": 5748,
+      "c2": 3981,
+      "c1_or_c2": 6724
+    },
+    "2023": {
+      "cells_valid": 8981,
+      "c1": 232,
+      "c2": 971,
+      "c1_or_c2": 1070
+    },
+    "2024": {
+      "cells_valid": 8981,
+      "c1": 17,
+      "c2": 34,
+      "c1_or_c2": 47
+    },
+    "2025": {
+      "cells_valid": 8981,
+      "c1": 1139,
+      "c2": 353,
+      "c1_or_c2": 1378
+    }
+  },
+  "check_2024_vs_report": {
+    "ours": {
+      "cells_valid": 8981,
+      "c1": 17,
+      "c2": 34,
+      "c1_or_c2": 47
+    },
+    "report": {
+      "c1": 17,
+      "c2": 34,
+      "total": 47,
+      "note": "la conclusion du rapport écrit 25 mailles au critère 2 ; 47 = 17 + 30 mailles du critère 2 seul"
+    }
+  },
+  "vs_decrees": [
+    {
+      "critère": "critère 1",
+      "communes_critère": 131845,
+      "sensibilité": 0.5228079911209766,
+      "précision": 0.1429102355038113
+    },
+    {
+      "critère": "critère 1 ou 2",
+      "communes_critère": 172848,
+      "sensibilité": 0.5733351831298558,
+      "précision": 0.11954433953531426
+    }
+  ],
+  "auc_rank_vs_decrees": 0.7925540597101836,
+  "by_year_commune": [
+    {
+      "year": 1992,
+      "recognised": 1082,
+      "c1_or_c2_communes": 2808,
+      "tp": 146
+    },
+    {
+      "year": 1993,
+      "recognised": 822,
+      "c1_or_c2_communes": 3658,
+      "tp": 15
+    },
+    {
+      "year": 1994,
+      "recognised": 135,
+      "c1_or_c2_communes": 4095,
+      "tp": 13
+    },
+    {
+      "year": 1995,
+      "recognised": 333,
+      "c1_or_c2_communes": 3709,
+      "tp": 57
+    },
+    {
+      "year": 1996,
+      "recognised": 614,
+      "c1_or_c2_communes": 5721,
+      "tp": 108
+    },
+    {
+      "year": 1997,
+      "recognised": 351,
+      "c1_or_c2_communes": 2063,
+      "tp": 20
+    },
+    {
+      "year": 1998,
+      "recognised": 578,
+      "c1_or_c2_communes": 2076,
+      "tp": 37
+    },
+    {
+      "year": 1999,
+      "recognised": 87,
+      "c1_or_c2_communes": 1034,
+      "tp": 0
+    },
+    {
+      "year": 2000,
+      "recognised": 71,
+      "c1_or_c2_communes": 354,
+      "tp": 3
+    },
+    {
+      "year": 2001,
+      "recognised": 15,
+      "c1_or_c2_communes": 721,
+      "tp": 0
+    },
+    {
+      "year": 2002,
+      "recognised": 653,
+      "c1_or_c2_communes": 478,
+      "tp": 3
+    },
+    {
+      "year": 2003,
+      "recognised": 4352,
+      "c1_or_c2_communes": 19170,
+      "tp": 2821
+    },
+    {
+      "year": 2004,
+      "recognised": 77,
+      "c1_or_c2_communes": 1845,
+      "tp": 11
+    },
+    {
+      "year": 2005,
+      "recognised": 1521,
+      "c1_or_c2_communes": 8823,
+      "tp": 847
+    },
+    {
+      "year": 2006,
+      "recognised": 323,
+      "c1_or_c2_communes": 4166,
+      "tp": 20
+    },
+    {
+      "year": 2007,
+      "recognised": 203,
+      "c1_or_c2_communes": 2396,
+      "tp": 157
+    },
+    {
+      "year": 2008,
+      "recognised": 121,
+      "c1_or_c2_communes": 889,
+      "tp": 33
+    },
+    {
+      "year": 2009,
+      "recognised": 596,
+      "c1_or_c2_communes": 11134,
+      "tp": 264
+    },
+    {
+      "year": 2010,
+      "recognised": 100,
+      "c1_or_c2_communes": 1971,
+      "tp": 46
+    },
+    {
+      "year": 2011,
+      "recognised": 2247,
+      "c1_or_c2_communes": 3505,
+      "tp": 704
+    },
+    {
+      "year": 2012,
+      "recognised": 648,
+      "c1_or_c2_communes": 2512,
+      "tp": 234
+    },
+    {
+      "year": 2013,
+      "recognised": 23,
+      "c1_or_c2_communes": 366,
+      "tp": 0
+    },
+    {
+      "year": 2014,
+      "recognised": 44,
+      "c1_or_c2_communes": 133,
+      "tp": 0
+    },
+    {
+      "year": 2015,
+      "recognised": 205,
+      "c1_or_c2_communes": 5215,
+      "tp": 27
+    },
+    {
+      "year": 2016,
+      "recognised": 982,
+      "c1_or_c2_communes": 2422,
+      "tp": 295
+    },
+    {
+      "year": 2017,
+      "recognised": 2104,
+      "c1_or_c2_communes": 3688,
+      "tp": 673
+    },
+    {
+      "year": 2018,
+      "recognised": 4061,
+      "c1_or_c2_communes": 15800,
+      "tp": 3395
+    },
+    {
+      "year": 2019,
+      "recognised": 2923,
+      "c1_or_c2_communes": 15057,
+      "tp": 2395
+    },
+    {
+      "year": 2020,
+      "recognised": 3520,
+      "c1_or_c2_communes": 18447,
+      "tp": 2620
+    },
+    {
+      "year": 2021,
+      "recognised": 355,
+      "c1_or_c2_communes": 286,
+      "tp": 5
+    },
+    {
+      "year": 2022,
+      "recognised": 6894,
+      "c1_or_c2_communes": 28306,
+      "tp": 5714
+    }
+  ],
+  "provisional_last_year": {
+    "year": 2026,
+    "months_published": 9,
+    "c1_cells": 7583,
+    "c2_cells": 3673,
+    "c1_or_c2_cells": 7786,
+    "share_territory": 0.8669413205656386,
+    "rank1_cells": 4797,
+    "note": "provisoire : indice minimum des mois publiés ; il ne peut que baisser ensuite"
+  }
+}

@@ -70,6 +70,24 @@ def main():
     me=si['model_effect'];rows=[f"{lab} & {fr(100*me[k]['log_loss_skill'],2)}"+chr(92)+","+chr(92)+f"% & {fr(me[k]['auc'],4)}" for lab,k in [('Maille la plus proche','plus_proche_maille'),('SWI krigé au centre des communes','krigeage')]]
     out+=macro('tabInterpModel',tab('lrr','Source du SWI (GLM complet, 1995--2022) & Gain de log-loss & AUC',rows))
     out+=macro('interpSummary',f"variogramme exponentiel standardisé (pépite {fr(100*si['standardized_variogram']['nugget'],1)}"+chr(92)+","+chr(92)+f"%) ; centre de commune à {fr(si['median_distance_commune_to_nearest_cell_km'],1)}"+chr(92)+f",km de la maille la plus proche en médiane ({fr(si['p95_distance_km'],1)}"+chr(92)+f",km au 95$^e$ centile) ; {hv['n_test_cells']} mailles retirées, {hv['n_years']} étés")
+    # Critère officiel, comparaison de modèles, blocs spatiaux
+    oc=json.loads((R/'official_criterion.json').read_text(encoding='utf-8'));om=json.loads((R/'official_model.json').read_text(encoding='utf-8'));mc=json.loads((R/'ml_compare.json').read_text(encoding='utf-8'))
+    c24=oc['check_2024_vs_report']['ours'];rep=oc['check_2024_vs_report']['report']
+    out+=macro('tabOfficialCheck',tab('lrr','Mailles, année 2024 & Rapport Météo-France & Notre application',[f"Critère 1 & {rep['c1']} & {c24['c1']}",f"Critère 2 & {rep['c2']} & {c24['c2']}",f"Au moins un des deux & {rep['total']} & {c24['c1_or_c2']}"]))
+    rows=[f"{d['critère'].replace('critère','Critère')} & {ci(d['communes_critère'])} & {fr(100*d['sensibilité'],1)}\\,\\% & {fr(100*d['précision'],1)}\\,\\%" for d in oc['vs_decrees']]
+    out+=macro('tabOfficialDecrees',tab('lrrr','Critère officiel appliqué à la maille de la commune & Communes--années & Sensibilité & Précision',rows))
+    pr=oc['provisional_last_year']
+    out+=macro('officialSummary',f"{ci(pr['c1_cells'])} mailles sur 8\\,981 remplissent déjà le critère 1 en {pr['year']} ({pr['months_published']} mois publiés), dont {ci(pr['rank1_cells'])} en record sur 30 ans ; au moins un des deux critères : {fr(100*pr['share_territory'],1)}\\,\\% du territoire. AUC du rang seul contre les arrêtés : {fr(oc['auc_rank_vs_decrees'],3)}")
+    ON={'credibilite':'Fréquence communale crédibilisée','glm_argile':'GLM + aléa argile communal','glm_officiel':'GLM + aléa argile + critère officiel','gbm_officiel':'Gradient boosting + critère officiel'}
+    rows=[f"{ON[k]} & {fr(100*v['pooled']['log_loss_skill'],1)}\\,\\% & {fr(v['pooled']['auc'],3)} & {fr(100*v['recent_2010_2022']['log_loss_skill'],1)}\\,\\%" for k,v in om.items()]
+    out+=macro('tabOfficialModel',tab('lrrr','Modèle & Gain 1995--2022 & AUC & Gain 2010--2022',rows))
+    MN={'credibilite':'Fréquence communale crédibilisée','glm_argile':'GLM','gbm_argile':'Gradient boosting','rf_argile':'Forêt aléatoire','ensemble':'Ensemble (moyenne des trois)'}
+    rows=[f"{MN[k]} & {fr(100*v['pooled']['log_loss_skill'],1)}\\,\\% & {fr(v['pooled']['auc'],3)} & {fr(100*v['recent_2010_2022']['log_loss_skill'],1)}\\,\\% & {fr(v['ratio_obs_exp_median'],2)}" for k,v in mc['models'].items()]
+    out+=macro('tabMLCompare',tab('lrrrr','Modèle (mêmes variables, argile communale) & Gain 1995--2022 & AUC & Gain 2010--2022 & Obs./att. médian',rows))
+    SN={'glm_argile':'GLM','gbm_argile':'Gradient boosting'};rows=[]
+    for k,v in mc['spatial_blocks'].items():
+        t=v['time_only_same_years'];rows.append(f"{SN[k]} & {fr(100*t['log_loss_skill'],1)}\\,\\% & {fr(t['auc'],3)} & {fr(100*v['pooled']['log_loss_skill'],1)}\\,\\% & {fr(v['pooled']['auc'],3)}")
+    out+=macro('tabSpatialBlocks',tab('lrrrr','Modèle & Gain (temps seul) & AUC (temps seul) & Gain (blocs retirés) & AUC (blocs retirés)',rows))
     (ROOT/'docs/latex').mkdir(parents=True,exist_ok=True);(ROOT/'docs/latex/tables.tex').write_text(out,encoding='utf-8');print('tables.tex écrit')
 
 if __name__=='__main__':main()
