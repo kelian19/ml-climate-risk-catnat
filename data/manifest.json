@@ -454,5 +454,473 @@
     "downloaded": "2026-11-17",
     "sha256": "c4fd51192de6380dbd5adc911fe9abc64419dfec4548c998af5b1d640639e824",
     "url": "https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/datafiles/1a9ad5c2-0929-4687-8455-78aac6530a76/csv"
+  },
+  "swi.196001-196912.csv.gz": {
+    "bytes": 4807288,
+    "downloaded": "2026-11-17",
+    "sha256": "5b54e1d250d9e80b4b16b293e040ef4abc580b97a71aad6829c529809024a0d2",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100556/swi.196001-196912.csv.gz"
+  },
+  "swi.197001-197912.csv.gz": {
+    "bytes": 4810079,
+    "downloaded": "2026-11-17",
+    "sha256": "80dc8db4db486695dcf6c237d8b604d0aad23e9b45804c147ae229e4d6c0c2ab",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100612/swi.197001-197912.csv.gz"
+  },
+  "swi.198001-198912.csv.gz": {
+    "bytes": 4794483,
+    "downloaded": "2026-11-17",
+    "sha256": "fe44f1f28946ffa320e12a539c2b4cb41e750a942ecc9b8251211d8e709bf2c7",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100700/swi.198001-198912.csv.gz"
+  },
+  "swi.199001-199912.csv.gz": {
+    "bytes": 4806864,
+    "downloaded": "2026-11-17",
+    "sha256": "fdcfab4873ab3804fe829a5d21608508495fc9518cacb8d7215d5ae5b6dadd4d",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100805/swi.199001-199912.csv.gz"
+  },
+  "swi.200001-200912.csv.gz": {
+    "bytes": 4811347,
+    "downloaded": "2026-11-17",
+    "sha256": "0616fb438909d5af38117b3868c3a43b6c9c41f1904668108430f27288fd7fcd",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100821/swi.200001-200912.csv.gz"
+  },
+  "swi.201001-201912.csv.gz": {
+    "bytes": 4804075,
+    "downloaded": "2026-11-17",
+    "sha256": "f0f374bb8de9c4eb901ca26d2083bc83966a57d4e8a0555d35997d01914ea35b",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100838/swi.201001-201912.csv.gz"
+  },
+  "swi.202001-202512.csv.gz": {
+    "bytes": 2912808,
+    "downloaded": "2026-11-17",
+    "sha256": "2e8f6d3548a3bda2a19463354f6d04e796ac72890d564c5d22d9db27b28268bd",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260310-100851/swi.202001-202512.csv.gz"
+  },
+  "swi_mailles.csv": {
+    "bytes": 450919,
+    "downloaded": "2026-11-17",
+    "sha256": "2649f523595b35f6a47141943d27d484b1ff117ba01ac2cb9f4ae77fd20ecab5",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260317-161136/modeles-caracteristiques-geographiques-mailles-swi-20260316.csv"
+  },
+  "swi_presentation.pdf": {
+    "bytes": 672690,
+    "downloaded": "2026-11-17",
+    "sha256": "3a018572089a8e79d5ef681a00f9ee4f459aed07e01666aef1e0553c60cbc845",
+    "url": "https://static.data.gouv.fr/resources/donnees-mensuelles-dindice-dhumidite-des-sols-pour-le-dispositif-catnat/20260317-160911/modeles-presentation-swi-20260316.pdf"
+  },
+  "swi_uniforme.1958.csv.gz": {
+    "bytes": 296039,
+    "downloaded": "2026-11-17",
+    "sha256": "1d0cffd72e215d9305675613250e079f3357a8e63ed0800e954a18d5e1b3ea1f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1958.csv.gz"
+  },
+  "swi_uniforme.1959.csv.gz": {
+    "bytes": 600919,
+    "downloaded": "2026-11-17",
+    "sha256": "1439b69f82ae7062654d74c0c71c621e3037b078376981aa372ceae32689f6f0",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1959.csv.gz"
+  },
+  "swi_uniforme.1960.csv.gz": {
+    "bytes": 598887,
+    "downloaded": "2026-11-17",
+    "sha256": "4aec8800f8af044cca4fd4f3cedf521be688e64ba7ddee5708689c0a37465629",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1960.csv.gz"
+  },
+  "swi_uniforme.1961.csv.gz": {
+    "bytes": 598842,
+    "downloaded": "2026-11-17",
+    "sha256": "7fe62e9be4c6162df6fc7a5ec344c1b6b98668064f580f8c57259a6c5be0d9b1",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1961.csv.gz"
+  },
+  "swi_uniforme.1962.csv.gz": {
+    "bytes": 597719,
+    "downloaded": "2026-11-17",
+    "sha256": "08d677fd707ffc4ca9d3af30572d50a4ada99fd4c6c9891e8f32c25375b6e40d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1962.csv.gz"
+  },
+  "swi_uniforme.1963.csv.gz": {
+    "bytes": 605786,
+    "downloaded": "2026-11-17",
+    "sha256": "20664a9c897a4c011bfc65f5c44b4d9ae1f879642700d2f4028246ff012b56bf",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1963.csv.gz"
+  },
+  "swi_uniforme.1964.csv.gz": {
+    "bytes": 601368,
+    "downloaded": "2026-11-17",
+    "sha256": "fe17b52a06aad43617d48a50b6945ab8308ec5f284648534a512dd8f7ca4015b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1964.csv.gz"
+  },
+  "swi_uniforme.1965.csv.gz": {
+    "bytes": 605495,
+    "downloaded": "2026-11-17",
+    "sha256": "f5a0ec0c81e2122c5ed1e0d1a8d94e35d9588c2f2ab30d81bdea39ebaa361397",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1965.csv.gz"
+  },
+  "swi_uniforme.1966.csv.gz": {
+    "bytes": 596874,
+    "downloaded": "2026-11-17",
+    "sha256": "f29b07a5c1ded1ffad547ebcaadeee41220122c72928ec8ba4a20a12577cffc8",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1966.csv.gz"
+  },
+  "swi_uniforme.1967.csv.gz": {
+    "bytes": 599273,
+    "downloaded": "2026-11-17",
+    "sha256": "ba460bf3d617d0c526194c876c72cf3a54d2f7ff946d0ab4281674c7c745a92c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1967.csv.gz"
+  },
+  "swi_uniforme.1968.csv.gz": {
+    "bytes": 602168,
+    "downloaded": "2026-11-17",
+    "sha256": "5479aed9888c950e0c9d895383789fe765b0ea74f1549cacce72f394307ccc7a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1968.csv.gz"
+  },
+  "swi_uniforme.1969.csv.gz": {
+    "bytes": 601530,
+    "downloaded": "2026-11-17",
+    "sha256": "853827aedf49620a1a0c276fd224b2f22c0afab9a492c6e68ce69730b6fde4c2",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1969.csv.gz"
+  },
+  "swi_uniforme.1970.csv.gz": {
+    "bytes": 602645,
+    "downloaded": "2026-11-17",
+    "sha256": "dd4bd61785e97bf25597cd7da51946813b1deacb982bdb1d531614be5526a837",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1970.csv.gz"
+  },
+  "swi_uniforme.1971.csv.gz": {
+    "bytes": 606607,
+    "downloaded": "2026-11-17",
+    "sha256": "1c0551e04651b1c80a8e9f341772f0688c0e4755f494dada15820639d197fe37",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1971.csv.gz"
+  },
+  "swi_uniforme.1972.csv.gz": {
+    "bytes": 606956,
+    "downloaded": "2026-11-17",
+    "sha256": "7b0dc2abb3e006a2fcd530a80f9e7d7685e4e619c2899b844cdd18ee5b972ebe",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1972.csv.gz"
+  },
+  "swi_uniforme.1973.csv.gz": {
+    "bytes": 606495,
+    "downloaded": "2026-11-17",
+    "sha256": "cc3747d94b7e2a9479b8ff5c9eef20b384d0d9b9ee94d0073899031d50f57128",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1973.csv.gz"
+  },
+  "swi_uniforme.1974.csv.gz": {
+    "bytes": 600441,
+    "downloaded": "2026-11-17",
+    "sha256": "0ca2fa9097738455202c44a6e8a5a3bd9056960754ebc587156696e8295a45df",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1974.csv.gz"
+  },
+  "swi_uniforme.1975.csv.gz": {
+    "bytes": 600481,
+    "downloaded": "2026-11-17",
+    "sha256": "807efbefdeb3d3814c747eb85aa48cba660377a455c7d69335067e8e98477fbc",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1975.csv.gz"
+  },
+  "swi_uniforme.1976.csv.gz": {
+    "bytes": 598505,
+    "downloaded": "2026-11-17",
+    "sha256": "1d599394b6a542e61b1dd1f81753e9a00ff5039f5cd613c7e6191e8143e74b52",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1976.csv.gz"
+  },
+  "swi_uniforme.1977.csv.gz": {
+    "bytes": 598819,
+    "downloaded": "2026-11-17",
+    "sha256": "a4ee42323c48b8ddee72cb232514b6334d1d9c4c27208c75fb0fdbf1a157f196",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1977.csv.gz"
+  },
+  "swi_uniforme.1978.csv.gz": {
+    "bytes": 598420,
+    "downloaded": "2026-11-17",
+    "sha256": "7de52e22f2a10855180406e30a39b7541be350ca007ae7b6b028c4445996ad8b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1978.csv.gz"
+  },
+  "swi_uniforme.1979.csv.gz": {
+    "bytes": 598887,
+    "downloaded": "2026-11-17",
+    "sha256": "d83980004653644c4c244a84cc08b7bce3ccdb058db607dce9347987ad764c86",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1979.csv.gz"
+  },
+  "swi_uniforme.1980.csv.gz": {
+    "bytes": 600148,
+    "downloaded": "2026-11-17",
+    "sha256": "d6ca51f7335ce2dbadc5f226f081f8c1ce8de3a96798c7257e90639a73c144aa",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1980.csv.gz"
+  },
+  "swi_uniforme.1981.csv.gz": {
+    "bytes": 599183,
+    "downloaded": "2026-11-17",
+    "sha256": "5f3e00a2a2e6deb4ecae8020338c948d0c7969ae341a7d74cca8b3b66a8ca735",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1981.csv.gz"
+  },
+  "swi_uniforme.1982.csv.gz": {
+    "bytes": 594908,
+    "downloaded": "2026-11-17",
+    "sha256": "71193865f869541e71f842434b316797ddf63956b0409c51b391a989142d05db",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1982.csv.gz"
+  },
+  "swi_uniforme.1983.csv.gz": {
+    "bytes": 595072,
+    "downloaded": "2026-11-17",
+    "sha256": "94dc6472da7984c1634c26c8bad118d2efb38929f569b8f043683037c8883dde",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1983.csv.gz"
+  },
+  "swi_uniforme.1984.csv.gz": {
+    "bytes": 599352,
+    "downloaded": "2026-11-17",
+    "sha256": "ecb0a7c2e3fd72a467961f3a1f0b49527bc3c673f894fa609635ff491ad9649f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1984.csv.gz"
+  },
+  "swi_uniforme.1985.csv.gz": {
+    "bytes": 595956,
+    "downloaded": "2026-11-17",
+    "sha256": "f31a1445f765817dc75c2ecd50600793ab440e55453d46ba4c8256a6d0debcf8",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1985.csv.gz"
+  },
+  "swi_uniforme.1986.csv.gz": {
+    "bytes": 601180,
+    "downloaded": "2026-11-17",
+    "sha256": "26a7f8179b78d784058c331019d79f5e969cbd9b9ef5895a7c52d9d3c2d6601a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1986.csv.gz"
+  },
+  "swi_uniforme.1987.csv.gz": {
+    "bytes": 602194,
+    "downloaded": "2026-11-17",
+    "sha256": "3c73308c75efed4e2553b07dfedf997e0b1dba32bf377f16b2c0cddbaaabf12b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1987.csv.gz"
+  },
+  "swi_uniforme.1988.csv.gz": {
+    "bytes": 598812,
+    "downloaded": "2026-11-17",
+    "sha256": "4ff594e05e46ceaff4096ee87c1122914d7fa53c7e60f9b525e53047ca0a9126",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1988.csv.gz"
+  },
+  "swi_uniforme.1989.csv.gz": {
+    "bytes": 600719,
+    "downloaded": "2026-11-17",
+    "sha256": "888c4f6681eb7bc7cd7655c946db8e07e9e0fbbb5333417ad774ecaab66c59ef",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1989.csv.gz"
+  },
+  "swi_uniforme.1990.csv.gz": {
+    "bytes": 603918,
+    "downloaded": "2026-11-17",
+    "sha256": "d0819cc1fddf88aeb21979f275e68cfd3d0257ef5835937b61ee138d64772457",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1990.csv.gz"
+  },
+  "swi_uniforme.1991.csv.gz": {
+    "bytes": 599809,
+    "downloaded": "2026-11-17",
+    "sha256": "ce70becbcd1c3e3f125db60f1b997f36756b17f4bc3a501b656864f61bcd4ca2",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1991.csv.gz"
+  },
+  "swi_uniforme.1992.csv.gz": {
+    "bytes": 606522,
+    "downloaded": "2026-11-17",
+    "sha256": "586e0119c67348aa8767fe395ed90055b7d7bcad020d7ae19c2c000a3fa3eedc",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1992.csv.gz"
+  },
+  "swi_uniforme.1993.csv.gz": {
+    "bytes": 601027,
+    "downloaded": "2026-11-17",
+    "sha256": "d27f3f583218b8222d1410f4d21570b87a6ebba39575a4a17466357a7cdff1f5",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1993.csv.gz"
+  },
+  "swi_uniforme.1994.csv.gz": {
+    "bytes": 598326,
+    "downloaded": "2026-11-17",
+    "sha256": "bbf8c3ae69ebbbeea416e67fb901e2899d7f62efcef1b6e576dbaf67155ac83c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1994.csv.gz"
+  },
+  "swi_uniforme.1995.csv.gz": {
+    "bytes": 602001,
+    "downloaded": "2026-11-17",
+    "sha256": "0321fc9c667b849a3165e1775f035dc66a8d365a28217eaa96bde4f47281e043",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1995.csv.gz"
+  },
+  "swi_uniforme.1996.csv.gz": {
+    "bytes": 603442,
+    "downloaded": "2026-11-17",
+    "sha256": "96b1ea25fab417c0e6e2133eb160f8f889fefab577820f3f3709a02ca27903aa",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1996.csv.gz"
+  },
+  "swi_uniforme.1997.csv.gz": {
+    "bytes": 605889,
+    "downloaded": "2026-11-17",
+    "sha256": "b2a778263ae39c070392be7b83214cdd66f4e664ecf350401521e7e3306476a7",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1997.csv.gz"
+  },
+  "swi_uniforme.1998.csv.gz": {
+    "bytes": 601207,
+    "downloaded": "2026-11-17",
+    "sha256": "d0483b30905159964121f8d0d8a05287a372c69175c15c856dd729606aa9f7a4",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1998.csv.gz"
+  },
+  "swi_uniforme.1999.csv.gz": {
+    "bytes": 602299,
+    "downloaded": "2026-11-17",
+    "sha256": "eb4d7d6219b2db28a05fdf8b1a4af7a9eed6c06164910484b398316060438c6c",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.1999.csv.gz"
+  },
+  "swi_uniforme.2000.csv.gz": {
+    "bytes": 596877,
+    "downloaded": "2026-11-17",
+    "sha256": "d8d1c17177fd9c9c7ef328599497a5d2607a48d3a6ac49f6d07bcf52cbd61fc3",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2000.csv.gz"
+  },
+  "swi_uniforme.2001.csv.gz": {
+    "bytes": 597905,
+    "downloaded": "2026-11-17",
+    "sha256": "ead3ebe88b68462e127846ce37123787ae1455ee3638301de3af116339a16a22",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2001.csv.gz"
+  },
+  "swi_uniforme.2002.csv.gz": {
+    "bytes": 605842,
+    "downloaded": "2026-11-17",
+    "sha256": "d5f91f764fdac049c3e5d672172f900268013a18a298bd8609c312fe534ef173",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2002.csv.gz"
+  },
+  "swi_uniforme.2003.csv.gz": {
+    "bytes": 594155,
+    "downloaded": "2026-11-17",
+    "sha256": "d73f60874186227357294e570c70774b1ee8b733af7c23e8a2aa4ecd7ef8b5f8",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2003.csv.gz"
+  },
+  "swi_uniforme.2004.csv.gz": {
+    "bytes": 602276,
+    "downloaded": "2026-11-17",
+    "sha256": "6dc29832dbe3b732216eb9d2fbe960f132d9100a841a584f164586c72708a400",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2004.csv.gz"
+  },
+  "swi_uniforme.2005.csv.gz": {
+    "bytes": 605201,
+    "downloaded": "2026-11-17",
+    "sha256": "c2b9a80c87641b7f874d9b232f99381e535b6f14abd1b2574560985c3dccd020",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2005.csv.gz"
+  },
+  "swi_uniforme.2006.csv.gz": {
+    "bytes": 604151,
+    "downloaded": "2026-11-17",
+    "sha256": "26f217c5280b2a06028b578e2e1018e02c4624a5a82b115600b6448342b6125a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2006.csv.gz"
+  },
+  "swi_uniforme.2007.csv.gz": {
+    "bytes": 606584,
+    "downloaded": "2026-11-17",
+    "sha256": "e49dfa3b7de5a4d60e108e13e6f3de903e5a2252ff24365fcb78095e6d14799e",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2007.csv.gz"
+  },
+  "swi_uniforme.2008.csv.gz": {
+    "bytes": 605165,
+    "downloaded": "2026-11-17",
+    "sha256": "9c9f903b8cb75483356a3b8a2f679a30a55b7e19719412dd8f8f32a09de12a5b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2008.csv.gz"
+  },
+  "swi_uniforme.2009.csv.gz": {
+    "bytes": 601962,
+    "downloaded": "2026-11-17",
+    "sha256": "138cefb7fe0883a183cf765a64a84c364a5afa515fdb1bbfb31a23903b61ed2b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2009.csv.gz"
+  },
+  "swi_uniforme.2010.csv.gz": {
+    "bytes": 601167,
+    "downloaded": "2026-11-17",
+    "sha256": "361029104819a0fa5ebb81ed59af7293ddc38be4007e66804471668374c8564f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2010.csv.gz"
+  },
+  "swi_uniforme.2011.csv.gz": {
+    "bytes": 599909,
+    "downloaded": "2026-11-17",
+    "sha256": "dcc460aac473be64541a90e01518938a9c5767c36ca1257eb0c23baee37c9483",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2011.csv.gz"
+  },
+  "swi_uniforme.2012.csv.gz": {
+    "bytes": 604004,
+    "downloaded": "2026-11-17",
+    "sha256": "24e9a89729b9bd402277521830f60d415bf2b3830684b1e8175f891f919e64e4",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2012.csv.gz"
+  },
+  "swi_uniforme.2013.csv.gz": {
+    "bytes": 596547,
+    "downloaded": "2026-11-17",
+    "sha256": "0eae105250e01df701c3d140d8857322f4b89561eadc473ab34ea01007f98ef9",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2013.csv.gz"
+  },
+  "swi_uniforme.2014.csv.gz": {
+    "bytes": 602036,
+    "downloaded": "2026-11-17",
+    "sha256": "40a95f84ecb0ce2ec7d18b69ba471442b4fad5cf2e828d2a989fb70898a81db3",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2014.csv.gz"
+  },
+  "swi_uniforme.2015.csv.gz": {
+    "bytes": 601415,
+    "downloaded": "2026-11-17",
+    "sha256": "1dccec2959b4276352f0c097dd4f725f5482aa7f547a77d5f0add7c4cba956d2",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2015.csv.gz"
+  },
+  "swi_uniforme.2016.csv.gz": {
+    "bytes": 600437,
+    "downloaded": "2026-11-17",
+    "sha256": "16760de3164dc33062e96f0e8e9d5ad8b6acda0939b0bcc30338dd7bbc9e2b55",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2016.csv.gz"
+  },
+  "swi_uniforme.2017.csv.gz": {
+    "bytes": 605744,
+    "downloaded": "2026-11-17",
+    "sha256": "48b0247581370fd3d7fc046979abc98b7b47fe1573b1f15e3a4048404173714f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2017.csv.gz"
+  },
+  "swi_uniforme.2018.csv.gz": {
+    "bytes": 593751,
+    "downloaded": "2026-11-17",
+    "sha256": "ef18ea375a23f5e19ecba1ce3414c22227ac7bb91176210dd5f638fe451ea889",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2018.csv.gz"
+  },
+  "swi_uniforme.2019.csv.gz": {
+    "bytes": 598695,
+    "downloaded": "2026-11-17",
+    "sha256": "2886277ea0393dcfaf7acf4e0dc2ca9e102dc8ece3954e8296ff707820b21693",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2019.csv.gz"
+  },
+  "swi_uniforme.2020.csv.gz": {
+    "bytes": 593373,
+    "downloaded": "2026-11-17",
+    "sha256": "8f90db095a00db36dedb5e933568081e81ef7941502096f8685930d36f489c31",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2020.csv.gz"
+  },
+  "swi_uniforme.2021.csv.gz": {
+    "bytes": 602548,
+    "downloaded": "2026-11-17",
+    "sha256": "56b7a545c1eafd48e198195d34b1392b9c7b6f9b30a5b59e531da479e0fa71ef",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2021.csv.gz"
+  },
+  "swi_uniforme.2022.csv.gz": {
+    "bytes": 598431,
+    "downloaded": "2026-11-17",
+    "sha256": "b2fafbca71a4d6431b3ad213a9e9db8c2c40fbaf98f7eb0cdef8cb129f5e0f99",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2022.csv.gz"
+  },
+  "swi_uniforme.2023.csv.gz": {
+    "bytes": 599186,
+    "downloaded": "2026-11-17",
+    "sha256": "51329c63acc9a31bca33a42ea6907a34c9a9aef95cb9d31cf8eda0f6e91dcd21",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2023.csv.gz"
+  },
+  "swi_uniforme.2024.csv.gz": {
+    "bytes": 596927,
+    "downloaded": "2026-11-17",
+    "sha256": "9c7b2f766aee58a14f56ceff01890a99a4e66e73c58d9f294c6ac8a6bf582838",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2024.csv.gz"
+  },
+  "swi_uniforme.2025.csv.gz": {
+    "bytes": 594923,
+    "downloaded": "2026-11-17",
+    "sha256": "a738cef65b9d8851302a2b63a12f33e5fa132a15b1a3d6745831d2e428a83311",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2025.csv.gz"
+  },
+  "swi_uniforme.2026.csv.gz": {
+    "bytes": 449185,
+    "downloaded": "2026-11-17",
+    "sha256": "bd20d243bd45e48d7b0dfd2bc21f84eb661e9ceb8196fbdc8249b5f59ac55f34",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SWI_UNIF_MENS/swi_uniforme.2026.csv.gz"
   }
 }

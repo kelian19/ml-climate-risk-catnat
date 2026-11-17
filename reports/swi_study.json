@@ -1,0 +1,826 @@
+{
+  "cube_shape": [
+    68,
+    8981,
+    12
+  ],
+  "years": [
+    1959,
+    2026
+  ],
+  "last_complete_summer": 2026,
+  "forecast": {
+    "test_years": [
+      1985,
+      2026
+    ],
+    "scores": [
+      {
+        "model": "p_persistance",
+        "rmse": 0.1885,
+        "mae": 0.1467,
+        "corr": 0.5082,
+        "national_rmse": 0.1367,
+        "national_corr": 0.0434
+      },
+      {
+        "model": "p_climatologie",
+        "rmse": 0.1509,
+        "mae": 0.1245,
+        "corr": 0.6821,
+        "national_rmse": 0.1139,
+        "national_corr": 0.1932
+      },
+      {
+        "model": "p_ridge",
+        "rmse": 0.1229,
+        "mae": 0.0955,
+        "corr": 0.7693,
+        "national_rmse": 0.0888,
+        "national_corr": 0.503
+      },
+      {
+        "model": "p_gbm",
+        "rmse": 0.1469,
+        "mae": 0.1108,
+        "corr": 0.6808,
+        "national_rmse": 0.1133,
+        "national_corr": 0.3624
+      },
+      {
+        "model": "p_rf",
+        "rmse": 0.1347,
+        "mae": 0.1038,
+        "corr": 0.7176,
+        "national_rmse": 0.0991,
+        "national_corr": 0.402
+      }
+    ],
+    "scores_2000_plus": [
+      {
+        "model": "p_persistance",
+        "rmse": 0.1993,
+        "mae": 0.1542,
+        "corr": 0.4417,
+        "national_rmse": 0.1527,
+        "national_corr": -0.0511
+      },
+      {
+        "model": "p_climatologie",
+        "rmse": 0.1587,
+        "mae": 0.1319,
+        "corr": 0.6401,
+        "national_rmse": 0.1237,
+        "national_corr": 0.0671
+      },
+      {
+        "model": "p_ridge",
+        "rmse": 0.1224,
+        "mae": 0.095,
+        "corr": 0.7679,
+        "national_rmse": 0.0881,
+        "national_corr": 0.6059
+      },
+      {
+        "model": "p_gbm",
+        "rmse": 0.1438,
+        "mae": 0.1069,
+        "corr": 0.6814,
+        "national_rmse": 0.1104,
+        "national_corr": 0.3879
+      },
+      {
+        "model": "p_rf",
+        "rmse": 0.1303,
+        "mae": 0.1009,
+        "corr": 0.7309,
+        "national_rmse": 0.0955,
+        "national_corr": 0.4977
+      }
+    ],
+    "scores_dry_years": [
+      {
+        "model": "p_persistance",
+        "rmse": 0.2193,
+        "mae": 0.1697,
+        "corr": 0.5998,
+        "national_rmse": 0.1876,
+        "national_corr": 0.0901
+      },
+      {
+        "model": "p_climatologie",
+        "rmse": 0.1998,
+        "mae": 0.1787,
+        "corr": 0.7634,
+        "national_rmse": 0.1802,
+        "national_corr": 0.2144
+      },
+      {
+        "model": "p_ridge",
+        "rmse": 0.1141,
+        "mae": 0.0921,
+        "corr": 0.8097,
+        "national_rmse": 0.0888,
+        "national_corr": 0.2928
+      },
+      {
+        "model": "p_gbm",
+        "rmse": 0.1387,
+        "mae": 0.1055,
+        "corr": 0.7252,
+        "national_rmse": 0.1124,
+        "national_corr": 0.175
+      },
+      {
+        "model": "p_rf",
+        "rmse": 0.1322,
+        "mae": 0.1057,
+        "corr": 0.7752,
+        "national_rmse": 0.1093,
+        "national_corr": 0.3162
+      }
+    ],
+    "features": [
+      "swi_may",
+      "swi_mam",
+      "swi_win_prev",
+      "swi_jja_prev",
+      "clim_jja",
+      "year_std"
+    ]
+  },
+  "geostat": {
+    "year": 2022,
+    "n_cells": 8981,
+    "moran_I": 0.8683582383312025,
+    "moran_expected": -0.00011135857461024499,
+    "moran_p": 0.005,
+    "variogram": {
+      "lag_km": [
+        11.652861982443431,
+        24.663866204749812,
+        40.27822111248914,
+        55.984226610822994,
+        72.02430398080607,
+        87.62194079910874,
+        103.43030826177784,
+        119.5198628435655,
+        135.40384491709514,
+        151.6678277167328,
+        167.94917117707914,
+        183.48373025188374,
+        199.57935864673598,
+        216.0198376867288,
+        232.2631329322336,
+        248.37181337636014,
+        264.31511804947996,
+        279.77506124435547,
+        295.6552517571153,
+        311.97427061217553,
+        327.94586880371884,
+        343.8129883750732,
+        359.8427347332089,
+        375.74230782291096,
+        391.8805549221425
+      ],
+      "gamma": [
+        0.0010802408994708996,
+        0.0015778411764705883,
+        0.0024863656244549105,
+        0.0030552309077749164,
+        0.003492591078940856,
+        0.0037185886856294357,
+        0.004577557320889327,
+        0.004817525112541876,
+        0.005499920731803486,
+        0.006107663978383588,
+        0.006589376095886212,
+        0.00680148601531418,
+        0.006805839956209554,
+        0.0072870398392190635,
+        0.007210154849702458,
+        0.007043638678542527,
+        0.007375766937669377,
+        0.007138527570085846,
+        0.006858709795717698,
+        0.00722404307552507,
+        0.007022394513314968,
+        0.007045646798497476,
+        0.007137512761913383,
+        0.00728916045823881,
+        0.007211986440489486
+      ],
+      "pairs": [
+        1050,
+        2975,
+        5096,
+        6601,
+        8980,
+        9129,
+        12179,
+        12736,
+        14090,
+        16140,
+        16311,
+        16673,
+        19436,
+        19350,
+        19661,
+        20733,
+        20418,
+        20463,
+        22148,
+        22743,
+        21780,
+        23161,
+        22097,
+        23069,
+        22981
+      ]
+    },
+    "fits": {
+      "spherique": {
+        "model": "spherique",
+        "nugget": 0.0005329435993037088,
+        "psill": 0.006621002731946393,
+        "range": 236807.69894428374,
+        "wrmse": 0.00015427493362270089
+      },
+      "exponentiel": {
+        "model": "exponentiel",
+        "nugget": 8.022537930481018e-18,
+        "psill": 0.007524936217576393,
+        "range": 291681.02929671877,
+        "wrmse": 0.0003095822700492628
+      },
+      "gaussien": {
+        "model": "gaussien",
+        "nugget": 0.00162908215863689,
+        "psill": 0.005557812839604137,
+        "range": 206444.26234990222,
+        "wrmse": 0.0001733731815340979
+      }
+    },
+    "best_model": "spherique",
+    "block_cv_100km": {
+      "rmse": 0.03945773714931866,
+      "mae": 0.027782143811838945,
+      "coverage_95": 0.9666666666666667,
+      "std_standardized_error": 0.763146873652107,
+      "n": 600
+    },
+    "block_cv_25km": {
+      "rmse": 0.023229457694571264,
+      "mae": 0.016983416567976188,
+      "coverage_95": 0.9790940766550522,
+      "std_standardized_error": 0.6823601948616254,
+      "n": 287
+    },
+    "sd_field": 0.08482539951964498
+  },
+  "criterion": {
+    "10": {
+      "commune_years": 1181364,
+      "both": 33175,
+      "criterion_only": 579890,
+      "decree_only": 8382,
+      "neither": 559917,
+      "sensitivity": 0.7983011285703973,
+      "precision": 0.054113348503013546,
+      "by_year": [
+        {
+          "year": 1989,
+          "criterion": 0,
+          "decrees": 3775
+        },
+        {
+          "year": 1990,
+          "criterion": 33093,
+          "decrees": 462
+        },
+        {
+          "year": 1991,
+          "criterion": 21514,
+          "decrees": 1280
+        },
+        {
+          "year": 1992,
+          "criterion": 23681,
+          "decrees": 1082
+        },
+        {
+          "year": 1993,
+          "criterion": 25232,
+          "decrees": 822
+        },
+        {
+          "year": 1994,
+          "criterion": 4165,
+          "decrees": 135
+        },
+        {
+          "year": 1995,
+          "criterion": 16473,
+          "decrees": 333
+        },
+        {
+          "year": 1996,
+          "criterion": 23579,
+          "decrees": 614
+        },
+        {
+          "year": 1997,
+          "criterion": 29319,
+          "decrees": 351
+        },
+        {
+          "year": 1998,
+          "criterion": 9116,
+          "decrees": 578
+        },
+        {
+          "year": 1999,
+          "criterion": 2386,
+          "decrees": 87
+        },
+        {
+          "year": 2000,
+          "criterion": 2371,
+          "decrees": 71
+        },
+        {
+          "year": 2001,
+          "criterion": 5968,
+          "decrees": 15
+        },
+        {
+          "year": 2002,
+          "criterion": 14694,
+          "decrees": 653
+        },
+        {
+          "year": 2003,
+          "criterion": 32798,
+          "decrees": 4352
+        },
+        {
+          "year": 2004,
+          "criterion": 16071,
+          "decrees": 77
+        },
+        {
+          "year": 2005,
+          "criterion": 28220,
+          "decrees": 1521
+        },
+        {
+          "year": 2006,
+          "criterion": 21496,
+          "decrees": 323
+        },
+        {
+          "year": 2007,
+          "criterion": 21678,
+          "decrees": 203
+        },
+        {
+          "year": 2008,
+          "criterion": 7486,
+          "decrees": 121
+        },
+        {
+          "year": 2009,
+          "criterion": 25746,
+          "decrees": 596
+        },
+        {
+          "year": 2010,
+          "criterion": 14709,
+          "decrees": 100
+        },
+        {
+          "year": 2011,
+          "criterion": 33577,
+          "decrees": 2247
+        },
+        {
+          "year": 2012,
+          "criterion": 15072,
+          "decrees": 648
+        },
+        {
+          "year": 2013,
+          "criterion": 1032,
+          "decrees": 23
+        },
+        {
+          "year": 2014,
+          "criterion": 13072,
+          "decrees": 44
+        },
+        {
+          "year": 2015,
+          "criterion": 20355,
+          "decrees": 205
+        },
+        {
+          "year": 2016,
+          "criterion": 11835,
+          "decrees": 982
+        },
+        {
+          "year": 2017,
+          "criterion": 26930,
+          "decrees": 2104
+        },
+        {
+          "year": 2018,
+          "criterion": 22654,
+          "decrees": 4061
+        },
+        {
+          "year": 2019,
+          "criterion": 20790,
+          "decrees": 2923
+        },
+        {
+          "year": 2020,
+          "criterion": 23438,
+          "decrees": 3520
+        },
+        {
+          "year": 2021,
+          "criterion": 10674,
+          "decrees": 355
+        },
+        {
+          "year": 2022,
+          "criterion": 33841,
+          "decrees": 6894
+        }
+      ]
+    },
+    "25": {
+      "commune_years": 1181364,
+      "both": 27828,
+      "criterion_only": 347408,
+      "decree_only": 13729,
+      "neither": 792399,
+      "sensitivity": 0.6696344779459538,
+      "precision": 0.07416132780436845,
+      "by_year": [
+        {
+          "year": 1989,
+          "criterion": 0,
+          "decrees": 3775
+        },
+        {
+          "year": 1990,
+          "criterion": 28379,
+          "decrees": 462
+        },
+        {
+          "year": 1991,
+          "criterion": 10853,
+          "decrees": 1280
+        },
+        {
+          "year": 1992,
+          "criterion": 14557,
+          "decrees": 1082
+        },
+        {
+          "year": 1993,
+          "criterion": 16508,
+          "decrees": 822
+        },
+        {
+          "year": 1994,
+          "criterion": 2229,
+          "decrees": 135
+        },
+        {
+          "year": 1995,
+          "criterion": 10518,
+          "decrees": 333
+        },
+        {
+          "year": 1996,
+          "criterion": 17262,
+          "decrees": 614
+        },
+        {
+          "year": 1997,
+          "criterion": 22780,
+          "decrees": 351
+        },
+        {
+          "year": 1998,
+          "criterion": 2822,
+          "decrees": 578
+        },
+        {
+          "year": 1999,
+          "criterion": 711,
+          "decrees": 87
+        },
+        {
+          "year": 2000,
+          "criterion": 589,
+          "decrees": 71
+        },
+        {
+          "year": 2001,
+          "criterion": 3312,
+          "decrees": 15
+        },
+        {
+          "year": 2002,
+          "criterion": 7586,
+          "decrees": 653
+        },
+        {
+          "year": 2003,
+          "criterion": 25985,
+          "decrees": 4352
+        },
+        {
+          "year": 2004,
+          "criterion": 2777,
+          "decrees": 77
+        },
+        {
+          "year": 2005,
+          "criterion": 19389,
+          "decrees": 1521
+        },
+        {
+          "year": 2006,
+          "criterion": 10642,
+          "decrees": 323
+        },
+        {
+          "year": 2007,
+          "criterion": 8762,
+          "decrees": 203
+        },
+        {
+          "year": 2008,
+          "criterion": 1471,
+          "decrees": 121
+        },
+        {
+          "year": 2009,
+          "criterion": 12645,
+          "decrees": 596
+        },
+        {
+          "year": 2010,
+          "criterion": 6355,
+          "decrees": 100
+        },
+        {
+          "year": 2011,
+          "criterion": 30976,
+          "decrees": 2247
+        },
+        {
+          "year": 2012,
+          "criterion": 5613,
+          "decrees": 648
+        },
+        {
+          "year": 2013,
+          "criterion": 247,
+          "decrees": 23
+        },
+        {
+          "year": 2014,
+          "criterion": 5337,
+          "decrees": 44
+        },
+        {
+          "year": 2015,
+          "criterion": 9153,
+          "decrees": 205
+        },
+        {
+          "year": 2016,
+          "criterion": 3837,
+          "decrees": 982
+        },
+        {
+          "year": 2017,
+          "criterion": 15837,
+          "decrees": 2104
+        },
+        {
+          "year": 2018,
+          "criterion": 17539,
+          "decrees": 4061
+        },
+        {
+          "year": 2019,
+          "criterion": 9775,
+          "decrees": 2923
+        },
+        {
+          "year": 2020,
+          "criterion": 17906,
+          "decrees": 3520
+        },
+        {
+          "year": 2021,
+          "criterion": 3410,
+          "decrees": 355
+        },
+        {
+          "year": 2022,
+          "criterion": 29474,
+          "decrees": 6894
+        }
+      ]
+    },
+    "50": {
+      "commune_years": 1181364,
+      "both": 23682,
+      "criterion_only": 255282,
+      "decree_only": 17875,
+      "neither": 884525,
+      "sensitivity": 0.5698678922925139,
+      "precision": 0.08489267432356863,
+      "by_year": [
+        {
+          "year": 1989,
+          "criterion": 0,
+          "decrees": 3775
+        },
+        {
+          "year": 1990,
+          "criterion": 24669,
+          "decrees": 462
+        },
+        {
+          "year": 1991,
+          "criterion": 6026,
+          "decrees": 1280
+        },
+        {
+          "year": 1992,
+          "criterion": 10868,
+          "decrees": 1082
+        },
+        {
+          "year": 1993,
+          "criterion": 12194,
+          "decrees": 822
+        },
+        {
+          "year": 1994,
+          "criterion": 1828,
+          "decrees": 135
+        },
+        {
+          "year": 1995,
+          "criterion": 7390,
+          "decrees": 333
+        },
+        {
+          "year": 1996,
+          "criterion": 12493,
+          "decrees": 614
+        },
+        {
+          "year": 1997,
+          "criterion": 19177,
+          "decrees": 351
+        },
+        {
+          "year": 1998,
+          "criterion": 1403,
+          "decrees": 578
+        },
+        {
+          "year": 1999,
+          "criterion": 439,
+          "decrees": 87
+        },
+        {
+          "year": 2000,
+          "criterion": 364,
+          "decrees": 71
+        },
+        {
+          "year": 2001,
+          "criterion": 2365,
+          "decrees": 15
+        },
+        {
+          "year": 2002,
+          "criterion": 5365,
+          "decrees": 653
+        },
+        {
+          "year": 2003,
+          "criterion": 22549,
+          "decrees": 4352
+        },
+        {
+          "year": 2004,
+          "criterion": 1000,
+          "decrees": 77
+        },
+        {
+          "year": 2005,
+          "criterion": 15063,
+          "decrees": 1521
+        },
+        {
+          "year": 2006,
+          "criterion": 6970,
+          "decrees": 323
+        },
+        {
+          "year": 2007,
+          "criterion": 4828,
+          "decrees": 203
+        },
+        {
+          "year": 2008,
+          "criterion": 793,
+          "decrees": 121
+        },
+        {
+          "year": 2009,
+          "criterion": 7378,
+          "decrees": 596
+        },
+        {
+          "year": 2010,
+          "criterion": 2929,
+          "decrees": 100
+        },
+        {
+          "year": 2011,
+          "criterion": 28300,
+          "decrees": 2247
+        },
+        {
+          "year": 2012,
+          "criterion": 3645,
+          "decrees": 648
+        },
+        {
+          "year": 2013,
+          "criterion": 167,
+          "decrees": 23
+        },
+        {
+          "year": 2014,
+          "criterion": 2279,
+          "decrees": 44
+        },
+        {
+          "year": 2015,
+          "criterion": 5040,
+          "decrees": 205
+        },
+        {
+          "year": 2016,
+          "criterion": 2472,
+          "decrees": 982
+        },
+        {
+          "year": 2017,
+          "criterion": 10489,
+          "decrees": 2104
+        },
+        {
+          "year": 2018,
+          "criterion": 15964,
+          "decrees": 4061
+        },
+        {
+          "year": 2019,
+          "criterion": 5338,
+          "decrees": 2923
+        },
+        {
+          "year": 2020,
+          "criterion": 13382,
+          "decrees": 3520
+        },
+        {
+          "year": 2021,
+          "criterion": 1844,
+          "decrees": 355
+        },
+        {
+          "year": 2022,
+          "criterion": 23953,
+          "decrees": 6894
+        }
+      ]
+    }
+  }
+}

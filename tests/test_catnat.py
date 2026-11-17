@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pytest
-from catnat.features import expanding_anomaly,build_features,FEATURES_METEO
+from catnat.features import expanding_anomaly,build_features,FEATURES_METEO,FEATURES_UNIFORM
 from catnat.labels import last_mature_year,build_labels,history_counts
 from catnat.model import rolling_origin,credibility_frequency,FEATURE_SETS
 from catnat.metrics import log_loss,brier,scores,by_year,calibration_table
@@ -72,7 +72,7 @@ def synthetic_table(seed=0):
     for yr in range(2005,2016):
         shock=rng.normal()
         for c in range(300):
-            x={f:rng.normal() for f in FEATURES_METEO};x['swi_jja_z']+=shock
+            x={f:rng.normal() for f in FEATURES_UNIFORM};x['swi_jja_z']+=shock
             ex={'rga_mid_share':rng.uniform(),'rga_high_share':rng.uniform()*0.3,'rga_missing':0,'log_population':rng.uniform(4,9),'hist_count':rng.integers(0,4)}
             logit=-2.5-1.2*x['swi_jja_z']+2*ex['rga_high_share']
             y=int(rng.uniform()<1/(1+np.exp(-logit)))

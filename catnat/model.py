@@ -9,7 +9,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from .features import FEATURES_METEO
+from .features import FEATURES_UNIFORM as FEATURES_METEO
 
 FEATURES_EXPOSITION=['rga_mid_share','rga_high_share','rga_missing','log_population']
 FEATURE_SETS={'glm_meteo':FEATURES_METEO,'glm_meteo_expo':FEATURES_METEO+FEATURES_EXPOSITION,

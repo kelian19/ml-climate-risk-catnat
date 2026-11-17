@@ -46,3 +46,32 @@ def build_features(sim,cells,min_years=5,last_month=12):
         d={'cell':ids,'year':np.full(len(ids),years[k])};d.update({n:a[k] for n,a in cols.items()});rows.append(pd.DataFrame(d))
     out=pd.concat(rows,ignore_index=True)
     return out
+
+# ---------------------------------------------------------------- SWI uniforme (cible du critère CatNat)
+FEATURES_UNIFORM=['swi_jja_z','swi_son_z','swi_min_z','swi_jja_z_prev','rp_max_log']
+
+def build_features_uniform(cube,years,cell_ids,min_years=10,last_month=12,min_ref=20):
+    """Indicateurs annuels du SWI **uniforme**, sans information future.
+
+    - anomalies standardisées (été, automne, minimum mensuel) à climatologie expansive ;
+    - rp_max_log : log de la plus grande période de retour empirique, parmi les fenêtres glissantes de trois
+      mois se terminant de mars à `last_month`, par rapport aux années antérieures (critère de type CatNat).
+    `last_month` < 12 limite tous les calculs aux mois connus (estimation en cours d'année)."""
+    from .swi import rolling_quarter_means
+    from .criterion import return_period
+    q=rolling_quarter_means(cube)  # cube complet : seule l'année en cours peut avoir des mois manquants
+    cube=cube[:,:,:last_month]
+    z=expanding_anomaly(cube,min_years)
+    end=min(last_month,11)
+    jja=z[:,:,5:8].mean(axis=2);son=z[:,:,8:end].mean(axis=2) if end>8 else np.full_like(jja,np.nan)
+    zmin=z[:,:,2:end].min(axis=2)
+    prev=np.full_like(jja,np.nan);prev[1:]=jja[:-1]
+    rp_max=np.full(jja.shape,np.nan)
+    for t in range(min_years+1,len(years)):
+        rp=return_period(q,t,min_ref=min_ref)[:,2:last_month]
+        rp_max[t]=np.nanmax(rp,axis=1)
+    cols={'swi_jja_z':jja,'swi_son_z':son,'swi_min_z':zmin,'swi_jja_z_prev':prev,'rp_max_log':np.log(rp_max)}
+    rows=[]
+    for k in range(min_years+1,len(years)):
+        d={'cell':cell_ids,'year':np.full(len(cell_ids),years[k])};d.update({n:a[k] for n,a in cols.items()});rows.append(pd.DataFrame(d))
+    return pd.concat(rows,ignore_index=True)

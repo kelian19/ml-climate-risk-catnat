@@ -16,6 +16,7 @@ SHAPE_BASE='https://static.data.gouv.fr/resources/donnees-changement-climatique-
 DATAGOUV='https://www.data.gouv.fr/api/1/datasets/{slug}/'
 CATNAT_SLUG='arretes-de-catastrophe-naturelle-par-commune'
 RGA_SLUG='exposition-des-maisons-individuelles-au-phenomene-de-retrait-gonflement-des-argiles-rga'
+SWI_SLUGS=('donnees-mensuelles-de-suivi-dindice-dhumidite-des-sols','donnees-mensuelles-de-reference-dindice-dhumidite-des-sols-pour-le-dispositif-catnat')
 COMMUNES='https://geo.api.gouv.fr/communes?fields=code,nom,codeDepartement,codeEpci,population,surface,centre&format=json&geometry=centre'
 
 def fetch_json(url):
@@ -33,6 +34,15 @@ def sources():
     out.append(('rga_epci.csv',epci['url']))
     out.append(('communes.json',COMMUNES))
     out.append(('communes-100m.geojson.gz',CONTOURS))
+    # SWI uniforme Météo-France : suivi mensuel 1958→ et données de référence du dispositif CatNat.
+    for slug in SWI_SLUGS:
+        for res in fetch_json(DATAGOUV.format(slug=slug))['resources']:
+            if res['format'] not in ('csv.gz','csv','pdf'):continue
+            name=res['url'].rsplit('/',1)[-1]
+            # Noms courts : les chemins Windows sont limités à 260 caractères.
+            if 'mailles' in name:name='swi_mailles.csv'
+            elif name.endswith('.pdf'):name='swi_presentation.pdf'
+            out.append((name,res['url']))
     return out
 
 def sha256(path):
