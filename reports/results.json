@@ -1,0 +1,2118 @@
+{
+  "meta": {
+    "last_mature_year": 2022,
+    "data_cut": "2025-07-09",
+    "years": [
+      2006,
+      2022
+    ],
+    "communes": 34746,
+    "rows": 590682,
+    "positive_rate": 0.04291480018013077,
+    "events_metropole": 48738,
+    "events_excluded_not_metropole": 0,
+    "communes_without_rga": 14,
+    "max_cell_distance_km": 12.70060817692186
+  },
+  "protocol": {
+    "test_years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "label_lag_years": 2,
+    "split": "origine glissante par année ; apprentissage sur années ≤ t−2",
+    "features": {
+      "glm_meteo": [
+        "swi_jja_z",
+        "swi_son_z",
+        "swi_min_z",
+        "sswi3_sep",
+        "sswi12_dec",
+        "swi_jja_z_prev"
+      ],
+      "glm_meteo_expo": [
+        "swi_jja_z",
+        "swi_son_z",
+        "swi_min_z",
+        "sswi3_sep",
+        "sswi12_dec",
+        "swi_jja_z_prev",
+        "rga_mid_share",
+        "rga_high_share",
+        "rga_missing",
+        "log_population"
+      ],
+      "glm_complet": [
+        "swi_jja_z",
+        "swi_son_z",
+        "swi_min_z",
+        "sswi3_sep",
+        "sswi12_dec",
+        "swi_jja_z_prev",
+        "rga_mid_share",
+        "rga_high_share",
+        "rga_missing",
+        "log_population",
+        "hist_count"
+      ],
+      "gbm_complet": [
+        "swi_jja_z",
+        "swi_son_z",
+        "swi_min_z",
+        "sswi3_sep",
+        "sswi12_dec",
+        "swi_jja_z_prev",
+        "rga_mid_share",
+        "rga_high_share",
+        "rga_missing",
+        "log_population",
+        "hist_count"
+      ]
+    },
+    "climatology": "expansive, années antérieures seulement",
+    "credibility_k": 3
+  },
+  "pooled": {
+    "p_constante": {
+      "log_loss": 0.22635823107118933,
+      "brier": 0.05141022143788722,
+      "auc": 0.6379857622789535,
+      "observed": 24106,
+      "expected": 7737.797177822176,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    "p_credibilite": {
+      "log_loss": 0.2319445510460987,
+      "brier": 0.04931161389287306,
+      "auc": 0.6626759415995692,
+      "observed": 24106,
+      "expected": 7737.797177822177,
+      "log_loss_skill": -0.024679111285122568,
+      "brier_skill": 0.04082082290872169
+    },
+    "p_glm_meteo": {
+      "log_loss": 0.20280529271736725,
+      "brier": 0.04957672030170456,
+      "auc": 0.8037494800967284,
+      "observed": 24106,
+      "expected": 13152.835833639841,
+      "log_loss_skill": 0.10405160988563611,
+      "brier_skill": 0.03566413613677688
+    },
+    "p_glm_meteo_expo": {
+      "log_loss": 0.19001173433584398,
+      "brier": 0.04599685361546113,
+      "auc": 0.8503752821740246,
+      "observed": 24106,
+      "expected": 11365.186574783935,
+      "log_loss_skill": 0.160570687283355,
+      "brier_skill": 0.10529750059463194
+    },
+    "p_glm_complet": {
+      "log_loss": 0.1837696163106267,
+      "brier": 0.044559248406112424,
+      "auc": 0.8606989794699998,
+      "observed": 24106,
+      "expected": 11645.591853740088,
+      "log_loss_skill": 0.1881469675700398,
+      "brier_skill": 0.1332609127165889
+    },
+    "p_gbm_complet": {
+      "log_loss": 0.19286880112714577,
+      "brier": 0.04350634692804391,
+      "auc": 0.8608998242841577,
+      "observed": 24106,
+      "expected": 9801.398787321927,
+      "log_loss_skill": 0.1479488056854057,
+      "brier_skill": 0.15374130452623336
+    }
+  },
+  "per_year": [
+    {
+      "year": 2010,
+      "model": "p_constante",
+      "log_loss": 0.02083476397508753,
+      "brier": 0.002880827784738836,
+      "auc": 0.5,
+      "observed": 100,
+      "expected": 215.66666666666666,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2010,
+      "model": "p_credibilite",
+      "log_loss": 0.022481157648396408,
+      "brier": 0.0034942455795841042,
+      "auc": 0.5221765860416787,
+      "observed": 100,
+      "expected": 215.66666666666669,
+      "log_loss_skill": -0.07902146985094216,
+      "brier_skill": -0.21293108810420547
+    },
+    {
+      "year": 2010,
+      "model": "p_glm_meteo",
+      "log_loss": 0.019482811195418833,
+      "brier": 0.002900087576446401,
+      "auc": 0.790956964728973,
+      "observed": 100,
+      "expected": 230.57336388129013,
+      "log_loss_skill": 0.06488927742523265,
+      "brier_skill": -0.006685506092934057
+    },
+    {
+      "year": 2010,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.016485675195889105,
+      "brier": 0.002818389678624328,
+      "auc": 0.8928753680078508,
+      "observed": 100,
+      "expected": 194.7679289110034,
+      "log_loss_skill": 0.20874192692553184,
+      "brier_skill": 0.02167366839672724
+    },
+    {
+      "year": 2010,
+      "model": "p_glm_complet",
+      "log_loss": 0.016709433672137328,
+      "brier": 0.00299644806183661,
+      "auc": 0.9081351382554984,
+      "observed": 100,
+      "expected": 235.4478409725552,
+      "log_loss_skill": 0.1980022575673489,
+      "brier_skill": -0.04013439390937279
+    },
+    {
+      "year": 2010,
+      "model": "p_gbm_complet",
+      "log_loss": 0.01727577256193146,
+      "brier": 0.0031254654159142414,
+      "auc": 0.909108122149743,
+      "observed": 100,
+      "expected": 264.8592219122937,
+      "log_loss_skill": 0.17081985749450357,
+      "brier_skill": -0.0849192140090329
+    },
+    {
+      "year": 2011,
+      "model": "p_constante",
+      "log_loss": 0.3134369657346872,
+      "brier": 0.0635925633477602,
+      "auc": 0.5,
+      "observed": 2247,
+      "expected": 310.75,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2011,
+      "model": "p_credibilite",
+      "log_loss": 0.32390401491830534,
+      "brier": 0.06132062862492233,
+      "auc": 0.5780352996517519,
+      "observed": 2247,
+      "expected": 310.75,
+      "log_loss_skill": -0.03339443118677354,
+      "brier_skill": 0.035726421506452555
+    },
+    {
+      "year": 2011,
+      "model": "p_glm_meteo",
+      "log_loss": 0.25442519169225264,
+      "brier": 0.060344271514618734,
+      "auc": 0.8214347439508358,
+      "observed": 2247,
+      "expected": 390.2456904645534,
+      "log_loss_skill": 0.18827317927900644,
+      "brier_skill": 0.05107974363885859
+    },
+    {
+      "year": 2011,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.21286445541492502,
+      "brier": 0.05472696934508074,
+      "auc": 0.892965773086743,
+      "observed": 2247,
+      "expected": 557.3618720503866,
+      "log_loss_skill": 0.32086997168321585,
+      "brier_skill": 0.13941243340353116
+    },
+    {
+      "year": 2011,
+      "model": "p_glm_complet",
+      "log_loss": 0.2014290224075575,
+      "brier": 0.05197260929538122,
+      "auc": 0.9061789967369233,
+      "observed": 2247,
+      "expected": 621.8946283280711,
+      "log_loss_skill": 0.3573539676935882,
+      "brier_skill": 0.1827250458333387
+    },
+    {
+      "year": 2011,
+      "model": "p_gbm_complet",
+      "log_loss": 0.21624250986155374,
+      "brier": 0.05286688548505716,
+      "auc": 0.9051914274093648,
+      "observed": 2247,
+      "expected": 524.8216842402164,
+      "log_loss_skill": 0.31009251140915195,
+      "brier_skill": 0.16866245513722966
+    },
+    {
+      "year": 2012,
+      "model": "p_constante",
+      "log_loss": 0.09830131011080966,
+      "brier": 0.018421049939151213,
+      "auc": 0.5,
+      "observed": 648,
+      "expected": 268.59999999999997,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2012,
+      "model": "p_credibilite",
+      "log_loss": 0.09384907361481859,
+      "brier": 0.017545874414763886,
+      "auc": 0.6366156436169097,
+      "observed": 648,
+      "expected": 268.59999999999997,
+      "log_loss_skill": 0.045291731015306924,
+      "brier_skill": 0.047509535410751536
+    },
+    {
+      "year": 2012,
+      "model": "p_glm_meteo",
+      "log_loss": 0.07330363830679022,
+      "brier": 0.017410582044071077,
+      "auc": 0.9102830376713742,
+      "observed": 648,
+      "expected": 281.5957281346467,
+      "log_loss_skill": 0.25429642571234234,
+      "brier_skill": 0.054853979464684954
+    },
+    {
+      "year": 2012,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.06285507965736038,
+      "brier": 0.016118905527111694,
+      "auc": 0.9458440051876617,
+      "observed": 648,
+      "expected": 385.914806323917,
+      "log_loss_skill": 0.3605875691126872,
+      "brier_skill": 0.12497357206261372
+    },
+    {
+      "year": 2012,
+      "model": "p_glm_complet",
+      "log_loss": 0.05985608454117833,
+      "brier": 0.015666443674653925,
+      "auc": 0.9530318023069309,
+      "observed": 648,
+      "expected": 445.69382635674214,
+      "log_loss_skill": 0.3910957598255216,
+      "brier_skill": 0.14953579050034393
+    },
+    {
+      "year": 2012,
+      "model": "p_gbm_complet",
+      "log_loss": 0.06637600715308759,
+      "brier": 0.016227382911640782,
+      "auc": 0.9353985091265626,
+      "observed": 648,
+      "expected": 322.2424072825612,
+      "log_loss_skill": 0.324769862392825,
+      "brier_skill": 0.11908479889890078
+    },
+    {
+      "year": 2013,
+      "model": "p_constante",
+      "log_loss": 0.020047311845359822,
+      "brier": 0.0009356845295980295,
+      "auc": 0.5,
+      "observed": 23,
+      "expected": 598.3333333333334,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2013,
+      "model": "p_credibilite",
+      "log_loss": 0.019754417850486,
+      "brier": 0.0023803314039302897,
+      "auc": 0.8818913412861291,
+      "observed": 23,
+      "expected": 598.3333333333335,
+      "log_loss_skill": 0.014610138113934412,
+      "brier_skill": -1.5439465211131376
+    },
+    {
+      "year": 2013,
+      "model": "p_glm_meteo",
+      "log_loss": 0.005908969218643923,
+      "brier": 0.0006725666398889947,
+      "auc": 0.6773714703573249,
+      "observed": 23,
+      "expected": 38.83247420275106,
+      "log_loss_skill": 0.705248800226968,
+      "brier_skill": 0.2812036336884508
+    },
+    {
+      "year": 2013,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.004740009247210538,
+      "brier": 0.0006664636677048562,
+      "auc": 0.9100107809758975,
+      "observed": 23,
+      "expected": 23.703691803104135,
+      "log_loss_skill": 0.763558860969798,
+      "brier_skill": 0.28772610145518884
+    },
+    {
+      "year": 2013,
+      "model": "p_glm_complet",
+      "log_loss": 0.0040147951938446225,
+      "brier": 0.0006590000453519137,
+      "auc": 0.955726626506175,
+      "observed": 23,
+      "expected": 21.632846192571478,
+      "log_loss_skill": 0.7997339880372094,
+      "brier_skill": 0.295702745416748
+    },
+    {
+      "year": 2013,
+      "model": "p_gbm_complet",
+      "log_loss": 0.0037780800083546287,
+      "brier": 0.0006464553308319258,
+      "auc": 0.9737863263167252,
+      "observed": 23,
+      "expected": 38.252689901590514,
+      "log_loss_skill": 0.8115418148079984,
+      "brier_skill": 0.30910973690070176
+    },
+    {
+      "year": 2014,
+      "model": "p_constante",
+      "log_loss": 0.02268424276856529,
+      "brier": 0.0015258126948563687,
+      "auc": 0.5,
+      "observed": 44,
+      "expected": 605.4285714285714,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2014,
+      "model": "p_credibilite",
+      "log_loss": 0.02298981245126617,
+      "brier": 0.003123815861824841,
+      "auc": 0.7183473836980839,
+      "observed": 44,
+      "expected": 605.4285714285714,
+      "log_loss_skill": -0.013470570114172853,
+      "brier_skill": -1.0473128008145842
+    },
+    {
+      "year": 2014,
+      "model": "p_glm_meteo",
+      "log_loss": 0.008204418983363774,
+      "brier": 0.0012611535078847554,
+      "auc": 0.9116470887190155,
+      "observed": 44,
+      "expected": 58.10816462058743,
+      "log_loss_skill": 0.6383207909089628,
+      "brier_skill": 0.17345457136632803
+    },
+    {
+      "year": 2014,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.007433917599116134,
+      "brier": 0.0012430355037883775,
+      "auc": 0.9528891444559129,
+      "observed": 44,
+      "expected": 88.29978382920763,
+      "log_loss_skill": 0.672287160961895,
+      "brier_skill": 0.18532890178542538
+    },
+    {
+      "year": 2014,
+      "model": "p_glm_complet",
+      "log_loss": 0.007966579894052651,
+      "brier": 0.0013972200878814252,
+      "auc": 0.9494809049517713,
+      "observed": 44,
+      "expected": 101.05573895030504,
+      "log_loss_skill": 0.6488055618461135,
+      "brier_skill": 0.08427810792795143
+    },
+    {
+      "year": 2014,
+      "model": "p_gbm_complet",
+      "log_loss": 0.006687038860865901,
+      "brier": 0.0011560368267962806,
+      "auc": 0.9453401297279171,
+      "observed": 44,
+      "expected": 52.21775643340135,
+      "log_loss_skill": 0.7052121629498486,
+      "brier_skill": 0.24234682887790282
+    },
+    {
+      "year": 2015,
+      "model": "p_constante",
+      "log_loss": 0.0400067107332817,
+      "brier": 0.005954058919302,
+      "auc": 0.5,
+      "observed": 205,
+      "expected": 532.625,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2015,
+      "model": "p_credibilite",
+      "log_loss": 0.03260189147040274,
+      "brier": 0.006215111757642866,
+      "auc": 0.829465089561292,
+      "observed": 205,
+      "expected": 532.625,
+      "log_loss_skill": 0.18508942942712037,
+      "brier_skill": -0.04384451714016113
+    },
+    {
+      "year": 2015,
+      "model": "p_glm_meteo",
+      "log_loss": 0.03713200379404024,
+      "brier": 0.006159876295373841,
+      "auc": 0.8469376442700474,
+      "observed": 205,
+      "expected": 609.546613031604,
+      "log_loss_skill": 0.0718556183837924,
+      "brier_skill": -0.034567574634610576
+    },
+    {
+      "year": 2015,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.03167082725399803,
+      "brier": 0.006139445783719843,
+      "auc": 0.944623745128624,
+      "observed": 205,
+      "expected": 645.4464509735199,
+      "log_loss_skill": 0.20836213041501117,
+      "brier_skill": -0.031136215971402592
+    },
+    {
+      "year": 2015,
+      "model": "p_glm_complet",
+      "log_loss": 0.0311233637332088,
+      "brier": 0.006624761980444964,
+      "auc": 0.9544813833824913,
+      "observed": 205,
+      "expected": 624.0199042540121,
+      "log_loss_skill": 0.22204642264385954,
+      "brier_skill": -0.11264635943871237
+    },
+    {
+      "year": 2015,
+      "model": "p_gbm_complet",
+      "log_loss": 0.02696273237966963,
+      "brier": 0.005843664024447738,
+      "auc": 0.9436280390712769,
+      "observed": 205,
+      "expected": 378.4390788487575,
+      "log_loss_skill": 0.32604475885493744,
+      "brier_skill": 0.018541115623895044
+    },
+    {
+      "year": 2016,
+      "model": "p_constante",
+      "log_loss": 0.13458862498367885,
+      "brier": 0.02767361601042112,
+      "auc": 0.5,
+      "observed": 982,
+      "expected": 478.33333333333337,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2016,
+      "model": "p_credibilite",
+      "log_loss": 0.11740765564714953,
+      "brier": 0.025534614678691954,
+      "auc": 0.7391472792699584,
+      "observed": 982,
+      "expected": 478.33333333333337,
+      "log_loss_skill": 0.12765543402061508,
+      "brier_skill": 0.07729388638346635
+    },
+    {
+      "year": 2016,
+      "model": "p_glm_meteo",
+      "log_loss": 0.13076770250234832,
+      "brier": 0.02637137904522853,
+      "auc": 0.8274961780959053,
+      "observed": 982,
+      "expected": 263.72500746728304,
+      "log_loss_skill": 0.028389639033713943,
+      "brier_skill": 0.04705698614529463
+    },
+    {
+      "year": 2016,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.1150960661373471,
+      "brier": 0.024564604584595227,
+      "auc": 0.890957867126582,
+      "observed": 982,
+      "expected": 268.7979909755553,
+      "log_loss_skill": 0.14483065599857015,
+      "brier_skill": 0.1123456878441591
+    },
+    {
+      "year": 2016,
+      "model": "p_glm_complet",
+      "log_loss": 0.11698722300482572,
+      "brier": 0.02447179182708297,
+      "auc": 0.8968152548503076,
+      "observed": 982,
+      "expected": 219.9734084042136,
+      "log_loss_skill": 0.13077926890914882,
+      "brier_skill": 0.11569952340642542
+    },
+    {
+      "year": 2016,
+      "model": "p_gbm_complet",
+      "log_loss": 0.12406900645723005,
+      "brier": 0.024910883143248685,
+      "auc": 0.911630712859911,
+      "observed": 982,
+      "expected": 203.08309704227793,
+      "log_loss_skill": 0.07816127497940095,
+      "brier_skill": 0.0998327383791141
+    },
+    {
+      "year": 2017,
+      "model": "p_constante",
+      "log_loss": 0.27534051312337837,
+      "brier": 0.05915024673438287,
+      "auc": 0.5,
+      "observed": 2104,
+      "expected": 451.0,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2017,
+      "model": "p_credibilite",
+      "log_loss": 0.25558458376269216,
+      "brier": 0.0544522706370761,
+      "auc": 0.7099899855512843,
+      "observed": 2104,
+      "expected": 451.0,
+      "log_loss_skill": 0.0717508990470781,
+      "brier_skill": 0.0794244547855103
+    },
+    {
+      "year": 2017,
+      "model": "p_glm_meteo",
+      "log_loss": 0.21549930508034637,
+      "brier": 0.05425655446789026,
+      "auc": 0.7788005384720937,
+      "observed": 2104,
+      "expected": 1098.64277956688,
+      "log_loss_skill": 0.21733528191769413,
+      "brier_skill": 0.0827332519586601
+    },
+    {
+      "year": 2017,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.18445069108087997,
+      "brier": 0.05106727174732073,
+      "auc": 0.8821157071425626,
+      "observed": 2104,
+      "expected": 1032.91133315826,
+      "log_loss_skill": 0.33009970458568605,
+      "brier_skill": 0.13665158529869104
+    },
+    {
+      "year": 2017,
+      "model": "p_glm_complet",
+      "log_loss": 0.18319633496231935,
+      "brier": 0.05016823155076898,
+      "auc": 0.8921614755815073,
+      "observed": 2104,
+      "expected": 871.4876359609286,
+      "log_loss_skill": 0.3346553586168767,
+      "brier_skill": 0.15185084897359902
+    },
+    {
+      "year": 2017,
+      "model": "p_gbm_complet",
+      "log_loss": 0.1999225149279508,
+      "brier": 0.04976569076849272,
+      "auc": 0.8950213769122941,
+      "observed": 2104,
+      "expected": 712.8446076479873,
+      "log_loss_skill": 0.2739081050583836,
+      "brier_skill": 0.15865624378596366
+    },
+    {
+      "year": 2018,
+      "model": "p_constante",
+      "log_loss": 0.5086510541575384,
+      "brier": 0.1137243825674057,
+      "auc": 0.5,
+      "observed": 4061,
+      "expected": 499.27272727272737,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2018,
+      "model": "p_credibilite",
+      "log_loss": 0.6149152194290883,
+      "brier": 0.11356121125072693,
+      "auc": 0.5423745755668294,
+      "observed": 4061,
+      "expected": 499.27272727272725,
+      "log_loss_skill": -0.2089136833650167,
+      "brier_skill": 0.001434796241536529
+    },
+    {
+      "year": 2018,
+      "model": "p_glm_meteo",
+      "log_loss": 0.5879776023388165,
+      "brier": 0.11386927483325845,
+      "auc": 0.5775729237808447,
+      "observed": 4061,
+      "expected": 478.4273817623765,
+      "log_loss_skill": -0.15595475037924356,
+      "brier_skill": -0.0012740650912470564
+    },
+    {
+      "year": 2018,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.5905995059682345,
+      "brier": 0.11407747173961423,
+      "auc": 0.6756260774211684,
+      "observed": 4061,
+      "expected": 274.544116971682,
+      "log_loss_skill": -0.1611093718195955,
+      "brier_skill": -0.0031047798566790075
+    },
+    {
+      "year": 2018,
+      "model": "p_glm_complet",
+      "log_loss": 0.5849324296814183,
+      "brier": 0.11406214707246753,
+      "auc": 0.6894722036122025,
+      "observed": 4061,
+      "expected": 273.66619954465466,
+      "log_loss_skill": -0.14996798866409944,
+      "brier_skill": -0.0029700271607246975
+    },
+    {
+      "year": 2018,
+      "model": "p_gbm_complet",
+      "log_loss": 0.6454140094436794,
+      "brier": 0.11449236980861625,
+      "auc": 0.66568283248651,
+      "observed": 4061,
+      "expected": 203.0972272599455,
+      "log_loss_skill": -0.26887382650303726,
+      "brier_skill": -0.0067530570302754
+    },
+    {
+      "year": 2019,
+      "model": "p_constante",
+      "log_loss": 0.35378837829025084,
+      "brier": 0.08139152593919294,
+      "auc": 0.5,
+      "observed": 2923,
+      "expected": 632.9999999999998,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2019,
+      "model": "p_credibilite",
+      "log_loss": 0.4059424126908156,
+      "brier": 0.08010034706129979,
+      "auc": 0.5861835804954725,
+      "observed": 2923,
+      "expected": 633.0000000000001,
+      "log_loss_skill": -0.1474159062335767,
+      "brier_skill": 0.015863799861152383
+    },
+    {
+      "year": 2019,
+      "model": "p_glm_meteo",
+      "log_loss": 0.30955748851752096,
+      "brier": 0.07682331232261917,
+      "auc": 0.7674576132486322,
+      "observed": 2923,
+      "expected": 756.6566018045564,
+      "log_loss_skill": 0.12502075389385037,
+      "brier_skill": 0.056126403379961776
+    },
+    {
+      "year": 2019,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.3470298811579411,
+      "brier": 0.0777460907987658,
+      "auc": 0.7895594279292162,
+      "observed": 2923,
+      "expected": 450.33922984176877,
+      "log_loss_skill": 0.01910321974105389,
+      "brier_skill": 0.04478887818310007
+    },
+    {
+      "year": 2019,
+      "model": "p_glm_complet",
+      "log_loss": 0.34683520381285665,
+      "brier": 0.07714907846453445,
+      "auc": 0.8032757180284822,
+      "observed": 2923,
+      "expected": 482.5312303537306,
+      "log_loss_skill": 0.019653484693298084,
+      "brier_skill": 0.05212394565286804
+    },
+    {
+      "year": 2019,
+      "model": "p_gbm_complet",
+      "log_loss": 0.35486411457343714,
+      "brier": 0.07332657101833465,
+      "auc": 0.7939480434612728,
+      "observed": 2923,
+      "expected": 557.6259242755029,
+      "log_loss_skill": -0.003040620747309486,
+      "brier_skill": 0.0990883857722924
+    },
+    {
+      "year": 2020,
+      "model": "p_constante",
+      "log_loss": 0.39398632047627136,
+      "brier": 0.09674377638462209,
+      "auc": 0.5,
+      "observed": 3520,
+      "expected": 896.6923076923075,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2020,
+      "model": "p_credibilite",
+      "log_loss": 0.3738387537021173,
+      "brier": 0.09011756109313587,
+      "auc": 0.7224778038624572,
+      "observed": 3520,
+      "expected": 896.6923076923075,
+      "log_loss_skill": 0.05113773176134295,
+      "brier_skill": 0.06849241924506355
+    },
+    {
+      "year": 2020,
+      "model": "p_glm_meteo",
+      "log_loss": 0.38628030370169614,
+      "brier": 0.09443800835857005,
+      "auc": 0.6014082861091865,
+      "observed": 3520,
+      "expected": 1301.651499949463,
+      "log_loss_skill": 0.019559097293682104,
+      "brier_skill": 0.023833760808396054
+    },
+    {
+      "year": 2020,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.3888560695049292,
+      "brier": 0.09332902533467477,
+      "auc": 0.7310704302722674,
+      "observed": 3520,
+      "expected": 782.3419685957988,
+      "log_loss_skill": 0.0130213936492527,
+      "brier_skill": 0.035296855028393415
+    },
+    {
+      "year": 2020,
+      "model": "p_glm_complet",
+      "log_loss": 0.36781880490599983,
+      "brier": 0.09086848703771097,
+      "auc": 0.768812766386403,
+      "observed": 3520,
+      "expected": 858.0030465700352,
+      "log_loss_skill": 0.06641732012075663,
+      "brier_skill": 0.060730411469083645
+    },
+    {
+      "year": 2020,
+      "model": "p_gbm_complet",
+      "log_loss": 0.4094611198497858,
+      "brier": 0.09331309310971524,
+      "auc": 0.7917300441284362,
+      "observed": 3520,
+      "expected": 546.8637507556006,
+      "log_loss_skill": -0.0392775042412834,
+      "brier_skill": 0.03546153978182076
+    },
+    {
+      "year": 2021,
+      "model": "p_constante",
+      "log_loss": 0.06595590893865226,
+      "brier": 0.010502900530593296,
+      "auc": 0.5,
+      "observed": 355,
+      "expected": 1041.4285714285713,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2021,
+      "model": "p_credibilite",
+      "log_loss": 0.062422807688971786,
+      "brier": 0.011660959920091977,
+      "auc": 0.7438059662677878,
+      "observed": 355,
+      "expected": 1041.4285714285716,
+      "log_loss_skill": 0.053567622773066925,
+      "brier_skill": -0.11026091184291764
+    },
+    {
+      "year": 2021,
+      "model": "p_glm_meteo",
+      "log_loss": 0.053758127556180396,
+      "brier": 0.010218970837190276,
+      "auc": 0.7671078782894805,
+      "observed": 355,
+      "expected": 326.59321028464024,
+      "log_loss_skill": 0.18493841687205648,
+      "brier_skill": 0.027033455432237674
+    },
+    {
+      "year": 2021,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.04962857875039064,
+      "brier": 0.010057821748950915,
+      "auc": 0.835689201359183,
+      "observed": 355,
+      "expected": 311.3490048389724,
+      "log_loss_skill": 0.24754916505582847,
+      "brier_skill": 0.042376749198560604
+    },
+    {
+      "year": 2021,
+      "model": "p_glm_complet",
+      "log_loss": 0.0481346804821218,
+      "brier": 0.010130635030180756,
+      "auc": 0.8529247948509293,
+      "observed": 355,
+      "expected": 377.6275595982544,
+      "log_loss_skill": 0.2701991185218381,
+      "brier_skill": 0.03544406607757433
+    },
+    {
+      "year": 2021,
+      "model": "p_gbm_complet",
+      "log_loss": 0.04608638191299534,
+      "brier": 0.009970855346090064,
+      "auc": 0.8774869448729831,
+      "observed": 355,
+      "expected": 401.27895346808714,
+      "log_loss_skill": 0.301254691890278,
+      "brier_skill": 0.05065697641841593
+    },
+    {
+      "year": 2022,
+      "model": "p_constante",
+      "log_loss": 0.6950348987878998,
+      "brier": 0.18583643331050922,
+      "auc": 0.5,
+      "observed": 6894,
+      "expected": 1206.6666666666665,
+      "log_loss_skill": 0.0,
+      "brier_skill": 0.0
+    },
+    {
+      "year": 2022,
+      "model": "p_credibilite",
+      "log_loss": 0.6695873627247728,
+      "brier": 0.1715440083236588,
+      "auc": 0.7386461312709256,
+      "observed": 6894,
+      "expected": 1206.6666666666665,
+      "log_loss_skill": 0.036613321298694546,
+      "brier_skill": 0.07690862729252657
+    },
+    {
+      "year": 2022,
+      "model": "p_glm_meteo",
+      "log_loss": 0.5541712424383557,
+      "brier": 0.17977132647911875,
+      "auc": 0.5962132992654072,
+      "observed": 6894,
+      "expected": 7318.2373184692115,
+      "log_loss_skill": 0.2026713429717013,
+      "brier_skill": 0.03263680174735406
+    },
+    {
+      "year": 2022,
+      "model": "p_glm_meteo_expo",
+      "log_loss": 0.4584417893977499,
+      "brier": 0.14540360154104334,
+      "auc": 0.7426303132130165,
+      "observed": 6894,
+      "expected": 6349.408396510759,
+      "log_loss_skill": 0.3404046470224078,
+      "brier_skill": 0.21757214691000726
+    },
+    {
+      "year": 2022,
+      "model": "p_glm_complet",
+      "log_loss": 0.42000105574662594,
+      "brier": 0.1331033751511658,
+      "auc": 0.7844692688707575,
+      "observed": 6894,
+      "expected": 6512.557988254012,
+      "log_loss_skill": 0.3957122779315352,
+      "brier_skill": 0.2837606018365255
+    },
+    {
+      "year": 2022,
+      "model": "p_gbm_complet",
+      "log_loss": 0.39015512666235364,
+      "brier": 0.11993715687538509,
+      "auc": 0.8227017930283493,
+      "observed": 6894,
+      "expected": 5595.772388253703,
+      "log_loss_skill": 0.4386539045121888,
+      "brier_skill": 0.3546090250506194
+    }
+  ],
+  "by_year": {
+    "p_constante": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 215.66666666666666,
+        "communes": 34746,
+        "ratio_obs_exp": 0.46367851622874806
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 310.75,
+        "communes": 34746,
+        "ratio_obs_exp": 7.230893000804505
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 268.59999999999997,
+        "communes": 34746,
+        "ratio_obs_exp": 2.4125093075204767
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 598.3333333333334,
+        "communes": 34746,
+        "ratio_obs_exp": 0.03844011142061281
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 605.4285714285714,
+        "communes": 34746,
+        "ratio_obs_exp": 0.0726757904672015
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 532.625,
+        "communes": 34746,
+        "ratio_obs_exp": 0.3848861769537667
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 478.33333333333337,
+        "communes": 34746,
+        "ratio_obs_exp": 2.0529616724738675
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 450.99999999999994,
+        "communes": 34746,
+        "ratio_obs_exp": 4.66518847006652
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 499.27272727272737,
+        "communes": 34746,
+        "ratio_obs_exp": 8.133831026948286
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 632.9999999999999,
+        "communes": 34746,
+        "ratio_obs_exp": 4.6176935229067935
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 896.6923076923075,
+        "communes": 34746,
+        "ratio_obs_exp": 3.9255383031654807
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 1041.428571428571,
+        "communes": 34746,
+        "ratio_obs_exp": 0.34087791495198916
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 1206.6666666666667,
+        "communes": 34746,
+        "ratio_obs_exp": 5.713259668508287
+      }
+    ],
+    "p_credibilite": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 215.66666666666669,
+        "communes": 34746,
+        "ratio_obs_exp": 0.463678516228748
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 310.75000000000006,
+        "communes": 34746,
+        "ratio_obs_exp": 7.230893000804504
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 268.5999999999999,
+        "communes": 34746,
+        "ratio_obs_exp": 2.4125093075204775
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 598.3333333333334,
+        "communes": 34746,
+        "ratio_obs_exp": 0.03844011142061281
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 605.4285714285714,
+        "communes": 34746,
+        "ratio_obs_exp": 0.0726757904672015
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 532.6249999999999,
+        "communes": 34746,
+        "ratio_obs_exp": 0.3848861769537668
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 478.33333333333337,
+        "communes": 34746,
+        "ratio_obs_exp": 2.0529616724738675
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 451.0,
+        "communes": 34746,
+        "ratio_obs_exp": 4.665188470066519
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 499.2727272727272,
+        "communes": 34746,
+        "ratio_obs_exp": 8.13383102694829
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 633.0,
+        "communes": 34746,
+        "ratio_obs_exp": 4.6176935229067935
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 896.6923076923075,
+        "communes": 34746,
+        "ratio_obs_exp": 3.9255383031654807
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 1041.4285714285713,
+        "communes": 34746,
+        "ratio_obs_exp": 0.34087791495198905
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 1206.6666666666667,
+        "communes": 34746,
+        "ratio_obs_exp": 5.713259668508287
+      }
+    ],
+    "p_glm_meteo": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 230.57336388129016,
+        "communes": 34746,
+        "ratio_obs_exp": 0.43370144025605933
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 390.2456904645534,
+        "communes": 34746,
+        "ratio_obs_exp": 5.7579111183140625
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 281.5957281346468,
+        "communes": 34746,
+        "ratio_obs_exp": 2.301171272350249
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 38.83247420275105,
+        "communes": 34746,
+        "ratio_obs_exp": 0.5922877816106444
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 58.10816462058743,
+        "communes": 34746,
+        "ratio_obs_exp": 0.7572085659097039
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 609.5466130316039,
+        "communes": 34746,
+        "ratio_obs_exp": 0.336315542761241
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 263.72500746728304,
+        "communes": 34746,
+        "ratio_obs_exp": 3.7235755889468467
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 1098.6427795668803,
+        "communes": 34746,
+        "ratio_obs_exp": 1.9150901813867682
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 478.42738176237646,
+        "communes": 34746,
+        "ratio_obs_exp": 8.488226541383458
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 756.6566018045563,
+        "communes": 34746,
+        "ratio_obs_exp": 3.863046979341638
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 1301.6514999494632,
+        "communes": 34746,
+        "ratio_obs_exp": 2.704256861484556
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 326.59321028464024,
+        "communes": 34746,
+        "ratio_obs_exp": 1.086979119041091
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 7318.2373184692115,
+        "communes": 34746,
+        "ratio_obs_exp": 0.942030122827726
+      }
+    ],
+    "p_glm_meteo_expo": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 194.7679289110034,
+        "communes": 34746,
+        "ratio_obs_exp": 0.5134315518942221
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 557.3618720503865,
+        "communes": 34746,
+        "ratio_obs_exp": 4.0314921286845165
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 385.91480632391705,
+        "communes": 34746,
+        "ratio_obs_exp": 1.6791270751506282
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 23.70369180310414,
+        "communes": 34746,
+        "ratio_obs_exp": 0.9703129871519851
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 88.2997838292076,
+        "communes": 34746,
+        "ratio_obs_exp": 0.49830246566748426
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 645.4464509735199,
+        "communes": 34746,
+        "ratio_obs_exp": 0.3176096168641112
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 268.79799097555525,
+        "communes": 34746,
+        "ratio_obs_exp": 3.6533011144763505
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 1032.91133315826,
+        "communes": 34746,
+        "ratio_obs_exp": 2.036960901151842
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 274.54411697168206,
+        "communes": 34746,
+        "ratio_obs_exp": 14.791793919295213
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 450.3392298417688,
+        "communes": 34746,
+        "ratio_obs_exp": 6.490662607890113
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 782.3419685957988,
+        "communes": 34746,
+        "ratio_obs_exp": 4.4993112236046064
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 311.3490048389724,
+        "communes": 34746,
+        "ratio_obs_exp": 1.1401995653835593
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 6349.408396510758,
+        "communes": 34746,
+        "ratio_obs_exp": 1.0857704481237205
+      }
+    ],
+    "p_glm_complet": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 235.44784097255524,
+        "communes": 34746,
+        "ratio_obs_exp": 0.4247225185286639
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 621.8946283280711,
+        "communes": 34746,
+        "ratio_obs_exp": 3.6131522892245163
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 445.6938263567422,
+        "communes": 34746,
+        "ratio_obs_exp": 1.453912891944184
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 21.632846192571478,
+        "communes": 34746,
+        "ratio_obs_exp": 1.0631980551823084
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 101.05573895030504,
+        "communes": 34746,
+        "ratio_obs_exp": 0.4354032780032151
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 624.0199042540123,
+        "communes": 34746,
+        "ratio_obs_exp": 0.32851516210058757
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 219.97340840421356,
+        "communes": 34746,
+        "ratio_obs_exp": 4.464175952556591
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 871.4876359609285,
+        "communes": 34746,
+        "ratio_obs_exp": 2.4142625932725554
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 273.6661995446546,
+        "communes": 34746,
+        "ratio_obs_exp": 14.839245791979362
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 482.5312303537307,
+        "communes": 34746,
+        "ratio_obs_exp": 6.0576390006036025
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 858.0030465700352,
+        "communes": 34746,
+        "ratio_obs_exp": 4.102549535309461
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 377.6275595982544,
+        "communes": 34746,
+        "ratio_obs_exp": 0.9400796922175725
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 6512.557988254012,
+        "communes": 34746,
+        "ratio_obs_exp": 1.0585702288461696
+      }
+    ],
+    "p_gbm_complet": [
+      {
+        "year": 2010,
+        "observed": 100,
+        "expected": 264.8592219122938,
+        "communes": 34746,
+        "ratio_obs_exp": 0.37755906431347247
+      },
+      {
+        "year": 2011,
+        "observed": 2247,
+        "expected": 524.8216842402164,
+        "communes": 34746,
+        "ratio_obs_exp": 4.281454191918496
+      },
+      {
+        "year": 2012,
+        "observed": 648,
+        "expected": 322.24240728256126,
+        "communes": 34746,
+        "ratio_obs_exp": 2.0109085128320654
+      },
+      {
+        "year": 2013,
+        "observed": 23,
+        "expected": 38.252689901590514,
+        "communes": 34746,
+        "ratio_obs_exp": 0.601264906054193
+      },
+      {
+        "year": 2014,
+        "observed": 44,
+        "expected": 52.21775643340135,
+        "communes": 34746,
+        "ratio_obs_exp": 0.8426252486760458
+      },
+      {
+        "year": 2015,
+        "observed": 205,
+        "expected": 378.4390788487575,
+        "communes": 34746,
+        "ratio_obs_exp": 0.5416988135147847
+      },
+      {
+        "year": 2016,
+        "observed": 982,
+        "expected": 203.08309704227793,
+        "communes": 34746,
+        "ratio_obs_exp": 4.8354590524861205
+      },
+      {
+        "year": 2017,
+        "observed": 2104,
+        "expected": 712.8446076479873,
+        "communes": 34746,
+        "ratio_obs_exp": 2.9515549075163725
+      },
+      {
+        "year": 2018,
+        "observed": 4061,
+        "expected": 203.0972272599455,
+        "communes": 34746,
+        "ratio_obs_exp": 19.99534929545
+      },
+      {
+        "year": 2019,
+        "observed": 2923,
+        "expected": 557.625924275503,
+        "communes": 34746,
+        "ratio_obs_exp": 5.241865330772983
+      },
+      {
+        "year": 2020,
+        "observed": 3520,
+        "expected": 546.8637507556004,
+        "communes": 34746,
+        "ratio_obs_exp": 6.436703831871145
+      },
+      {
+        "year": 2021,
+        "observed": 355,
+        "expected": 401.2789534680871,
+        "communes": 34746,
+        "ratio_obs_exp": 0.8846713662201385
+      },
+      {
+        "year": 2022,
+        "observed": 6894,
+        "expected": 5595.772388253703,
+        "communes": 34746,
+        "ratio_obs_exp": 1.2320015042912495
+      }
+    ]
+  },
+  "calibration": {
+    "p_credibilite": [
+      {
+        "bin": 0,
+        "p_mean": 0.002923683843354785,
+        "y_rate": 0.02264777507195041,
+        "n": 45170
+      },
+      {
+        "bin": 1,
+        "p_mean": 0.003042495518225743,
+        "y_rate": 0.07164046933805623,
+        "n": 45170
+      },
+      {
+        "bin": 2,
+        "p_mean": 0.0031414641922009913,
+        "y_rate": 0.01828647332300199,
+        "n": 45170
+      },
+      {
+        "bin": 3,
+        "p_mean": 0.003527603296133715,
+        "y_rate": 0.039562531824924176,
+        "n": 45169
+      },
+      {
+        "bin": 4,
+        "p_mean": 0.0037943874703700027,
+        "y_rate": 0.053442550365286695,
+        "n": 45170
+      },
+      {
+        "bin": 5,
+        "p_mean": 0.004392799807304599,
+        "y_rate": 0.0134823998228913,
+        "n": 45170
+      },
+      {
+        "bin": 6,
+        "p_mean": 0.005124784577733897,
+        "y_rate": 0.01813190462485333,
+        "n": 45169
+      },
+      {
+        "bin": 7,
+        "p_mean": 0.005499817534389442,
+        "y_rate": 0.0024131060438344035,
+        "n": 45170
+      },
+      {
+        "bin": 8,
+        "p_mean": 0.018404953177127654,
+        "y_rate": 0.09780827983174674,
+        "n": 45170
+      },
+      {
+        "bin": 9,
+        "p_mean": 0.1214521024629478,
+        "y_rate": 0.19625857870267877,
+        "n": 45170
+      }
+    ],
+    "p_glm_complet": [
+      {
+        "bin": 0,
+        "p_mean": 5.246733167277511e-05,
+        "y_rate": 0.00039849457604604826,
+        "n": 45170
+      },
+      {
+        "bin": 1,
+        "p_mean": 0.0002176494728917805,
+        "y_rate": 0.0013061766659287137,
+        "n": 45170
+      },
+      {
+        "bin": 2,
+        "p_mean": 0.0005395986970978978,
+        "y_rate": 0.0035421740092982067,
+        "n": 45170
+      },
+      {
+        "bin": 3,
+        "p_mean": 0.001043050031586519,
+        "y_rate": 0.007239478403329717,
+        "n": 45169
+      },
+      {
+        "bin": 4,
+        "p_mean": 0.0018358813052350737,
+        "y_rate": 0.014146557449634714,
+        "n": 45170
+      },
+      {
+        "bin": 5,
+        "p_mean": 0.003197428135766557,
+        "y_rate": 0.028337392074385653,
+        "n": 45170
+      },
+      {
+        "bin": 6,
+        "p_mean": 0.005634505930679612,
+        "y_rate": 0.043702539352210586,
+        "n": 45169
+      },
+      {
+        "bin": 7,
+        "p_mean": 0.011065177477209451,
+        "y_rate": 0.06096967013504538,
+        "n": 45170
+      },
+      {
+        "bin": 8,
+        "p_mean": 0.02961135120775653,
+        "y_rate": 0.10495904361301749,
+        "n": 45170
+      },
+      {
+        "bin": 9,
+        "p_mean": 0.2046199931618428,
+        "y_rate": 0.26907239318131504,
+        "n": 45170
+      }
+    ],
+    "p_gbm_complet": [
+      {
+        "bin": 0,
+        "p_mean": 4.7310699667552254e-05,
+        "y_rate": 0.00017710870046491034,
+        "n": 45170
+      },
+      {
+        "bin": 1,
+        "p_mean": 0.00012781389474114262,
+        "y_rate": 0.0012840380783705999,
+        "n": 45170
+      },
+      {
+        "bin": 2,
+        "p_mean": 0.00025977859764073026,
+        "y_rate": 0.0044941332742971,
+        "n": 45170
+      },
+      {
+        "bin": 3,
+        "p_mean": 0.00048603570196977664,
+        "y_rate": 0.010206114813256879,
+        "n": 45169
+      },
+      {
+        "bin": 4,
+        "p_mean": 0.0008830152845352181,
+        "y_rate": 0.01802081027230463,
+        "n": 45170
+      },
+      {
+        "bin": 5,
+        "p_mean": 0.0016090100155538502,
+        "y_rate": 0.02428603055125083,
+        "n": 45170
+      },
+      {
+        "bin": 6,
+        "p_mean": 0.003087992656497655,
+        "y_rate": 0.03880980318359937,
+        "n": 45169
+      },
+      {
+        "bin": 7,
+        "p_mean": 0.006689193742417261,
+        "y_rate": 0.06114677883551029,
+        "n": 45170
+      },
+      {
+        "bin": 8,
+        "p_mean": 0.020451556417817637,
+        "y_rate": 0.0995129510737215,
+        "n": 45170
+      },
+      {
+        "bin": 9,
+        "p_mean": 0.1833474973582157,
+        "y_rate": 0.27573610803630727,
+        "n": 45170
+      }
+    ]
+  },
+  "glm_complet_coefficients_last_year": [
+    {
+      "variable": "swi_jja_z",
+      "coef_std": 0.3439690775644652,
+      "odds_ratio_1sd": 1.4105350176551437,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "swi_son_z",
+      "coef_std": -0.3390140610745761,
+      "odds_ratio_1sd": 0.7124724308907744,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "swi_min_z",
+      "coef_std": -0.048707917722006444,
+      "odds_ratio_1sd": 0.9524592855521499,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "sswi3_sep",
+      "coef_std": -1.3223181319354675,
+      "odds_ratio_1sd": 0.26651676429422566,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "sswi12_dec",
+      "coef_std": -0.27492214798261416,
+      "odds_ratio_1sd": 0.7596312597490306,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "swi_jja_z_prev",
+      "coef_std": -0.22855101862616162,
+      "odds_ratio_1sd": 0.795685701377581,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "rga_mid_share",
+      "coef_std": 0.40985557489332364,
+      "odds_ratio_1sd": 1.5066001785078036,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "rga_high_share",
+      "coef_std": 0.4020339230379849,
+      "odds_ratio_1sd": 1.494862042077765,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "rga_missing",
+      "coef_std": -0.06382752472563298,
+      "odds_ratio_1sd": 0.9381667961529385,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "log_population",
+      "coef_std": 0.44319231757979416,
+      "odds_ratio_1sd": 1.5576718732223314,
+      "intercept": -4.674658769783721
+    },
+    {
+      "variable": "hist_count",
+      "coef_std": 0.36112615796852016,
+      "odds_ratio_1sd": 1.4349444791402952,
+      "intercept": -4.674658769783721
+    }
+  ],
+  "publication_lag": [
+    {
+      "year": 1988,
+      "count": 11.0,
+      "50%": 1.218,
+      "90%": 5.276,
+      "99%": 6.197,
+      "max": 6.3
+    },
+    {
+      "year": 1989,
+      "count": 3971.0,
+      "50%": 0.925,
+      "90%": 2.686,
+      "99%": 12.623,
+      "max": 18.631
+    },
+    {
+      "year": 1990,
+      "count": 621.0,
+      "50%": 1.07,
+      "90%": 10.99,
+      "99%": 14.233,
+      "max": 14.404
+    },
+    {
+      "year": 1991,
+      "count": 1396.0,
+      "50%": 0.931,
+      "90%": 2.064,
+      "99%": 9.655,
+      "max": 11.756
+    },
+    {
+      "year": 1992,
+      "count": 1276.0,
+      "50%": 0.85,
+      "90%": 8.493,
+      "99%": 11.901,
+      "max": 15.529
+    },
+    {
+      "year": 1993,
+      "count": 961.0,
+      "50%": 0.715,
+      "90%": 1.881,
+      "99%": 7.242,
+      "max": 7.493
+    },
+    {
+      "year": 1994,
+      "count": 137.0,
+      "50%": 0.652,
+      "90%": 1.131,
+      "99%": 1.643,
+      "max": 5.306
+    },
+    {
+      "year": 1995,
+      "count": 402.0,
+      "50%": 0.652,
+      "90%": 4.991,
+      "99%": 6.585,
+      "max": 9.032
+    },
+    {
+      "year": 1996,
+      "count": 706.0,
+      "50%": 0.613,
+      "90%": 3.989,
+      "99%": 5.804,
+      "max": 6.921
+    },
+    {
+      "year": 1997,
+      "count": 381.0,
+      "50%": 0.498,
+      "90%": 2.99,
+      "99%": 5.298,
+      "max": 5.328
+    },
+    {
+      "year": 1998,
+      "count": 852.0,
+      "50%": 1.99,
+      "90%": 4.282,
+      "99%": 7.277,
+      "max": 8.698
+    },
+    {
+      "year": 1999,
+      "count": 127.0,
+      "50%": 2.212,
+      "90%": 3.855,
+      "99%": 6.759,
+      "max": 7.277
+    },
+    {
+      "year": 2000,
+      "count": 118.0,
+      "50%": 2.078,
+      "90%": 4.03,
+      "99%": 7.277,
+      "max": 7.277
+    },
+    {
+      "year": 2001,
+      "count": 24.0,
+      "50%": 2.07,
+      "90%": 5.035,
+      "99%": 5.949,
+      "max": 5.949
+    },
+    {
+      "year": 2002,
+      "count": 877.0,
+      "50%": 1.175,
+      "90%": 2.283,
+      "99%": 6.105,
+      "max": 6.522
+    },
+    {
+      "year": 2003,
+      "count": 4468.0,
+      "50%": 1.656,
+      "90%": 2.497,
+      "99%": 4.854,
+      "max": 5.547
+    },
+    {
+      "year": 2004,
+      "count": 287.0,
+      "50%": 4.197,
+      "90%": 4.95,
+      "99%": 6.95,
+      "max": 7.381
+    },
+    {
+      "year": 2005,
+      "count": 3233.0,
+      "50%": 2.549,
+      "90%": 3.181,
+      "99%": 3.803,
+      "max": 6.382
+    },
+    {
+      "year": 2006,
+      "count": 473.0,
+      "50%": 2.198,
+      "90%": 2.587,
+      "99%": 3.721,
+      "max": 4.203
+    },
+    {
+      "year": 2007,
+      "count": 459.0,
+      "50%": 1.355,
+      "90%": 1.547,
+      "99%": 2.951,
+      "max": 3.203
+    },
+    {
+      "year": 2008,
+      "count": 163.0,
+      "50%": 1.046,
+      "90%": 1.495,
+      "99%": 2.201,
+      "max": 3.417
+    },
+    {
+      "year": 2009,
+      "count": 615.0,
+      "50%": 1.202,
+      "90%": 1.394,
+      "99%": 2.222,
+      "max": 8.898
+    },
+    {
+      "year": 2010,
+      "count": 104.0,
+      "50%": 0.809,
+      "90%": 1.333,
+      "99%": 1.514,
+      "max": 1.697
+    },
+    {
+      "year": 2011,
+      "count": 2310.0,
+      "50%": 1.032,
+      "90%": 1.421,
+      "99%": 1.802,
+      "max": 2.412
+    },
+    {
+      "year": 2012,
+      "count": 658.0,
+      "50%": 0.638,
+      "90%": 1.459,
+      "99%": 1.843,
+      "max": 3.151
+    },
+    {
+      "year": 2013,
+      "count": 26.0,
+      "50%": 1.213,
+      "90%": 1.506,
+      "99%": 1.709,
+      "max": 1.747
+    },
+    {
+      "year": 2014,
+      "count": 44.0,
+      "50%": 1.062,
+      "90%": 1.656,
+      "99%": 1.656,
+      "max": 1.656
+    },
+    {
+      "year": 2015,
+      "count": 205.0,
+      "50%": 1.073,
+      "90%": 1.325,
+      "99%": 1.739,
+      "max": 2.144
+    },
+    {
+      "year": 2016,
+      "count": 993.0,
+      "50%": 1.065,
+      "90%": 1.492,
+      "99%": 1.741,
+      "max": 5.051
+    },
+    {
+      "year": 2017,
+      "count": 2119.0,
+      "50%": 0.739,
+      "90%": 1.218,
+      "99%": 1.467,
+      "max": 3.726
+    },
+    {
+      "year": 2018,
+      "count": 4093.0,
+      "50%": 0.463,
+      "90%": 0.884,
+      "99%": 1.541,
+      "max": 3.058
+    },
+    {
+      "year": 2019,
+      "count": 3335.0,
+      "50%": 0.715,
+      "90%": 1.216,
+      "99%": 1.654,
+      "max": 2.973
+    },
+    {
+      "year": 2020,
+      "count": 3734.0,
+      "50%": 0.63,
+      "90%": 0.882,
+      "99%": 1.719,
+      "max": 2.467
+    },
+    {
+      "year": 2021,
+      "count": 362.0,
+      "50%": 1.029,
+      "90%": 1.47,
+      "99%": 2.313,
+      "max": 2.404
+    },
+    {
+      "year": 2022,
+      "count": 7935.0,
+      "50%": 0.567,
+      "90%": 1.06,
+      "99%": 1.64,
+      "max": 2.308
+    },
+    {
+      "year": 2023,
+      "count": 1262.0,
+      "50%": 0.734,
+      "90%": 1.218,
+      "99%": 1.561,
+      "max": 2.029
+    }
+  ],
+  "python": "3.12.13",
+  "versions": {
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "geopandas": "1.2.0",
+    "pyproj": "3.8.0",
+    "pyarrow": "26.0.1"
+  }
+}

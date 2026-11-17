@@ -1,0 +1,200 @@
+{
+  "MENS_SIM2_2000.csv.gz": {
+    "bytes": 3827793,
+    "downloaded": "2026-11-17",
+    "sha256": "2875fce9cff228a0b206d38d2cf65104d42eaadafb22cdaee0e240fd54834f3d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2000.csv.gz"
+  },
+  "MENS_SIM2_2001.csv.gz": {
+    "bytes": 3897260,
+    "downloaded": "2026-11-17",
+    "sha256": "e2eb085f0415485f8b79fade81fd45bb1a3b2ba1f8b4675dbb93159652907bc2",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2001.csv.gz"
+  },
+  "MENS_SIM2_2002.csv.gz": {
+    "bytes": 3848813,
+    "downloaded": "2026-11-17",
+    "sha256": "631680c3c1a8f16309af7b42fa7abb754582b8ebab301ccedee4a7e0af25f660",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2002.csv.gz"
+  },
+  "MENS_SIM2_2003.csv.gz": {
+    "bytes": 3884091,
+    "downloaded": "2026-11-17",
+    "sha256": "bef9208425bbdc9ef61dae4b97ace636f048b0e43f4f0958fa63a8a32cc224e0",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2003.csv.gz"
+  },
+  "MENS_SIM2_2004.csv.gz": {
+    "bytes": 3905838,
+    "downloaded": "2026-11-17",
+    "sha256": "18d442e80ad9d92e3e396632d1335563db7d74e6637c10ca31ba660cb648632e",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2004.csv.gz"
+  },
+  "MENS_SIM2_2005.csv.gz": {
+    "bytes": 3885898,
+    "downloaded": "2026-11-17",
+    "sha256": "c6b727190ccf15ef207ae00ead96d76f99ca43d7a335e56437c76da6dc7a515b",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2005.csv.gz"
+  },
+  "MENS_SIM2_2006.csv.gz": {
+    "bytes": 3907192,
+    "downloaded": "2026-11-17",
+    "sha256": "1365d97c4bca330d44fd6f3d0b95b3471a58d7d4a16c18589df2698b18c438c1",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2006.csv.gz"
+  },
+  "MENS_SIM2_2007.csv.gz": {
+    "bytes": 3862517,
+    "downloaded": "2026-11-17",
+    "sha256": "5b1f033d336091018e0a1a3acfb756fe08436e834de630cb416739d6e097e881",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2007.csv.gz"
+  },
+  "MENS_SIM2_2008.csv.gz": {
+    "bytes": 3915539,
+    "downloaded": "2026-11-17",
+    "sha256": "79f00fd1f18396a3e2a4d4b72a44c8a61a40c46717eae61c3defd495251eedc6",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2008.csv.gz"
+  },
+  "MENS_SIM2_2009.csv.gz": {
+    "bytes": 3868689,
+    "downloaded": "2026-11-17",
+    "sha256": "998e6a18992307768b6a94c0c42217d1d847b660831f0ce81e0c814277892635",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2009.csv.gz"
+  },
+  "MENS_SIM2_2010.csv.gz": {
+    "bytes": 3937124,
+    "downloaded": "2026-11-17",
+    "sha256": "d1a182fb5d3156b2e484d4dacf0cf02acfe0bd2f9e7ad2a56cc871909f8ed58a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2010.csv.gz"
+  },
+  "MENS_SIM2_2011.csv.gz": {
+    "bytes": 3799662,
+    "downloaded": "2026-11-17",
+    "sha256": "ad8ffe2e22b9a3b64a7ff59620960ba2489bbdba26186436126faf0a1df346f1",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2011.csv.gz"
+  },
+  "MENS_SIM2_2012.csv.gz": {
+    "bytes": 3917479,
+    "downloaded": "2026-11-17",
+    "sha256": "a48eeaf45ac6c1fb0e12427f9c478c4ea87b56ce67617a4762378eb4a019c1e4",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2012.csv.gz"
+  },
+  "MENS_SIM2_2013.csv.gz": {
+    "bytes": 3919681,
+    "downloaded": "2026-11-17",
+    "sha256": "b8cee0c85b50afddf60fdf9e8933bb33b6e9c24389a0eb3f8ed9c0d4fd72824d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2013.csv.gz"
+  },
+  "MENS_SIM2_2014.csv.gz": {
+    "bytes": 3830443,
+    "downloaded": "2026-11-17",
+    "sha256": "8ee52b1c5434c6f664d2388ee184991b748569f5a64d3204d5a973401c96c67d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2014.csv.gz"
+  },
+  "MENS_SIM2_2015.csv.gz": {
+    "bytes": 3822724,
+    "downloaded": "2026-11-17",
+    "sha256": "ceeff3eb82af3d643e83ea41ec2b00b930a24b689d1b32f64b3f6cb116714d69",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2015.csv.gz"
+  },
+  "MENS_SIM2_2016.csv.gz": {
+    "bytes": 3865604,
+    "downloaded": "2026-11-17",
+    "sha256": "cf938842b95ca473321ad5d202a6d48535c7ea0f19014c8b120114777664642a",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2016.csv.gz"
+  },
+  "MENS_SIM2_2017.csv.gz": {
+    "bytes": 3863673,
+    "downloaded": "2026-11-17",
+    "sha256": "ce6e7aa4c11f7334a251e1813d5db11c662382202db3cb19e1c9a7221b4a53b6",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2017.csv.gz"
+  },
+  "MENS_SIM2_2018.csv.gz": {
+    "bytes": 3919470,
+    "downloaded": "2026-11-17",
+    "sha256": "f3e6f5e024183039cb4d9481dd2a97b9754dbf1df28f99eb744236e1cca594cf",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2018.csv.gz"
+  },
+  "MENS_SIM2_2019.csv.gz": {
+    "bytes": 3884430,
+    "downloaded": "2026-11-17",
+    "sha256": "596e52cf34cda001f8c2d1bd8e6f9af7d8987a1468ce308355adb011c77cad3f",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2019.csv.gz"
+  },
+  "MENS_SIM2_2020.csv.gz": {
+    "bytes": 3825833,
+    "downloaded": "2026-11-17",
+    "sha256": "ee24da5fe9cd15cd9d07bd21942afd4c901acdfae8413fc03f804496a4026b10",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2020.csv.gz"
+  },
+  "MENS_SIM2_2021.csv.gz": {
+    "bytes": 3902776,
+    "downloaded": "2026-11-17",
+    "sha256": "872ba9a5aa9e5bc7b0c4e6d5646a115c62d2879b6122ef393c95d9f8c4115204",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2021.csv.gz"
+  },
+  "MENS_SIM2_2022.csv.gz": {
+    "bytes": 3866503,
+    "downloaded": "2026-11-17",
+    "sha256": "61f80c98a7aa5aa96c640d2c71d2386c0379819611f491618c2549e8a7b10b1d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2022.csv.gz"
+  },
+  "MENS_SIM2_2023.csv.gz": {
+    "bytes": 3921556,
+    "downloaded": "2026-11-17",
+    "sha256": "7b5e4edbcecd5fdd0094d741b86b7ef315e2475404d0e07b7e2433143ca6bb0e",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2023.csv.gz"
+  },
+  "MENS_SIM2_2024.csv.gz": {
+    "bytes": 3906217,
+    "downloaded": "2026-11-17",
+    "sha256": "37cd1921782d1425a1d05df940ff1d915cc3d2bc011608402fd483cba8072a45",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2024.csv.gz"
+  },
+  "MENS_SIM2_2025.csv.gz": {
+    "bytes": 3907137,
+    "downloaded": "2026-11-17",
+    "sha256": "1c0256cccfe82b85e06cbe6e9174e3aeb2a11acc94fe79a339cef62ac080f98d",
+    "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM_MENS/MENS_SIM2_2025.csv.gz"
+  },
+  "SHP_SIM_FRANCE.cpg": {
+    "bytes": 10,
+    "downloaded": "2026-11-17",
+    "sha256": "09fc313075748ce8ead962229ed89c919d5a9ff71974ee725a0b48bb87d975a2",
+    "url": "https://static.data.gouv.fr/resources/donnees-changement-climatique-sim-mensuelle/20260519-083346/shp-sim-france.cpg"
+  },
+  "SHP_SIM_FRANCE.dbf": {
+    "bytes": 1805439,
+    "downloaded": "2026-11-17",
+    "sha256": "fb89adcbff955335726b360e84f5b87044f7cac7c30999db7a7161e56035b5b3",
+    "url": "https://static.data.gouv.fr/resources/donnees-changement-climatique-sim-mensuelle/20260519-083353/shp-sim-france.dbf"
+  },
+  "SHP_SIM_FRANCE.shp": {
+    "bytes": 251568,
+    "downloaded": "2026-11-17",
+    "sha256": "ea798abac7578860b583c003d7c304a5fc48b8227da4420e91f4f41ed7605c0a",
+    "url": "https://static.data.gouv.fr/resources/donnees-changement-climatique-sim-mensuelle/20260519-083359/shp-sim-france.shp"
+  },
+  "SHP_SIM_FRANCE.shx": {
+    "bytes": 71948,
+    "downloaded": "2026-11-17",
+    "sha256": "0ff5300aa440a04df4090320d79d3ebda1752df87da9cbd08e5a6a8d0847b8aa",
+    "url": "https://static.data.gouv.fr/resources/donnees-changement-climatique-sim-mensuelle/20260519-083404/shp-sim-france.shx"
+  },
+  "catnat.csv": {
+    "bytes": 52632829,
+    "downloaded": "2026-11-17",
+    "sha256": "9fb325a8a5a8cb05cdae8b5b0c54133b201a97a2455634a871775e1904ccf3a2",
+    "url": "https://static.data.gouv.fr/resources/arretes-de-catastrophe-naturelle-par-commune/20260720-124514/catnat.csv"
+  },
+  "communes.json": {
+    "bytes": 6139588,
+    "downloaded": "2026-11-17",
+    "sha256": "95f821905f560e49382401f005e04b72e17dc01871173e073a82efb3f8596325",
+    "url": "https://geo.api.gouv.fr/communes?fields=code,nom,codeDepartement,codeEpci,population,surface,centre&format=json&geometry=centre"
+  },
+  "rga_epci.csv": {
+    "bytes": 701219,
+    "downloaded": "2026-11-17",
+    "sha256": "c4fd51192de6380dbd5adc911fe9abc64419dfec4548c998af5b1d640639e824",
+    "url": "https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/datafiles/1a9ad5c2-0929-4687-8455-78aac6530a76/csv"
+  }
+}

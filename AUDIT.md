@@ -1,4 +1,21 @@
-# Audit du projet (lecture du code et des sorties enregistrées)
+# Audit de la version d'origine et corrections
+
+## Ce qui a été refait
+
+La version d'origine (notebooks archivés dans `archive/notebooks/`) est remplacée par un modèle actuariel reproductible ; le détail est dans le README.
+
+| Défaut constaté (sections ci-dessous) | Correction |
+|---|---|
+| Cible = SWI, aucun lien avec la sinistralité (§1) | Cible = reconnaissance CatNat sécheresse par commune et par année (arrêtés publics). |
+| R² portés par le SWI de la veille (§2) | Le SWI n'est plus une cible ; les indicateurs sont des anomalies annuelles, sans valeur contemporaine de la cible. |
+| Découpages aléatoires sur données dépendantes (§3) | Validation par origine glissante : apprentissage sur années ≤ t − 2, test sur l'année t entière. |
+| Coordonnées en variables, SSWI non documenté (§4) | Plus de coordonnées ; SSWI3/SSWI12 documentés (indices standardisés Météo-France). |
+| Climatologie et seuils calculés sur tout l'historique | Climatologie expansive : seules les années antérieures servent de référence. |
+| Retard de publication des arrêtés ignoré | Dernière année mûre calculée ; historique limité aux arrêtés publiés avant l'année prédite. |
+| Données absentes, catalogue vide (§7) | Téléchargement scripté, empreintes SHA-256, catalogue complété. |
+| Aucun test, aucune CI | 15 tests (fuite temporelle, historique, crédibilité, formats, données réelles) et intégration continue. |
+
+# Audit de la version d'origine (lecture du code et des sorties enregistrées)
 
 **Périmètre et méthode.** Les cinq notebooks ont été lus (code, texte, sorties enregistrées). **Aucun n'a été ré-exécuté** : les fichiers parquet qu'ils chargent ne sont pas dans le dépôt. Les chiffres cités sont ceux des sorties enregistrées ; ils ne sont ni confirmés ni infirmés par un nouveau calcul.
 
