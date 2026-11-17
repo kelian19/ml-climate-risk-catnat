@@ -1,0 +1,49 @@
+{
+  "communes": 119,
+  "years": [
+    1989,
+    2022
+  ],
+  "mean_years_recognised": 4.495798319327731,
+  "score_catnat": {
+    "spearman": 0.2756774718339296,
+    "ci90": [
+      0.13013137409577233,
+      0.41902236191030534
+    ]
+  },
+  "arg_norm": {
+    "spearman": 0.5889289760133499,
+    "ci90": [
+      0.4799825101731496,
+      0.6844302250194575
+    ]
+  },
+  "dry_norm": {
+    "spearman": -0.20845608342940058,
+    "ci90": [
+      -0.34972220723402286,
+      -0.06618648051878595
+    ]
+  },
+  "modele_frequence": {
+    "spearman": 0.49423044785637743,
+    "ci90": [
+      0.3477238641570287,
+      0.6283826949131949
+    ]
+  },
+  "zone_critique": [
+    {
+      "zone_critique": 0,
+      "mean": 0.12930077691453942,
+      "count": 106
+    },
+    {
+      "zone_critique": 1,
+      "mean": 0.15610859728506787,
+      "count": 13
+    }
+  ],
+  "note": "Le modèle de fréquence est évalué hors échantillon sur 1995-2022 ; le score d'origine n'est pas un modèle estimé. Les deux sont comparés sur la même fréquence observée 1989-2022 des communes du 13."
+}

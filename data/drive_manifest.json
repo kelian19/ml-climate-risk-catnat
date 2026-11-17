@@ -1,0 +1,134 @@
+{
+ "df13.parquet": {
+  "drive_name": "df13.parquet",
+  "drive_id": "1h-8BudH75iaSAkO7NLW72-A8E0DDGaBY",
+  "bytes": 3356505,
+  "sha256": "c7c053ee74c306c193fb7843942885714f27e1b107996a8adbe9715a3d89e03b"
+ },
+ "swi_brgm_13_join.parquet": {
+  "drive_name": "swi_brgm_13_join.parquet",
+  "drive_id": "1Rmu2gGZ4NIFp1PGv-rDGvD5LGg31QfLz",
+  "bytes": 12605,
+  "sha256": "ac9c2722a43dffa968e188b8fde509d6f1012bbe0a929415cdc357b2338cd60a"
+ },
+ "d75_zone_critique_carto.parquet": {
+  "drive_name": "base_dep_zone_critique_carto_region_75.parquet",
+  "drive_id": "1K7FryB1wTp1I4xvJTTsT0v8kPi1czZ05",
+  "bytes": 3806063,
+  "sha256": "c41bef9607fdd1da190b7d6f001346dc220fd6a8c51f70bc230e0abbd68cd3ab"
+ },
+ "d75_zone_critique.parquet": {
+  "drive_name": "base_dep_zone_critique_region_75.parquet",
+  "drive_id": "1qk75--Awkopg2-FZTJOk2T61Rpfd6l56",
+  "bytes": 4373,
+  "sha256": "d7c045353b732167ff23cb5827d9f0e12c55bb17554ba841e80d1f2e14e28114"
+ },
+ "d75_bivar_argiles_swi_carto.parquet": {
+  "drive_name": "base_dep_bivari_argiles_swi_carto_region_75.parquet",
+  "drive_id": "19S2hM0FxyiR5hU3t_2CnoQZi2vyo8R1Z",
+  "bytes": 3806075,
+  "sha256": "010406a981f58e148e4f9c881edd2b5cb2d31e61888000ac10bb51b3faa2300b"
+ },
+ "d75_bivar_argiles_swi.parquet": {
+  "drive_name": "base_dep_bivari_argiles_swi_region_75.parquet",
+  "drive_id": "1-WlnYoNBwhZQLaedyvNEToCWpc8wkCpk",
+  "bytes": 4825,
+  "sha256": "1115ba4d927d12e4158e7f505c4d92d80c55555c3353331d906d6f6f017a6068"
+ },
+ "d75_score_catnat_proxy_carto.parquet": {
+  "drive_name": "base_dep_score_catnat_proxy_carto_region_75.parquet",
+  "drive_id": "1A-tkbW9pb6yrQnE0VyVO7-WKFbe7ogFO",
+  "bytes": 3806102,
+  "sha256": "00897fb03edd5309ced5376b0451087a1cc35ec3307205238413a157cc807110"
+ },
+ "d75_score_catnat_proxy.parquet": {
+  "drive_name": "base_dep_score_catnat_proxy_region_75.parquet",
+  "drive_id": "1wVPjTGUcZ0JAaC9HFJqhxgbgtQoUM46C",
+  "bytes": 4292,
+  "sha256": "e89558e9c4e73ee7d4733f2ccf9cc4cff59cb13c3977a4f6bc4756cd478b91c7"
+ },
+ "d75_swi_jours_sous_seuil.parquet": {
+  "drive_name": "base_dep_swi_catnatlike_nb_jours_sous_seuil_JJA_region_75.parquet",
+  "drive_id": "1bH7rwtFC_HoPrhut1QBh0vLBis7c_BZ8",
+  "bytes": 1828,
+  "sha256": "dff0158daf9e8ed514c22366700dcd781f2b2e3ea0b328fac8f8548440ce70a6"
+ },
+ "d75_swi_jours_sous_seuil_carto.parquet": {
+  "drive_name": "base_dep_swi_catnatlike_nb_jours_sous_seuil_JJA_carto_region_75.parquet",
+  "drive_id": "1-GqOo7t6fqoNsia9w7-wCu2hdsT0NcNl",
+  "bytes": 3810125,
+  "sha256": "ddd585560152e0e076f4b8258a48be9f7f43182fb67bd6c0685e3e057c3e9062"
+ },
+ "d75_brgm_alea_dominante_carto.parquet": {
+  "drive_name": "base_dep_brgm_alea_dominante_carto.parquet",
+  "drive_id": "1BH3FIXrINsxVUO-gW5ol_4lA4jYE8ubb",
+  "bytes": 3810122,
+  "sha256": "801917c910c25d058caf69931d2f0558f47d78e1e1c0667982b79bb813bdf827"
+ },
+ "d75_brgm_alea_dominante_model.parquet": {
+  "drive_name": "base_dep_brgm_alea_dominante_modelisation.parquet",
+  "drive_id": "1ApU5v27MRGAgr5jD83z9He-Y9JRSabS1",
+  "bytes": 1714,
+  "sha256": "f5947a56b9c9316cf201befbc72c3532577ae10d061aad030c27503954b574a6"
+ },
+ "d13_model_proxy_zone_critique.parquet": {
+  "drive_name": "base_13_modelisation_proxy_zone_critique.parquet",
+  "drive_id": "1mxS_4NW-cx6pAjRasv34ZeYA6qW3LMz4",
+  "bytes": 6017,
+  "sha256": "f7b0dbbdc8fa1bbbb84798ee158637ee64863c5b9c8593f995f60df18b6d5f9a"
+ },
+ "d13_carto_proxy_zone_critique.parquet": {
+  "drive_name": "base_13_cartographie_proxy_zone_critique.parquet",
+  "drive_id": "1okzis4UytTrdh7_xSw6AVBcXtMCbPJCT",
+  "bytes": 1914278,
+  "sha256": "c41cff30677c0f113ad63e3d7c11c1d44f27fdf69b387d2014d241c971817bfd"
+ },
+ "d13_carto_bivar_argiles_swi.parquet": {
+  "drive_name": "base_13_cartographie_bivarie_argiles_swi.parquet",
+  "drive_id": "1oIWgMVRmiH3k-bz_yJGjpMYN2tykC2-f",
+  "bytes": 1914796,
+  "sha256": "7ec9db22c00000651641ad161fd51f2265f83272335ddd5321d638e7fd97ff13"
+ },
+ "d13_model_bivar_argiles_swi.parquet": {
+  "drive_name": "base_13_modelisation_bivarie_argiles_swi.parquet",
+  "drive_id": "1Im-QwgNAqJg2NJhg_CytH8PVGTdEnqft",
+  "bytes": 4978,
+  "sha256": "a5eaa316f86af38925f29f7b7e08c2e4fd688e0d0f8e8219cffc004a282de222"
+ },
+ "d13_carto_score_catnatlike.parquet": {
+  "drive_name": "base_13_cartographie_score_catnatlike.parquet",
+  "drive_id": "1rIBbYwyW3_IFdpMrrgGYUutcNpd3z-NC",
+  "bytes": 1916028,
+  "sha256": "6aa436a69c433830e9eb04201719a0b091895d8e34bc0abf63f95f388065c0c0"
+ },
+ "d13_model_score_catnatlike.parquet": {
+  "drive_name": "base_13_modelisation_score_catnatlike.parquet",
+  "drive_id": "1O4TQn5XxmGLXT-NPl9CmG6BNlUViww4m",
+  "bytes": 5695,
+  "sha256": "aef482713390d6221e0424630956e560c3d02ecc1617bd8124853fa11df36006"
+ },
+ "d13_carto_swi_catnatlike.parquet": {
+  "drive_name": "base_13_cartographie_swi_catnatlike.parquet",
+  "drive_id": "1GImiq1avf3Jl2z5UkQwaL5E5rjXKQmTL",
+  "bytes": 1894949,
+  "sha256": "9f46d909b0f36091a2bcfc0f270715947e8088035251917b41018b5c2a2530aa"
+ },
+ "d13_model_swi_catnatlike.parquet": {
+  "drive_name": "base_13_modelisation_swi_catnatlike.parquet",
+  "drive_id": "16lvQ2fIUxaSlz2yvaSBojAqLXaUBdISM",
+  "bytes": 6419,
+  "sha256": "34034db79eb8d49acaae1fe90084d896981303e8ae32310a91d4c7a9bea0026e"
+ },
+ "d13_model_argiles_brgm.parquet": {
+  "drive_name": "base_13_modelisation_argiles_brgm.parquet",
+  "drive_id": "16KfHaDed_GXMuOyE7zhS6Am9OV2EaW6S",
+  "bytes": 3794,
+  "sha256": "a1afffdf94565a046b569a5edd198caf3fb983651bdd2f33d3f748b65ee36aca"
+ },
+ "d13_carto_argiles_brgm.parquet": {
+  "drive_name": "base_13_cartographie_argiles_brgm.parquet",
+  "drive_id": "1wweKDEtQuvIrIHKZ0H9TOhYcu5znBplj",
+  "bytes": 1886035,
+  "sha256": "fa941f4afcee88965c4c7a27917383619d1af06781f9ebc6902e6c3c80161253"
+ }
+}

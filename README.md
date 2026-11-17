@@ -1,101 +1,116 @@
-# Sécheresse CatNat : fréquence annuelle de reconnaissance par commune
+# Sécheresse CatNat : SWI uniforme, fréquence de reconnaissance et intervalles d'incertitude
 
-Modèle de **fréquence** du péril sécheresse (retrait-gonflement des argiles) au sens du régime CatNat. Pour chaque commune de France métropolitaine et chaque année, il estime la probabilité qu'un arrêté de reconnaissance porte sur un événement débutant cette année-là, à partir de l'humidité des sols Météo-France et de l'exposition aux argiles. Il est appliqué à la **sécheresse de 2026**, dont les arrêtés ne sont pas encore publiés.
+Projet actuariel sur le péril sécheresse (retrait-gonflement des argiles) du régime CatNat. Il s'appuie sur le **SWI uniforme** de Météo-France, l'indicateur du critère météorologique CatNat, et sur les arrêtés de reconnaissance par commune. Il répond à trois questions :
 
-Le projet d'origine (notebooks archivés dans [`archive/notebooks/`](archive/notebooks/)) prédisait le SWI lui-même, avec le SWI de la veille comme variable et des découpages aléatoires ; ses défauts sont décrits dans [AUDIT.md](AUDIT.md). Cette version repart des sources publiques et pose la question actuarielle : **quelle est la fréquence de reconnaissance, et le modèle est-il calibré en nombre de communes touchées par an ?**
+1. **Prévoir le SWI uniforme** d'été (prévision fin mai) et l'interpoler dans l'espace (variogramme, krigeage).
+2. **Estimer la fréquence de reconnaissance** d'une commune pour une année donnée, avec un modèle validé hors échantillon.
+3. **Donner un résultat avec intervalle** : probabilité par commune et nombre de communes reconnues, avec leurs intervalles.
 
-## Sécheresse 2026 : estimation
+Le projet d'origine (notebooks archivés dans [`archive/notebooks/`](archive/notebooks/), score composite sur le Drive de l'équipe) est audité dans [AUDIT.md](AUDIT.md).
 
-Données Météo-France de janvier à octobre 2026 ; arrêtés pas encore publiés. Détail : [reports/ete_2026.json](reports/ete_2026.json).
+## Résultat : sécheresse 2026 (arrêtés non encore publiés)
 
-- **Sécheresse des sols la plus sévère de la série** : SSWI3 de septembre moyen de −2,33 sur les communes, contre −1,59 en 2022 et −1,27 en 2003 (1er sur 35 années comparées, 1989–2022 et 2026).
-- **Nombre attendu de communes reconnues : environ 9 900**, contre 6 894 en 2022, record de la période.
-- **Incertitude très large.** Dans le backtest du même modèle, l'observé a valu de 0,11 à 2,6 fois l'attendu selon les années (déciles 10 % et 90 %), soit une fourchette empirique d'environ 1 100 à 25 700 communes. La sévérité de 2026 dépasse aussi tout ce qui a été observé pendant l'apprentissage : le modèle extrapole.
-- **Régions les plus exposées** (part attendue des communes) : Centre-Val de Loire (44 %), Île-de-France (44 %), Nouvelle-Aquitaine (40 %), Occitanie (39 %), Bourgogne-Franche-Comté (37 %). En nombre de communes, Occitanie (≈ 1 750) et Nouvelle-Aquitaine (≈ 1 700) dominent.
+Données SWI uniforme de janvier à septembre 2026. Détail : [reports/ete_2026.json](reports/ete_2026.json), communes : [reports/ete_2026_communes.csv](reports/ete_2026_communes.csv) (probabilité et intervalle à 90 % par commune).
+
+| | Valeur |
+|---|---:|
+| Sévérité (plus grande période de retour du SWI uniforme trimestriel) | la plus élevée des 35 années comparées |
+| **Nombre attendu de communes reconnues** (modèle) | **≈ 8 200** |
+| Intervalle à 90 % de l'estimation (incertitude des paramètres, bootstrap par années) | 5 700 – 10 400 |
+| Intervalle de prédiction à 80 % (erreur de niveau annuel du backtest) | 1 000 – 19 800 |
+| Intervalle de prédiction à 90 % | 800 – 24 300 |
+| Couverture réelle de ces intervalles, une année laissée de côté (28 années) | 79 % (nominal 80 %) ; 82 % (nominal 90 %) |
+
+**Deux intervalles, deux sens.** Le premier mesure l'incertitude *statistique* du modèle ; il est étroit. Le second mesure ce qui compte vraiment : l'écart entre le nombre prédit et le nombre reconnu une année donnée, très large car le niveau annuel de reconnaissance n'est pas stationnaire. Sur les 28 années du backtest, le rapport observé/attendu a une médiane de 0,42 (déciles 0,12 et 2,4) ; de 2016 à 2022 il vaut 0,7 à 6,6 (médiane 3,1). **Le centre de l'intervalle de prédiction n'est donc pas fiable** : selon le régime retenu, la valeur centrale va d'environ 3 500 à bien plus de 8 200. L'ordre de grandeur annoncé est une enveloppe, pas une prévision ponctuelle. De plus, 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
+
+Régions les plus exposées (part attendue des communes) : Île-de-France 34 %, Centre-Val de Loire 34 %, Nouvelle-Aquitaine 33 %, Occitanie 33 %.
 
 ![Sécheresse 2026](reports/figures/ete_2026_france.png)
 
-Cartes départementale et régionale (Centre-Val de Loire) : [départements](reports/figures/ete_2026_departements.png), [région](reports/figures/ete_2026_region.png).
+## 1. SWI uniforme : prévision et géostatistique
 
-## Données (publiques, téléchargées et vérifiées par empreinte)
+Le SWI uniforme est celui du modèle SIM configuré avec un sol argileux et un couvert gazonné identiques sur tout le territoire (documentation Météo-France, `data/raw/swi_presentation.pdf`). Le fichier de suivi (1958–2026) et le fichier de référence CatNat (1960–2025) sont identiques sur leur recouvrement (vérifié).
 
-| Source | Usage |
-|---|---|
-| Météo-France, SIM2 mensuelle Safran-Isba 1959–2025 (maille ≈ 8 km) | SWI, SSWI3, SSWI12 |
-| Météo-France, points de grille `SHP_SIM_FRANCE` | Rattachement commune → maille (centre de commune, distance médiane 3 km, max 12,7 km) |
-| data.gouv.fr, arrêtés CatNat par commune (GASPAR) | Variable à expliquer : périls « Sécheresse » et « Retrait-gonflement des argiles » |
-| SDES, exposition RGA par EPCI | Part de surface en aléa moyen et fort |
-| geo.api.gouv.fr, communes ; contours Etalab 2026 (100 m) | Centre, population, surface, EPCI ; cartes |
+**Prévision du SWI d'été (JJA) fin mai**, validation par origine glissante, test 1985–2026 :
 
-`python -m pipeline.download` télécharge ≈ 320 Mo dans `data/raw/` (non versionné) et contrôle les empreintes de [`data/manifest.json`](data/manifest.json). Détail : [data_catalog.md](data_catalog.md).
+| Modèle | RMSE | Corrélation | RMSE, années sèches |
+|---|---:|---:|---:|
+| Persistance (SWI d'été précédent) | 0,189 | 0,51 | 0,219 |
+| Climatologie de la maille | 0,151 | 0,68 | 0,200 |
+| **Ridge** | **0,123** | **0,77** | **0,114** |
+| Forêt aléatoire | 0,135 | 0,72 | 0,132 |
+| Gradient boosting | 0,147 | 0,68 | 0,144 |
 
-## Méthode
+Le modèle linéaire (ridge) bat les modèles non linéaires : il extrapole mieux la tendance climatique. Il prévoit un état hydrique, pas la météo de l'été, d'où la corrélation modeste au niveau national (0,50).
 
-- **Variable à expliquer.** `y = 1` si la commune a au moins un arrêté sécheresse pour un événement débutant l'année t. Grille complète commune × année : 34 746 communes, 1989–2022, 1 181 364 lignes, fréquence moyenne 3,5 %.
-- **Censure à droite.** Un arrêté est publié de quelques mois à plusieurs années après la fin de l'événement (médiane de 0,5 à 4 ans selon l'année, jusqu'à 9 ans). La dernière année retenue est calculée : 2022 est mûre à la date de coupure du fichier (9 juillet 2025), 2023 ne l'est pas ([figure](reports/figures/retard_publication.png)).
-- **Indicateurs météo sans information future.** Anomalies standardisées du SWI (été, automne, minimum mensuel, été précédent), calculées avec une climatologie **des seules années antérieures** depuis 1959 ; SSWI3 de septembre et SSWI12 de fin de période.
-- **Exposition.** Parts de surface RGA moyen et fort de l'EPCI, population (log).
-- **Historique connu.** Nombre d'années de reconnaissance sur les dix années précédentes, **en ne comptant que les arrêtés déjà publiés au 1er janvier de l'année prédite**.
-- **Validation en temps réel.** Pour prédire l'année t, apprentissage sur les années ≤ t − 2 seulement (retard de publication). Années de test 1995–2022, aucun découpage aléatoire.
-- **Modèles.** Fréquence constante ; fréquence par commune crédibilisée (Bühlmann simplifié, k = 3) ; régressions logistiques de plus en plus riches ; gradient boosting.
-- **Année en cours.** Même modèle, réentraîné sur 1989–2022 avec des indicateurs arrêtés au dernier mois disponible (octobre), pour toutes les années.
+**Géostatistique** (SWI d'été 2022, 8 981 mailles) : indice de Moran I = 0,87 (p = 0,005 par permutations) ; variogramme sphérique de portée ≈ 237 km ; krigeage ordinaire validé par blocs spatiaux retirés : RMSE 0,039 (blocs de 100 km) pour un écart-type du champ de 0,085, couverture 97 % de l'intervalle à 95 %. Détail : [reports/swi_study.json](reports/swi_study.json).
 
-## Résultats mesurés (hors échantillon)
+**Critère météorologique reconstitué** (fenêtres glissantes de 3 mois, période de retour par maille sur les années antérieures) contre les arrêtés 1989–2022 :
 
-| Modèle | Gain de log-loss vs constante, 1995–2022 | Idem, 2010–2022 | AUC 1995–2022 | Communes attendues / observées, 1995–2022 |
-|---|---:|---:|---:|---:|
-| Fréquence constante | 0 % | 0 % | 0,448 | 25 790 / 34 001 |
-| Fréquence commune crédibilisée | 5,6 % | 3,7 % | 0,702 | 25 790 / 34 001 |
-| GLM météo | 13,1 % | 15,4 % | 0,782 | 27 820 / 34 001 |
-| GLM météo + exposition | 20,7 % | 20,9 % | 0,847 | 27 428 / 34 001 |
-| **GLM complet** (+ historique publié) | **21,2 %** | **23,9 %** | 0,855 | 31 350 / 34 001 |
-| GBM complet | 21,3 % | 21,2 % | 0,858 | 25 460 / 34 001 |
+| Période de retour | Sensibilité | Précision |
+|---|---:|---:|
+| 10 ans | 80 % | 5 % |
+| 25 ans | 67 % | 7 % |
+| 50 ans | 57 % | 9 % |
 
-Élargir la période d'apprentissage (1989 au lieu de 2006) améliore le modèle sur les mêmes années de test 2010–2022 : le gain du GLM complet passe de 18,8 % à 23,9 %.
+Le critère est nécessaire mais pas suffisant : la reconnaissance exige aussi un critère géotechnique (argile) et une demande. Les paramètres exacts de la circulaire ne sont pas publiés dans les données ; cette reconstitution est paramétrable et évaluée, pas officielle. Sa période de retour maximale entre comme variable (`rp_max_log`) dans le modèle de fréquence.
+
+## 2. Modèle de fréquence de reconnaissance
+
+Variable à expliquer : la commune a au moins un arrêté sécheresse pour un événement débutant l'année t (34 746 communes, 1989–2022). Validation « en temps réel » : apprentissage sur les années ≤ t − 2 (retard de publication des arrêtés), test sur l'année t entière, 1995–2022. Aucun découpage aléatoire.
+
+| Modèle | Gain de log-loss vs constante, 1995–2022 | Idem 2010–2022 | AUC 1995–2022 |
+|---|---:|---:|---:|
+| Fréquence communale crédibilisée | 5,6 % | 3,7 % | 0,702 |
+| GLM, SWI uniforme seul | 12,0 % | 13,9 % | 0,775 |
+| GLM, SWI uniforme + exposition RGA | 20,7 % | 20,7 % | 0,852 |
+| **GLM complet** (+ historique publié) | **21,3 %** | **23,7 %** | **0,861** |
+| Gradient boosting | 18,0 % | 18,4 % | 0,837 |
+
+Les indicateurs sont calculés sans information future (climatologie expansive) ; l'historique de reconnaissance ne compte que les arrêtés publiés avant le 1er janvier de l'année prédite. Passer du SWI à sols réels au SWI uniforme ne change presque pas le pouvoir prédictif (21,2 % avant, 21,3 % après) mais aligne le modèle sur l'indicateur du dispositif.
 
 ![Observé contre attendu](reports/figures/observe_attendu.png)
 
-**Lecture.**
-- Le modèle **classe bien les communes** au sein d'une année : AUC de 0,73 (2018) à 0,96 selon l'année. L'humidité des sols apporte l'essentiel du gain, puis l'exposition aux argiles, puis l'historique.
-- Le **niveau annuel** est le point faible. Le modèle surestime la plupart des années 1995–2015, peu reconnues (mais sous-estime 2003, ×4), et sous-estime 2016–2020 (observé/attendu de 1,9 à 7,8). En 2022 l'écart retombe à 1,4. Le niveau de reconnaissance n'est pas stationnaire, et la météo seule ne l'explique pas. Une charge de portefeuille exigerait donc un recalage annuel du niveau.
-- La géographie des écarts est nette : le Centre-Est est fortement sous-estimé (Nièvre ×5,6, Saône-et-Loire ×4,5, Yonne ×3,9, Jura ×3,8).
-- Les indicateurs météo sont corrélés entre eux : leurs coefficients s'interprètent conjointement, pas un par un.
-
-### Cartes
-
-![France](reports/figures/carte_france_communes.png)
+La **classification** des communes est bonne (AUC de 0,69 à 0,96 selon l'année), le **niveau annuel** est le point faible (voir ci-dessus). Cartes France, départements et région : [reports/RESULTATS.md](reports/RESULTATS.md).
 
 ![Départements](reports/figures/carte_departements.png)
 
-Région détaillée : **Occitanie**, choisie car c'est la plus touchée sur 1995–2022 (6,3 % des communes-années reconnues). En 2022, 1 488 communes y ont été reconnues, pour 1 208 attendues.
+## 3. Vérification de l'ancien score « CatNat-like » (Bouches-du-Rhône)
 
-![Occitanie](reports/figures/carte_region_76.png)
+Les bases du Drive de l'équipe contiennent, pour les 119 communes du 13, un score composite (aléa argile BRGM normalisé × part de jours secs), et pour la Nouvelle-Aquitaine un score départemental. Contre la fréquence réelle de reconnaissance 1989–2022 des communes du 13 ([reports/old_score_check.json](reports/old_score_check.json)) :
 
-Détail par année, par département, calibration par décile et coefficients : [reports/RESULTATS.md](reports/RESULTATS.md), [reports/results.json](reports/results.json), [reports/departements.csv](reports/departements.csv).
+| Indicateur | Corrélation de rang (Spearman) | Intervalle à 90 % (bootstrap) |
+|---|---:|---:|
+| Score composite d'origine | 0,28 | 0,13 – 0,42 |
+| Aléa argile BRGM seul | **0,59** | 0,48 – 0,68 |
+| Part de jours secs seule | −0,21 | −0,35 – −0,07 |
+| Modèle de fréquence (probabilité moyenne) | 0,49 | 0,35 – 0,63 |
 
-## Limites
+Le score composite est dégradé par sa composante « jours secs », anticorrélée avec la reconnaissance dans ce département (la sécheresse est quasi homogène dans le 13, ce sont les différences d'argile qui discriminent). L'aléa argile communal est le meilleur prédicteur du 13 : il surpasse notre exposition RGA, qui n'est disponible qu'à l'échelle de l'EPCI. Intégrer l'aléa BRGM communal à toute la France est la principale amélioration identifiée.
 
-- **Fréquence de reconnaissance, pas de charge** : aucune donnée publique de sinistres ou de coûts à la commune. Le modèle ne fournit ni prime pure ni coût moyen.
-- La reconnaissance dépend aussi d'une procédure administrative (demande communale, critères modifiés au cours de la période) que les données météo ne décrivent pas : c'est la principale source d'écart de niveau annuel.
-- Exposition RGA, population et contours sont des photographies récentes, appliquées à toutes les années ; 14 communes n'ont pas de donnée RGA (indicateur dédié).
-- Chaque commune est rattachée à une seule maille (celle de son centre), sans pondération par la surface argileuse.
-- 2026 : estimation sur des données provisoires (jusqu'à octobre), au-delà de la plage de sévérité observée.
+## Données et reproductibilité
 
-## Utilisation
+Sources publiques : Météo-France (SWI uniforme suivi et référence CatNat, SIM mensuelle, points de grille), GASPAR (arrêtés), SDES (exposition RGA), geo.api.gouv.fr, Etalab (contours). `python -m pipeline.download` les télécharge (≈ 400 Mo, `data/raw/`, non versionné) avec empreintes SHA-256 dans [`data/manifest.json`](data/manifest.json). Les 22 fichiers du Drive de l'équipe sont dans `data/drive/` (non versionné) ; leur manifeste est [`data/drive_manifest.json`](data/drive_manifest.json). Catalogue : [data_catalog.md](data_catalog.md).
 
 ```sh
 python -m venv .venv && .venv/bin/pip install -r requirements.txt   # Windows : .venv\Scripts\
-python -m pipeline.download   # ≈ 320 Mo, une fois
-python -m pipeline.run        # table, validation 1995–2022, cartes, reports/results.json (≈ 30 min)
-python -m pipeline.report     # reports/RESULTATS.md
-python -m pipeline.nowcast    # estimation de l'année en cours (télécharge le fichier SIM de l'année)
-python -m pytest tests -q     # tests unitaires ; contrôles sur données réelles si data/raw existe
+python -m pipeline.download      # sources publiques
+python -m pipeline.run           # table, validation 1995–2022, cartes (≈ 30 min)
+python -m pipeline.swi_study     # prévision du SWI, géostatistique, critère
+python -m pipeline.nowcast       # estimation de l'année en cours avec intervalles
+python -m pipeline.old_score_check   # ancien score contre arrêtés (nécessite data/drive/)
+python -m pytest tests -q        # tests unitaires (+ contrôles sur données réelles si présentes)
 ```
+
+## Limites
+
+- **Fréquence, pas charge** : aucune donnée publique de sinistres ou de coûts à la commune. Pas de prime pure.
+- **Niveau annuel non stationnaire** : la procédure de reconnaissance et ses critères ont évolué ; c'est la première source d'incertitude (intervalle de prédiction très large).
+- Exposition RGA par EPCI, population et contours : photographies récentes appliquées à toutes les années ; l'aléa argile communal BRGM n'est disponible ici que pour le 13 et, à l'échelle départementale, la Nouvelle-Aquitaine.
+- Le critère météorologique est une reconstitution, pas le critère officiel.
+- 2026 : données provisoires (jusqu'en septembre), sévérité hors de la plage d'apprentissage.
+- La note LaTeX n'est pas encore rédigée ; son générateur de tableaux (`pipeline/make_tables.py`) n'est pas finalisé.
 
 ## Organisation
 
-- `catnat/` : lecture des sources, variable à expliquer et maturité, indicateurs, modèles, mesures, cartes.
-- `pipeline/` : téléchargement vérifié, validation complète, rapport, estimation de l'année en cours.
-- `tests/` : tests unitaires sur données synthétiques (absence de fuite temporelle, historique publié, crédibilité, indicateurs en cours d'année, mesures, formats des sources) et contrôles sur données réelles.
-- `reports/` : résultats mesurés et figures.
-- `archive/notebooks/` : notebooks d'origine, conservés pour traçabilité, non utilisés.
+`catnat/` (données, SWI uniforme, critère, prévision, géostatistique, variables, modèles, incertitude, cartes), `pipeline/` (exécutions), `tests/` (tests unitaires et contrôles sur données réelles), `reports/` (résultats mesurés, figures), `archive/notebooks/` (version d'origine).

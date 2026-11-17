@@ -8,3 +8,6 @@
 - 2026-11-17 : dernière année mûre calculée à partir du 99e centile du retard de publication (2022 avec la coupure du 9 juillet 2025).
 - 2026-11-17 : période élargie. SIM depuis 1959 (climatologie, 10 ans minimum), cible 1989–2022, test 1995–2022.
 - 2026-11-17 : estimation 2026 avec indicateurs arrêtés au dernier mois disponible (octobre), modèle réentraîné de la même façon.
+- 2026-11-17 : cible du projet = SWI uniforme (critère CatNat) ; modèle de fréquence réalimenté par le SWI uniforme et sa période de retour.
+- 2026-11-17 : deux intervalles distincts : bootstrap par années (estimation) et rapports observé/attendu du backtest (prédiction), couverture contrôlée une année laissée de côté.
+- 2026-11-17 : ancien score CatNat-like (Drive) vérifié contre les arrêtés : corrélation de rang 0,28 ; aléa argile seul 0,59.
