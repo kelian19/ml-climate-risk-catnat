@@ -1,5 +1,7 @@
 # Sécheresse CatNat : SWI uniforme, fréquence de reconnaissance et intervalles d'incertitude
 
+[![Tests](https://github.com/kelian19/ml-climate-risk-catnat/actions/workflows/tests.yml/badge.svg)](https://github.com/kelian19/ml-climate-risk-catnat/actions/workflows/tests.yml)
+
 Projet actuariel sur le péril sécheresse (retrait-gonflement des argiles) du régime CatNat. Il s'appuie sur le **SWI uniforme** de Météo-France, l'indicateur du critère météorologique CatNat, et sur les arrêtés de reconnaissance par commune. Il répond à trois questions :
 
 1. **Prévoir le SWI uniforme** d'été (prévision fin mai) et l'interpoler dans l'espace (variogramme, krigeage).

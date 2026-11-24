@@ -24,8 +24,14 @@ def ctx():
     ete=pd.read_csv(ROOT/'reports/ete_2026_communes.csv',dtype={'insee':str});e=json.loads((ROOT/'reports/ete_2026.json').read_text(encoding='utf-8'))
     return dict(com=com,dep=dep,reg=reg,pred=pred,tab=tab,ete=ete,e=e)
 
+DPI=150   # 3 000 à 3 900 pixels de large : assez pour zoomer, sans alourdir le dépôt (200 ppp donnait 3 à 4,5 Mo par figure)
+
 def save(fig,name):
-    fig.savefig(OUT/f'pro_{name}.png',dpi=200);plt.close(fig);print('écrit',name,flush=True)
+    """PNG en RVB sans canal alpha (fond opaque), compression maximale ; aucune réduction de palette, les couleurs portent la donnée."""
+    import io
+    from PIL import Image
+    buf=io.BytesIO();fig.savefig(buf,format='png',dpi=DPI);plt.close(fig);buf.seek(0)
+    Image.open(buf).convert('RGB').save(OUT/f'pro_{name}.png',optimize=True);print('écrit',name,flush=True)
 
 def fig_france(c):
     com=c['com'];p=c['pred'];g=p.groupby('insee').agg(obs=('y','mean'),mod=('p_glm_complet','mean')).reset_index();d=com.merge(g,left_on='code',right_on='insee',how='left');d['diff']=d.obs-d['mod']
