@@ -16,7 +16,7 @@ from catnat.swi import load_cube
 from catnat.official import official_features
 from catnat.labels import last_mature_year,build_labels,history_counts
 from catnat.model import FEATURE_SETS,make_estimator,rolling_origin
-from catnat.uncertainty import bootstrap_probabilities,quantile_bands,ratio_interval,loo_year_coverage
+from catnat.uncertainty import bootstrap_probabilities,quantile_bands,ratio_interval,loo_year_coverage,choose_interval
 from catnat.maps import load_contours,REGIONS
 from catnat.table import FIRST_SIM_YEAR,FIRST_LABEL_YEAR,CLIMATOLOGY_MIN_YEARS
 ROOT=Path(__file__).resolve().parents[1]
@@ -63,6 +63,8 @@ def main():
     cur['p_lo'],cur['p_hi']=quantile_bands(draws,0.9);tot=draws.sum(axis=1)*(1/1.0)
     by=pred.groupby('year').agg(observed=('y','sum'),expected=(f'p_{KIND}','sum')).reset_index()
     cov80,_=loo_year_coverage(by,0.8);cov90,_=loo_year_coverage(by,0.9)
+    headline,rt=choose_interval(by,expected,0.90)   # intervalle unique retenu, choisi par évaluation en temps réel
+    rt.to_csv(ROOT/'reports/interval_realtime.csv',index=False)
     pi80=ratio_interval((by.observed/by.expected).to_numpy(),expected,0.8);pi90=ratio_interval((by.observed/by.expected).to_numpy(),expected,0.9)
     cur[['insee','p','p_lo','p_hi']].to_csv(ROOT/'reports/ete_2026_communes.csv',index=False)
     # Sévérité nationale (moyenne sur les communes) pour situer l'année en cours.
@@ -76,6 +78,8 @@ def main():
     maps(cur,contours,dep,region,last_month)
     out={'year':YEAR,'last_month_available':last_month,'sim_file_sha256':digest,'training_years':[FIRST_LABEL_YEAR,mature],'model':KIND,'swi_source':'SWI uniforme krigé au centre des communes','clay_source':'BRGM carte d’exposition 2025, parts de surface communale',
          'expected_recognised_communes':expected,'communes':int(len(cur)),
+         'headline_interval':headline,
+         'backtest_by_year':by.assign(ratio=by.observed/by.expected).to_dict('records'),
          'estimation_interval_90':[float(np.quantile(tot,.05)),float(np.quantile(tot,.95))],
          'prediction_interval_80':[float(pi80[0]),float(pi80[1])],'prediction_interval_90':[float(pi90[0]),float(pi90[1])],
          'prediction_interval_loo_coverage':{'80':cov80,'90':cov90,'years':int(len(by))},

@@ -43,16 +43,21 @@ def main():
     out+=macro('tabSeverity',tab('rrrr','Année & Anomalie JJA moyenne & ln(période de retour) & Communes reconnues',rows))
     rows=[f"{x['region']} & {fr(100*x['rate'],1)}\\,\\% & {fr(x['expected'],0)}" for x in e['regions'][:8]]
     out+=macro('tabRegionsNow',tab('lrr','Région & Part attendue & Communes attendues',rows))
-    out+=macro('nowcastSummary',f"{fr(e['expected_recognised_communes'],0)} communes attendues ; fourchette empirique {fr(e['empirical_range'][0],0)}--{fr(e['empirical_range'][1],0)}")
+    h=e['headline_interval']
+    out+=macro('nowcastSummary',f"{fr(e['expected_recognised_communes'],0)} communes attendues ; intervalle retenu à {fr(100*h['level'],0)}\\,\\% : {fr(h['low'],0)}--{fr(h['high'],0)}")
+    MN={'empirique_tout':'Quantiles empiriques, tout l’historique','empirique_recent':'Quantiles empiriques, 10 dernières années','lognormal_tout':'Log-normale, tout l’historique','lognormal_recent':'Log-normale, 10 dernières années'}
+    rows=[(r"\textbf{%s}" if v['method']==h['method'] else "%s")%MN[v['method']]+f" & {v['hits']}/{v['years']} ({fr(100*v['coverage'],0)}\\,\\%) & {fr(v['coverage_pvalue'],2)} & {fr(v['mean_log_width'],2)} & {fr(v['mean_interval_score'],2)}" for v in h['evaluation']]
+    out+=macro('tabIntervalChoice',tab('lrrrr',f"Méthode (intervalle à {fr(100*h['level'],0)}\\,\\%, temps réel) & Couverture & $p$ sous-couverture & Largeur (log) & Score",rows))
     dep=pd.read_csv(R/'departements.csv',dtype={'departement':str}).sort_values('ratio_obs_exp',ascending=False).head(8)
     rows=[f"{d.departement} & {int(d.observed)} & {fr(d.expected,0)} & {fr(d.ratio_obs_exp,2)}" for d in dep.itertuples()]
     out+=macro('tabDept',tab('rrrr','Département & Observé & Attendu & Rapport',rows))
     lag=[l for l in r['publication_lag'] if l['year'] in (2000,2005,2010,2015,2018,2020,2022)]
     out+=macro('tabLag',tab('rrrrr','Année d’événement & Arrêtés & Médiane & 99\,\% & Maximum',[f"{int(l['year'])} & {int(l['count'])} & {fr(l['50%'],2)} & {fr(l['99%'],2)} & {fr(l['max'],2)}" for l in lag]))
     pi=e['prediction_interval_80'];pj=e['prediction_interval_90'];ei=e['estimation_interval_90'];cv=e['prediction_interval_loo_coverage']
-    rows=[f"Nombre attendu de communes reconnues & {fr(e['expected_recognised_communes'],0)}",f"Intervalle à 90\,\% de l'estimation (bootstrap par années) & {fr(ei[0],0)}--{fr(ei[1],0)}",
-          f"Intervalle de prédiction à 80\,\% (backtest) & {fr(pi[0],0)}--{fr(pi[1],0)}",f"Intervalle de prédiction à 90\,\% (backtest) & {fr(pj[0],0)}--{fr(pj[1],0)}",
-          f"Couverture une année laissée de côté ({cv['years']} ans), 80\,\% / 90\,\% & {fr(100*cv['80'],0)}\,\% / {fr(100*cv['90'],0)}\,\%"]
+    rows=[f"Nombre attendu de communes reconnues & {fr(e['expected_recognised_communes'],0)}",
+          f"\\textbf{{Intervalle retenu à {fr(100*h['level'],0)}\\,\\% (prédiction du nombre reconnu)}} & \\textbf{{{fr(h['low'],0)}--{fr(h['high'],0)}}}",
+          f"Couverture constatée en temps réel ({h['realtime_years']} années) & {fr(100*h['realtime_coverage'],0)}\\,\\%",
+          f"Pour mémoire : incertitude statistique seule, à 90\\,\\% (bootstrap par années) & {fr(ei[0],0)}--{fr(ei[1],0)}"]
     out+=macro('tabIntervals',tab('lr','Résultat 2026 & Valeur',rows))
     o=json.loads((R/'old_score_check.json').read_text(encoding='utf-8'))
     rows=[f"{lab} & {fr(o[k]['spearman'],2)} & {fr(o[k]['ci90'][0],2)}--{fr(o[k]['ci90'][1],2)}" for lab,k in [('Score composite d’origine','score_catnat'),('Aléa argile BRGM seul','arg_norm'),('Part de jours secs seule','dry_norm'),('Modèle de fréquence','modele_frequence')]]

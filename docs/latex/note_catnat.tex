@@ -112,13 +112,17 @@ L'exposition par EPCI est grossière. La carte d'exposition BRGM 2025 (121\,399 
 \begin{table}[H]\centering\small\tabDept\caption{Départements les plus sous-estimés.}\end{table}
 \begin{figure}[H]\centering\includegraphics[width=\linewidth]{carte_region_76.png}\caption{Occitanie, région la plus touchée sur la période.}\end{figure}
 
-\section{Résultat 2026 avec intervalles}
-Données SWI uniforme jusqu'en septembre 2026 ; arrêtés non publiés. \nowcastSummary. Deux intervalles distincts : le premier mesure l'incertitude statistique (bootstrap par blocs d'années), le second l'erreur de niveau annuel observée sur le backtest.
-\begin{table}[H]\centering\small\tabIntervals\caption{Estimation 2026 et intervalles. La couverture est mesurée en laissant chaque année de côté.}\end{table}
+\section{Résultat 2026 avec intervalle}
+Données SWI uniforme jusqu'en septembre 2026 ; arrêtés non publiés. \nowcastSummary.
+
+\subsection*{Un seul intervalle, choisi sur le passé}
+La question posée est le \emph{nombre} de communes qui seront reconnues : l'intervalle doit donc couvrir l'erreur de niveau annuel, de loin la première source d'incertitude, et pas seulement l'incertitude statistique des paramètres (beaucoup plus étroite). Le niveau est fixé à 90\,\% avant toute comparaison. Quatre façons de construire l'intervalle à partir des rapports observé/attendu des années passées sont comparées \emph{en temps réel} : pour chaque année, l'intervalle n'utilise que les années dont les arrêtés étaient déjà connus (au plus $t-2$). Règle fixée à l'avance : on écarte les méthodes dont la sous-couverture est significative (test binomial unilatéral à 5\,\%), puis on retient le plus faible score d'intervalle moyen (Gneiting et Raftery, 2007), règle de score propre qui pénalise à la fois la largeur et les dépassements : elle ne peut pas être gagnée en élargissant ou en resserrant artificiellement l'intervalle. La méthode retenue (quantiles empiriques sur tout l'historique) couvre 15 années sur 19 : un peu moins que 90\,\%, mais sans écart significatif ; la loi log-normale couvre 17 années sur 19 au prix d'intervalles nettement plus larges.
+\begin{table}[H]\centering\small\tabIntervalChoice\caption{Évaluation en temps réel des méthodes candidates (couverture constatée, largeur moyenne en log, score d'intervalle moyen ; plus bas = mieux). En gras : méthode retenue.}\end{table}
+\begin{table}[H]\centering\small\tabIntervals\caption{Estimation 2026 et intervalle retenu. L'incertitude statistique seule est donnée pour mémoire : elle ne couvre pas l'erreur de niveau annuel.}\end{table}
 \begin{table}[H]\centering\small\tabSeverity\caption{2026 comparée aux années les plus sévères de la série.}\end{table}
 \begin{table}[H]\centering\small\tabRegionsNow\caption{Régions les plus exposées en 2026 (estimation).}\end{table}
 \begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_nowcast_2026.png}\caption{Probabilité estimée de reconnaissance en 2026, largeur de l'intervalle à 90\,\% et départements les plus touchés.}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_eventail_prediction.png}\caption{Éventail de prédiction du nombre de communes reconnues : intervalles empiriques du backtest et estimation 2026.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_eventail_prediction.png}\caption{Intervalle retenu, calculé en temps réel chaque année avec les seules années déjà connues, et estimation 2026.}\end{figure}
 \begin{figure}[H]\centering\includegraphics[width=\linewidth]{pro_region_24_2026.png}\caption{Zoom communal sur le Centre-Val de Loire.}\end{figure}
 \begin{figure}[H]\centering\includegraphics[width=.9\linewidth]{climate_sensibilite.png}\caption{Sensibilité du nombre attendu de communes à un déplacement du SWI.}\end{figure}
 

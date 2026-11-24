@@ -135,7 +135,16 @@ Pays de la Loire & 16{,}8\,\% & 206 \\
 \bottomrule\end{tabular}
 }
 \newcommand{\nowcastSummary}{%
-7\,984 communes attendues ; fourchette empirique 1\,071--18\,976
+7\,984 communes attendues ; intervalle retenu à 90\,\% : 778--20\,747
+}
+\newcommand{\tabIntervalChoice}{%
+\begin{tabular}{lrrrr}\toprule
+Méthode (intervalle à 90\,\%, temps réel) & Couverture & $p$ sous-couverture & Largeur (log) & Score \\\midrule
+\textbf{Quantiles empiriques, tout l’historique} & 15/19 (79\,\%) & 0{,}11 & 3{,}28 & 5{,}03 \\
+Log-normale, tout l’historique & 17/19 (89\,\%) & 0{,}58 & 4{,}44 & 5{,}39 \\
+Log-normale, 10 dernières années & 16/19 (84\,\%) & 0{,}29 & 4{,}69 & 5{,}81 \\
+Quantiles empiriques, 10 dernières années & 14/19 (74\,\%) & 0{,}04 & 3{,}16 & 6{,}08 \\
+\bottomrule\end{tabular}
 }
 \newcommand{\tabDept}{%
 \begin{tabular}{rrrr}\toprule
@@ -166,10 +175,9 @@ Année d’événement & Arrêtés & Médiane & 99\,\% & Maximum \\\midrule
 \begin{tabular}{lr}\toprule
 Résultat 2026 & Valeur \\\midrule
 Nombre attendu de communes reconnues & 7\,984 \\
-Intervalle à 90\,\% de l'estimation (bootstrap par années) & 5\,834--9\,481 \\
-Intervalle de prédiction à 80\,\% (backtest) & 1\,071--18\,976 \\
-Intervalle de prédiction à 90\,\% (backtest) & 778--20\,747 \\
-Couverture une année laissée de côté (28 ans), 80\,\% / 90\,\% & 75\,\% / 86\,\% \\
+\textbf{Intervalle retenu à 90\,\% (prédiction du nombre reconnu)} & \textbf{778--20\,747} \\
+Couverture constatée en temps réel (19 années) & 79\,\% \\
+Pour mémoire : incertitude statistique seule, à 90\,\% (bootstrap par années) & 5\,834--9\,481 \\
 \bottomrule\end{tabular}
 }
 \newcommand{\tabOldScore}{%

@@ -14,22 +14,33 @@ Le projet d'origine (notebooks archivés dans [`archive/notebooks/`](archive/not
 
 Données SWI uniforme de janvier à septembre 2026. Détail : [reports/ete_2026.json](reports/ete_2026.json), communes : [reports/ete_2026_communes.csv](reports/ete_2026_communes.csv) (probabilité et intervalle à 90 % par commune).
 
+**Résultat retenu : ≈ 8 000 communes reconnues attendues, intervalle de prédiction à 90 % : 780 – 20 750.**
+
 | | Valeur |
 |---|---:|
 | Sévérité (plus grande période de retour du SWI uniforme trimestriel) | la plus élevée des 35 années comparées |
-| **Nombre attendu de communes reconnues** (modèle avec critère officiel, aléa argile communal, SWI krigé) | **≈ 8 000** |
-| Intervalle à 90 % de l'estimation (incertitude des paramètres, bootstrap par années) | 5 800 – 9 500 |
-| Intervalle de prédiction à 80 % (erreur de niveau annuel du backtest) | 1 100 – 19 000 |
-| Intervalle de prédiction à 90 % | 800 – 20 700 |
-| Couverture réelle de ces intervalles, une année laissée de côté (28 années) | 75 % (nominal 80 %) ; 86 % (nominal 90 %) |
+| **Nombre attendu de communes reconnues** (modèle avec critère officiel, aléa argile communal, SWI krigé) | **7 984** |
+| **Intervalle retenu à 90 %** (prédiction du nombre reconnu) | **778 – 20 747** |
+| Couverture constatée en temps réel, 2005–2022 | 15 années sur 19 (79 %) |
+| Pour mémoire : incertitude statistique seule, à 90 % (bootstrap par années) | 5 834 – 9 481 |
 
-**Deux intervalles, deux sens.** Le premier mesure l'incertitude *statistique* du modèle ; il est étroit. Le second mesure ce qui compte vraiment : l'écart entre le nombre prédit et le nombre reconnu une année donnée, très large car le niveau annuel de reconnaissance n'est pas stationnaire. Sur les 28 années du backtest, le rapport observé/attendu a une médiane de 0,42 (déciles 0,12 et 2,4) ; de 2016 à 2022 il vaut 0,7 à 6,6 (médiane 3,1). **Le centre de l'intervalle de prédiction n'est donc pas fiable** : selon le régime retenu, la valeur centrale va d'environ 3 700 à bien plus de 8 000. L'ordre de grandeur annoncé est une enveloppe, pas une prévision ponctuelle. De plus, 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole.
+**Un seul intervalle, choisi sur le passé.** La question est le *nombre* de communes qui seront reconnues : l'intervalle doit couvrir l'erreur de niveau annuel, de loin la première source d'incertitude (le rapport observé/attendu du backtest va de 0,02 à 6,3). L'incertitude statistique des paramètres, bien plus étroite, ne la couvre pas : elle n'est donnée que pour mémoire. Le niveau est fixé à 90 %. Quatre constructions (quantiles empiriques ou loi log-normale du rapport observé/attendu, sur tout l'historique ou les 10 dernières années) sont évaluées **en temps réel** : chaque année, l'intervalle n'utilise que les années dont les arrêtés étaient déjà connus. Règle fixée à l'avance : écarter les méthodes à sous-couverture significative (test binomial à 5 %), puis retenir le plus faible score d'intervalle (Gneiting et Raftery, 2007), qui pénalise à la fois la largeur et les dépassements.
+
+| Méthode (90 %, temps réel, 19 années) | Couverture | Largeur moyenne (log) | Score |
+|---|---:|---:|---:|
+| **Quantiles empiriques, tout l'historique (retenue)** | **15/19** | **3,28** | **5,03** |
+| Log-normale, tout l'historique | 17/19 | 4,44 | 5,39 |
+| Log-normale, 10 dernières années | 16/19 | 4,69 | 5,81 |
+| Quantiles empiriques, 10 dernières années | 14/19 (écartée) | 3,16 | 6,08 |
+
+L'intervalle est très large parce que le niveau annuel de reconnaissance n'est pas stationnaire : de 2016 à 2022, le rapport observé/attendu vaut 0,9 à 6,3. Le centre n'est pas une prévision ponctuelle fiable ; c'est l'enveloppe qui est utilisable. De plus, 2026 est plus sévère que toute année d'apprentissage : le modèle extrapole. Calcul : `python -m pipeline.nowcast` ; recalcul du choix seul : `python -m pipeline.interval_choice`.
+
+![Intervalle retenu](reports/figures/pro_eventail_prediction.png)
 
 Régions les plus exposées (part attendue des communes) : Île-de-France 39 %, Centre-Val de Loire 38 %, Occitanie 35 %, Nouvelle-Aquitaine 33 %. Zoom communal sur le Centre-Val de Loire ci-dessous.
 
 ![Sécheresse 2026](reports/figures/pro_nowcast_2026.png)
 
-![Éventail de prédiction](reports/figures/pro_eventail_prediction.png)
 
 ![Centre-Val de Loire](reports/figures/pro_region_24_2026.png)
 

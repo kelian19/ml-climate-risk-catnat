@@ -77,24 +77,28 @@ def fig_calendar(c):
     title_block(fig,'Calendrier des reconnaissances : département × année','Départements ordonnés du nord au sud ; chaque case est la part de ses communes reconnues pour un événement de l’année.',SRC)
     save(fig,'calendrier_departements')
 
+METHOD_NAMES={'empirique_tout':'quantiles empiriques, tout l’historique','empirique_recent':'quantiles empiriques, 10 dernières années',
+              'lognormal_tout':'loi log-normale, tout l’historique','lognormal_recent':'loi log-normale, 10 dernières années'}
+
 def fig_fan(c):
-    t=c['tab'];p=c['pred'];e=c['e']
-    by=p.groupby('year').agg(observed=('y','sum'),expected=('p_glm_complet','sum')).reset_index();cov,loo=loo_year_coverage(by,0.8);_,loo90=loo_year_coverage(by,0.9)
+    """Intervalle unique retenu : bornes calculées en temps réel chaque année (seules les années passées connues), puis 2026."""
+    t=c['tab'];e=c['e'];h=e['headline_interval'];by=pd.DataFrame(e['backtest_by_year'])
+    rt=pd.read_csv(ROOT/'reports/interval_realtime.csv');rt=rt[rt.method==h['method']]
     fig=plt.figure(figsize=(15,9.5));gs=GridSpec(2,1,figure=fig,height_ratios=[1,0.38],left=0.07,right=0.97,top=0.88,bottom=0.08,hspace=0.12)
-    a=fig.add_subplot(gs[0]);a.fill_between(loo90.year,loo90.low,loo90.high,color='#dbe6d4',label='Intervalle de prédiction 90 %');a.fill_between(loo.year,loo.low,loo.high,color='#a9c9a3',label=f'Intervalle de prédiction 80 % (couverture réelle {100*cov:.0f} %)')
-    a.plot(by.year,by.expected,'-',color=ACCENT,lw=1.8,label='Attendu par le modèle');a.scatter(by.year,by.observed,s=36,color=WARN,zorder=5,label='Observé');
-    for yy,ob,lo,hi in zip(loo.year,loo.observed,loo.low,loo.high):
-        if not lo<=ob<=hi:a.annotate(str(yy),(yy,ob),xytext=(0,8),textcoords='offset points',ha='center',fontsize=7,color=WARN)
-    x=2026.7;est=e['expected_recognised_communes'];a.errorbar([x],[est],yerr=[[est-e['prediction_interval_90'][0]],[e['prediction_interval_90'][1]-est]],fmt='none',ecolor='#6f9c6a',elinewidth=7,alpha=.55,capsize=0)
-    a.errorbar([x],[est],yerr=[[est-e['prediction_interval_80'][0]],[e['prediction_interval_80'][1]-est]],fmt='none',ecolor=ACCENT,elinewidth=7,alpha=.9,capsize=0)
-    a.errorbar([x],[est],yerr=[[est-e['estimation_interval_90'][0]],[e['estimation_interval_90'][1]-est]],fmt='none',ecolor='white',elinewidth=2,capsize=5);a.scatter([x],[est],s=60,color='white',edgecolor=INK,zorder=6)
-    a.annotate(f"2026 (estimation)\n{est:,.0f} communes attendues".replace(',',' '),(x,est),xytext=(-125,40),textcoords='offset points',fontsize=8,arrowprops=dict(arrowstyle='-',color=MUTED))
-    a.set_yscale('symlog',linthresh=100);a.set_ylabel('Communes reconnues (échelle symlog)');a.set_xlim(1994,2028.2);a.legend(fontsize=8,frameon=False,loc='upper left',ncol=2);a.set_xticklabels([])
-    for s in ('top','right'):a.spines[s].set_visible(False)
+    a=fig.add_subplot(gs[0]);lvl=int(round(100*h['level']))
+    a.fill_between(rt.year,rt.low,rt.high,color='#a9c9a3',step=None,label=f"Intervalle à {lvl} % calculé en temps réel (couverture constatée {100*h['realtime_coverage']:.0f} % sur {h['realtime_years']} ans)")
+    a.plot(by.year,by.expected,'-',color=ACCENT,lw=1.8,label='Attendu par le modèle');a.scatter(by.year,by.observed,s=36,color=WARN,zorder=5,label='Observé')
+    for r in rt.itertuples():
+        if not r.covered:a.annotate(str(r.year),(r.year,r.observed),xytext=(0,8),textcoords='offset points',ha='center',fontsize=7,color=WARN)
+    x=2026.7;est=e['expected_recognised_communes']
+    a.errorbar([x],[est],yerr=[[est-h['low']],[h['high']-est]],fmt='none',ecolor=ACCENT,elinewidth=8,alpha=.9,capsize=0);a.scatter([x],[est],s=60,color='white',edgecolor=INK,zorder=6)
+    a.annotate(f"2026 (estimation)\n{est:,.0f} communes attendues\nintervalle à {lvl} % : {h['low']:,.0f} – {h['high']:,.0f}".replace(',',' '),(x,est),xytext=(-170,46),textcoords='offset points',fontsize=8.5,arrowprops=dict(arrowstyle='-',color=MUTED))
+    a.set_yscale('symlog',linthresh=100);a.set_ylabel('Communes reconnues (échelle symlog)');a.set_xlim(1994,2028.2);a.legend(fontsize=8,frameon=False,loc='upper left');a.tick_params(labelbottom=False)
+    for s_ in ('top','right'):a.spines[s_].set_visible(False)
     b=fig.add_subplot(gs[1],sharex=a);sev=t.groupby('year').rp_max_log.mean();sev=sev[sev.index>=1995];b.fill_between(sev.index,0,sev.values,color='#e8a43c',alpha=.6);b.plot(sev.index,sev.values,color='#a3361b',lw=1.4)
     s26=e['severity']['rp_max_log_mean'];b.scatter([2026],[s26],color=WARN,s=50,zorder=5);b.annotate(f'2026 : {s26:.2f}',(2026,s26),xytext=(-60,-4),textcoords='offset points',fontsize=8,color=WARN)
     b.set_ylabel('ln(période de retour)\nmoyenne communale',fontsize=8);b.set_xlabel('Année de l’événement');[b.spines[s].set_visible(False) for s in ('top','right')]
-    title_block(fig,'Éventail de prédiction du nombre de communes reconnues','Intervalle empirique fondé sur l’erreur de niveau annuel du backtest (une année laissée de côté). Barre blanche : incertitude statistique à 90 % de 2026.',SRC)
+    title_block(fig,'Un intervalle unique pour 2026, éprouvé sur le passé',f"Méthode retenue par score d’intervalle en temps réel : {METHOD_NAMES[h['method']]} du rapport observé/attendu ; chaque bande est calculée avec les seules années déjà connues à la date.",SRC)
     save(fig,'eventail_prediction')
 
 def fig_nowcast(c):
@@ -107,7 +111,7 @@ def fig_nowcast(c):
     dd=d.merge(c['dep'][['departement']],on='departement',how='left');g=dd.groupby('departement').agg(exp=('p','sum'),lo=('p_lo','sum'),hi=('p_hi','sum')).sort_values('exp',ascending=False).head(22).iloc[::-1]
     r=fig.add_subplot(gs[2]);r.barh(range(len(g)),g.exp,color=ACCENT,height=0.7);r.errorbar(g.exp,range(len(g)),xerr=[g.exp-g.lo,g.hi-g.exp],fmt='none',ecolor=WARN,elinewidth=1.4,capsize=2.5)
     r.set_yticks(range(len(g)));r.set_yticklabels(g.index,fontsize=7.5);r.set_xlabel('Communes attendues (barres : sommes des bornes communales 5–95 %, conservatrices)',fontsize=8);r.set_title('Départements les plus touchés');[r.spines[s].set_visible(False) for s in ('top','right')]
-    est=e['expected_recognised_communes'];title_block(fig,'Sécheresse 2026 : estimation par commune avec incertitude',f"SWI uniforme jusqu’en septembre 2026 ; {est:,.0f} communes attendues (intervalle statistique à 90 % {e['estimation_interval_90'][0]:,.0f}–{e['estimation_interval_90'][1]:,.0f}) ; arrêtés non publiés.".replace(',',' '),SRC)
+    est=e['expected_recognised_communes'];title_block(fig,'Sécheresse 2026 : estimation par commune avec incertitude',f"SWI uniforme jusqu’en septembre 2026 ; {est:,.0f} communes attendues, intervalle retenu à {100*e['headline_interval']['level']:.0f} % : {e['headline_interval']['low']:,.0f}–{e['headline_interval']['high']:,.0f} ; arrêtés non publiés.".replace(',',' '),SRC)
     save(fig,'nowcast_2026')
 
 def fig_krige(c):

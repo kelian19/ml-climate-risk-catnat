@@ -11,6 +11,233 @@
   "clay_source": "BRGM carte d’exposition 2025, parts de surface communale",
   "expected_recognised_communes": 7984.003094218398,
   "communes": 34746,
+  "headline_interval": {
+    "level": 0.9,
+    "method": "empirique_tout",
+    "low": 777.7974431602318,
+    "high": 20746.524225314242,
+    "ratio_bounds": [
+      0.0974194816787424,
+      2.598511546211424
+    ],
+    "realtime_coverage": 0.7894736842105263,
+    "realtime_years": 19,
+    "realtime_coverage_pvalue": 0.11499755780436063,
+    "calibrated": true,
+    "rule": "couverture non significativement inférieure au niveau (binomial unilatéral 5 %), puis score d’intervalle minimal",
+    "evaluation": [
+      {
+        "method": "empirique_tout",
+        "years": 19,
+        "hits": 15,
+        "coverage": 0.7894736842105263,
+        "mean_log_width": 3.281780507674527,
+        "mean_interval_score": 5.034891669291005,
+        "coverage_pvalue": 0.11499755780436063,
+        "calibrated": true
+      },
+      {
+        "method": "lognormal_tout",
+        "years": 19,
+        "hits": 17,
+        "coverage": 0.8947368421052632,
+        "mean_log_width": 4.442701820373336,
+        "mean_interval_score": 5.385208630899897,
+        "coverage_pvalue": 0.5797350211684021,
+        "calibrated": true
+      },
+      {
+        "method": "lognormal_recent",
+        "years": 19,
+        "hits": 16,
+        "coverage": 0.8421052631578947,
+        "mean_log_width": 4.690056786399552,
+        "mean_interval_score": 5.809495128476494,
+        "coverage_pvalue": 0.2945552141041039,
+        "calibrated": true
+      },
+      {
+        "method": "empirique_recent",
+        "years": 19,
+        "hits": 14,
+        "coverage": 0.7368421052631579,
+        "mean_log_width": 3.157904401711433,
+        "mean_interval_score": 6.0815709344511415,
+        "coverage_pvalue": 0.035194155004474745,
+        "calibrated": false
+      }
+    ]
+  },
+  "backtest_by_year": [
+    {
+      "year": 1995,
+      "observed": 333,
+      "expected": 1494.2771033472316,
+      "ratio": 0.22285023256668302
+    },
+    {
+      "year": 1996,
+      "observed": 614,
+      "expected": 1443.1336552359733,
+      "ratio": 0.4254630177685116
+    },
+    {
+      "year": 1997,
+      "observed": 351,
+      "expected": 1550.9039573802793,
+      "ratio": 0.2263196236812073
+    },
+    {
+      "year": 1998,
+      "observed": 578,
+      "expected": 945.5394329644752,
+      "ratio": 0.6112912691413008
+    },
+    {
+      "year": 1999,
+      "observed": 87,
+      "expected": 587.2435126853951,
+      "ratio": 0.1481497847497017
+    },
+    {
+      "year": 2000,
+      "observed": 71,
+      "expected": 840.4629387283716,
+      "ratio": 0.08447725262868067
+    },
+    {
+      "year": 2001,
+      "observed": 15,
+      "expected": 666.3877153968143,
+      "ratio": 0.022509418546330706
+    },
+    {
+      "year": 2002,
+      "observed": 653,
+      "expected": 693.8362376633193,
+      "ratio": 0.9411442708716883
+    },
+    {
+      "year": 2003,
+      "observed": 4352,
+      "expected": 1622.2863624837719,
+      "ratio": 2.682633658669823
+    },
+    {
+      "year": 2004,
+      "observed": 77,
+      "expected": 447.8446117563053,
+      "ratio": 0.17193463531475858
+    },
+    {
+      "year": 2005,
+      "observed": 1521,
+      "expected": 1357.3990325838058,
+      "ratio": 1.1205253307900036
+    },
+    {
+      "year": 2006,
+      "observed": 323,
+      "expected": 678.469587975692,
+      "ratio": 0.4760714492210554
+    },
+    {
+      "year": 2007,
+      "observed": 203,
+      "expected": 591.2974046449732,
+      "ratio": 0.34331285475857154
+    },
+    {
+      "year": 2008,
+      "observed": 121,
+      "expected": 638.4897312177924,
+      "ratio": 0.18950970404679263
+    },
+    {
+      "year": 2009,
+      "observed": 596,
+      "expected": 1307.571224296624,
+      "ratio": 0.45580691049591093
+    },
+    {
+      "year": 2010,
+      "observed": 100,
+      "expected": 557.2297469613269,
+      "ratio": 0.17945919173432112
+    },
+    {
+      "year": 2011,
+      "observed": 2247,
+      "expected": 1413.8865723348622,
+      "ratio": 1.5892363955966793
+    },
+    {
+      "year": 2012,
+      "observed": 648,
+      "expected": 658.1465819910989,
+      "ratio": 0.9845830970353104
+    },
+    {
+      "year": 2013,
+      "observed": 23,
+      "expected": 164.72136538160993,
+      "ratio": 0.1396297313752585
+    },
+    {
+      "year": 2014,
+      "observed": 44,
+      "expected": 362.27394440122964,
+      "ratio": 0.12145504991457137
+    },
+    {
+      "year": 2015,
+      "observed": 205,
+      "expected": 676.7101361359973,
+      "ratio": 0.30293620422260303
+    },
+    {
+      "year": 2016,
+      "observed": 982,
+      "expected": 402.0825145774694,
+      "ratio": 2.4422847659315403
+    },
+    {
+      "year": 2017,
+      "observed": 2104,
+      "expected": 978.9152823209928,
+      "ratio": 2.149317758132705
+    },
+    {
+      "year": 2018,
+      "observed": 4061,
+      "expected": 643.0473458435504,
+      "ratio": 6.315242611992706
+    },
+    {
+      "year": 2019,
+      "observed": 2923,
+      "expected": 1283.5888175649154,
+      "ratio": 2.277208994033772
+    },
+    {
+      "year": 2020,
+      "observed": 3520,
+      "expected": 1498.769018716689,
+      "ratio": 2.3485940502119376
+    },
+    {
+      "year": 2021,
+      "observed": 355,
+      "expected": 379.63425380638654,
+      "ratio": 0.9351105608637992
+    },
+    {
+      "year": 2022,
+      "observed": 6894,
+      "expected": 4249.061371140947,
+      "ratio": 1.622475977123588
+    }
+  ],
   "estimation_interval_90": [
     5834.279847154026,
     9480.666951399548

@@ -33,3 +33,16 @@ def test_ratio_interval_and_loo_coverage_match_nominal_level_on_lognormal_noise(
     by=pd.DataFrame({'year':np.arange(n),'expected':expected,'observed':expected*ratio})
     cov,tab=loo_year_coverage(by,0.8);assert 0.74<cov<0.86 and tab.covered.mean()==cov
     lo,hi=ratio_interval(ratio,1000.,0.8);assert lo<1000*np.median(ratio)<hi
+
+def test_realtime_choice_prefers_recent_window_after_regime_shift():
+    """Le niveau annuel change de régime (×4) à mi-parcours : l'évaluation en temps réel doit préférer une fenêtre récente."""
+    from catnat.uncertainty import realtime_evaluation,choose_interval,ratio_bounds,interval_score
+    rng=np.random.default_rng(0);years=np.arange(1990,2024);lvl=np.where(years<2008,0.5,2.0)
+    exp=np.full(len(years),1000.);obs=exp*lvl*np.exp(rng.normal(0,0.3,len(years)))
+    by=pd.DataFrame({'year':years,'observed':obs.round(),'expected':exp})
+    summ,det=realtime_evaluation(by,0.9)
+    assert summ.iloc[0].method.endswith('recent') and set(det.year)<=set(years) and det.year.min()>=1990+8+2-1
+    choice,_=choose_interval(by,1000.,0.9);assert choice['low']<2000<choice['high']
+    assert choice['calibrated'] is False   # après une rupture de régime, aucune méthode n'atteint 90 % : c'est signalé, pas masqué
+    lo,hi=ratio_bounds([1.,1.,1.,2.,0.5],'lognormal_tout',0.9);assert lo<1<hi
+    assert interval_score(1.,2.,1.5,0.9)<interval_score(1.,2.,3.,0.9)

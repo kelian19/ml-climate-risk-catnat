@@ -17,3 +17,4 @@
 - 2026-11-17 : critère officiel (circulaire IOME2322937C) implémenté d'après le rapport Météo-France 2024 ; contrôle exact sur 2024 (17 / 34 / 47 mailles). Rangs des 4 années précédentes dans leur propre fenêtre de 30 ans. Ajouté au modèle : gain 25,4 % -> 28,1 %, AUC 0,884 -> 0,895 ; modèle retenu pour 2026 (glm_officiel).
 - 2026-11-17 : forêt aléatoire et ensemble comparés au GLM ; validation par blocs spatiaux (8 blocs, 6 années) : le GLM généralise à des zones non vues.
 - 2026-11-17 : projections climatiques (DRIAS-Eau) non intégrées : téléchargement réservé aux titulaires d'un compte. Données de sinistres communales : aucune publique trouvée.
+- 2026-11-24 : un seul intervalle pour 2026 : prédiction à 90 % du nombre reconnu, méthode choisie en temps réel (sous-couverture non significative, puis score d'intervalle minimal) : quantiles empiriques du rapport observé/attendu sur tout l'historique, 778 – 20 747.
